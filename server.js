@@ -31,6 +31,13 @@ const {
     deleteTravel,
 } = require('./controllers/travels');
 
+// ## CONTROLADORES DE VOTES ##
+const {
+    newVote,
+    getVotes,
+} =require('./controllers/votes');
+
+
 // ## ENDPOINTS DE USUARIOS ##
 app.post('/register', newUser);
 app.post('/login', loginUser);
@@ -44,6 +51,10 @@ app.delete('/users/:idUser', isAuth, canEditUser, deleteUser);
 app.post('/travels/new', isAuth, newTravel);
 app.put('/travels/:idTravel', isAuth, canEditTravel, editTravel);
 app.delete('/travels/:idTravel', isAuth, canEditTravel, deleteTravel);
+
+// ## ENDPOINT VOTES ##
+app.post('/votes/new/:idTravel',isAuth, newVote);
+app.get('/votes/:idTravel', isAuth, getVotes);
 
 // ## ENDPOINTS DE ERROR ##
 app.use((req, res) => {

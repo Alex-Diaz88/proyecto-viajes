@@ -65,7 +65,7 @@ async function main() {
         await connection.query(`
             create table if not exists vote (
                 id int unsigned primary key auto_increment,
-                voted boolean default false,
+                voted boolean default false enum,
                 idUser int unsigned not null,
                 idTravel int unsigned not null,
                 foreign key (idUser) references user (id),
