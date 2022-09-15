@@ -8,28 +8,26 @@ const getExperiences = async (req, res, next) => {
 
         const { search, order, direction } = req.query;
 
-        const validOrderOptions = ['created_at'];
+        const validOrderOptions = ['title', 'createdAt'];
 
-        const validDirectionOptions = ['desc', 'asc'];
+        const validDirectionOptions = ['DESC', 'ASC'];
 
-        const orderBy = validOrderOptions.includes(order)
-            ? order
-            : 'created_at';
+        const orderBy = validOrderOptions.includes(order) ? order : 'createdAt';
 
         const orderDirection = validDirectionOptions.includes(direction)
             ? direction
-            : 'asc';
+            : 'ASC';
 
-        let experiences;
+        let travels;
 
         if (search) {
-            [experiences] = await connection.query(
-                `selects * from recomendaciones where name like ? or description like ? order by ${orderBy} ${orderDirection}`,
+            [travels] = await connection.query(
+                `select * from travel where title like ? or entry like ? or content like ? order by ${orderBy} ${orderDirection}`,
                 [`%${search}%`, `%${search}%`]
             );
         } else {
-            [experiences] = await connection.query(
-                `select * from recomendaciones order by ${orderBy} ${orderDirection}`
+            [travels] = await connection.query(
+                `select * from travel order by ${orderBy} ${orderDirection}`
             );
         }
 
