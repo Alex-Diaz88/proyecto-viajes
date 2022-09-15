@@ -35,6 +35,8 @@ async function main() {
                 id int unsigned primary key auto_increment,
                 title varchar (100) not null,
                 entry varchar(200) not null,
+                place enum ('Coriolis', 'Jina', 'Kua', 'Lubau', 'Surha', 'Xene') not null,
+                activity enum ('Cultural', 'Deportes', 'Gastronomía', 'Naturaleza', 'Relajación') not null,
                 content text,
                 createdAt datetime,
                 idUser int unsigned not null,
