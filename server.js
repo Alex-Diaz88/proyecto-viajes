@@ -36,7 +36,6 @@ const {
 // ## CONTROLADORES DE VOTES ##
 const {
     newVote,
-    getVotes,
 } =require('./controllers/votes');
 
 
@@ -62,7 +61,7 @@ app.delete('/travels/:idTravel', isAuth, canEditTravel, deleteTravel);
 
 // ## ENDPOINT VOTES ##
 app.post('/votes/new/:idTravel',isAuth, newVote);
-app.get('/votes/:idTravel', isAuth, getVotes);
+
 
 // ## ENDPOINTS COMENTARIOS ##
 app.post('/comments/:idTravel', isAuth, newComment);

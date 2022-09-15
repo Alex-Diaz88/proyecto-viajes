@@ -1,35 +1,46 @@
 const getDB = require('../../db/getDB');
 
 const newVote = async (req, res, next) => {
-    let connection;
+let connection;
+try {
+    
+connection= await getDB();
 
-    try {
-        connection = await getDB();
+const { idTravel } = req.params;
+const idReqUser = req.userAuth.id;
 
-        const { voted } = req.body;
-        const { idTravel } = req.params;
-        const idReqUser = req.userAuth.id;
+const [[vote]] =await connection.query(`
+select * from vote where idTravel = ? and idUser = ?`,
+[idTravel, idReqUser]
+);
+let voted = false;
 
-        await connection.query(
-            `          
-            insert into vote (voted, idTravel, idUser)
-            values (?, ?, ?)`,
-            [voted, idTravel, idReqUser]
-        );
-        res.send({
-            status: 'Ok',
-            message: 'Voto contabilizado con exito',
-            data: {
-                voted: voted,
-                idUser: idReqUser,
-                idTravel: idTravel,
-            },
-        });
-    } catch (error) {
-        next(error);
-    } finally {
-        if (connection) connection.release();
+if(vote) {
+    await connection.query(`
+    
+    delete from vote where idTravel = ? and idUser = ?`,
+    [idTravel, idReqUser]
+    );
+} else {
+    voted = true;
+    await connection.query(`
+    insert into vote (idTravel, idUser)
+    values (?, ?)`,
+    [idTravel, idReqUser]
+    );
+}
+res.send({
+    status: 'Ok',
+    message: 'voto contabilizado con exito',
+    data: {
+        idUser: idReqUser,
+        idTravel: idTravel,
+        voted,
     }
-};
+})
+} catch (error) {
+    next(error)
+}
+}
 
 module.exports = newVote;
