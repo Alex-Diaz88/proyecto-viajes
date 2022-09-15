@@ -1,6 +1,6 @@
 const getDB = require('../../db/getDB');
 const { generateError, validate } = require('../../helpers');
-const newExperienceSchema = require('../../schemas/newTravelSchema');
+const newTravelSchema = require('../../schemas/newTravelSchema');
 
 const newTravel = async (req, res, next) => {
     let connection;
@@ -10,7 +10,7 @@ const newTravel = async (req, res, next) => {
 
         const { title, entry, content } = req.body;
 
-        /*  await validate(newTravelSchema, req.body); */
+        /* await validate(newTravelSchema, req.body); */
 
         const idReqUser = req.userAuth.id;
 

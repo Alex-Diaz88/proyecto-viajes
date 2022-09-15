@@ -32,6 +32,9 @@ const {
     deleteTravel,
 } = require('./controllers/travels');
 
+// ## CONTROLADORES COMENTARIOS ##
+const newComment = require('./controllers/comments');
+
 // ## ENDPOINTS DE USUARIOS ##
 app.post('/register', newUser);
 app.post('/login', loginUser);
@@ -46,6 +49,9 @@ app.post('/travels/new', isAuth, newTravel);
 app.put('/travels/:idTravel', isAuth, canEditTravel, editTravel);
 app.put('/travels/:idTravel/photo', isAuth, canEditTravel, addTravelPhoto);
 app.delete('/travels/:idTravel', isAuth, canEditTravel, deleteTravel);
+
+// ## ENDPOINTS COMENTARIOS ##
+app.post('/comments/:idTravel', isAuth, newComment);
 
 // ## ENDPOINTS DE ERROR ##
 app.use((req, res) => {
