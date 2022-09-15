@@ -54,6 +54,7 @@ async function main() {
         await connection.query(`
             create table if not exists comment (
                 id int unsigned primary key auto_increment,
+                content text,
                 createdAt datetime,
                 idUser int unsigned not null,
                 idTravel int unsigned not null,
