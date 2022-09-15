@@ -28,6 +28,7 @@ const {
 const {
     newTravel,
     editTravel,
+    addTravelPhoto,
     deleteTravel,
 } = require('./controllers/travels');
 
@@ -43,6 +44,7 @@ app.delete('/users/:idUser', isAuth, canEditUser, deleteUser);
 // ## ENDPOINTS VIAJES ##
 app.post('/travels/new', isAuth, newTravel);
 app.put('/travels/:idTravel', isAuth, canEditTravel, editTravel);
+app.put('/travels/:idTravel/photo', isAuth, canEditTravel, addTravelPhoto);
 app.delete('/travels/:idTravel', isAuth, canEditTravel, deleteTravel);
 
 // ## ENDPOINTS DE ERROR ##
