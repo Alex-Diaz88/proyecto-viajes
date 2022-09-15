@@ -1,6 +1,6 @@
 const Joi = require('joi');
 
-const newExperienceSchema = Joi.object().keys({
+const newTravelSchema = Joi.object().keys({
     title: Joi.string()
         .required()
         .min(3)
@@ -15,7 +15,7 @@ const newExperienceSchema = Joi.object().keys({
             }
 
             return new Error(
-                'El nombre de la experiencia debe tener entre 3 y 30 caracteres'
+                'El título del viaje debe tener entre 3 y 30 caracteres'
             );
         }),
 
@@ -33,7 +33,7 @@ const newExperienceSchema = Joi.object().keys({
             }
 
             return new Error(
-                'La entradilla de la experiencia debe tener entre 10 y 100 caracteres'
+                'La entradilla del viaje debe tener entre 10 y 100 caracteres'
             );
         }),
 
@@ -48,4 +48,4 @@ const newExperienceSchema = Joi.object().keys({
         }),
 });
 
-module.exports = newExperienceSchema;
+module.exports = newTravelSchema;

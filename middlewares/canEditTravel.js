@@ -1,19 +1,19 @@
 const getDB = require('../db/getDB');
 const { generateError } = require('../helpers');
 
-const canEditExperience = async (req, res, next) => {
+const canEditTravel = async (req, res, next) => {
     let connection;
 
     try {
         connection = await getDB();
 
-        const { idExperience } = req.params;
+        const { idTravel } = req.params;
 
         const idReqUser = req.userAuth.id;
 
         const [user] = await connection.query(
-            `select * from recomendaciones where id = ? and users_id = ?`,
-            [idExperience, idReqUser]
+            `select * from travel where id = ? and idUser = ?`,
+            [idTravel, idReqUser]
         );
 
         if (user.length < 1) {
@@ -31,4 +31,4 @@ const canEditExperience = async (req, res, next) => {
     }
 };
 
-module.exports = canEditExperience;
+module.exports = canEditTravel;

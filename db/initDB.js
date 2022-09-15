@@ -8,79 +8,72 @@ async function main() {
     try {
         connection = await getDB();
 
-        console.log('Borrando las tablas existentes');
-        await connection.query(`DROP TABLE IF EXISTS voto`);
-        await connection.query(`DROP TABLE IF EXISTS comentarios`);
-        await connection.query(`DROP TABLE IF EXISTS recomendaciones`);
-        await connection.query(`DROP TABLE IF EXISTS users`);
+        console.log('Eliminando tablas...');
+        await connection.query(`drop table if exists vote`);
+        await connection.query(`drop table if exists comment`);
+        await connection.query(`drop table if exists travel_photo`);
+        await connection.query(`drop table if exists travel`);
+        await connection.query(`drop table if exists user`);
 
-        console.log('Tablas borradas');
+        console.log('Tablas eliminadas.');
 
-        console.log('Creando nuevas Tablas');
-
-        await connection.query(`
-        CREATE TABLE users (
-            id INTEGER PRIMARY KEY AUTO_INCREMENT,
-            name VARCHAR(50) NOT NULL,
-            email VARCHAR(100) UNIQUE NOT NULL,
-            password VARCHAR(100) NOT NULL,
-            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-            avatar VARCHAR(100)
-            
-        )
-        `);
-        console.log('tabla users creada');
+        console.log('Creando tablas...');
 
         await connection.query(`
-        CREATE TABLE recomendaciones (
-            id INTEGER PRIMARY KEY AUTO_INCREMENT,
-            users_id INTEGER NOT NULL,
-            FOREIGN KEY (users_id) REFERENCES users(id),
-            entry VARCHAR(200),
-            category VARCHAR(100),
-            title VARCHAR(100) NOT NULL,
-            text TEXT,
-            image VARCHAR(255),
-            place VARCHAR(100) NOT NULL, 
-            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-            stars INTEGER
-        );
-        
+            create table if not exists user (
+                id int unsigned primary key auto_increment,
+                username varchar(50) not null,
+                email varchar(100) not null,
+                password varchar(200) not null,
+                avatar varchar(255),
+                createdAt datetime            
+            )
         `);
-
-        console.log('tabla recomendaciones creada');
 
         await connection.query(`
-        CREATE TABLE comentarios (
-            id INTEGER PRIMARY KEY AUTO_INCREMENT,
-            id_recomendaciones INTEGER NOT NULL,
-            FOREIGN KEY (id_recomendaciones) REFERENCES recomendaciones(id),
-            id_users INTEGER NOT NULL,
-            FOREIGN KEY (id_users) REFERENCES users(id),
-            text TEXT,
-            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-            stars INTEGER
-        );
-        
+            create table if not exists travel (
+                id int unsigned primary key auto_increment,
+                title varchar (100) not null,
+                entry varchar(200) not null,
+                content text,
+                createdAt datetime,
+                idUser int unsigned not null,
+                foreign key (idUser) references user(id)
+            )        
         `);
-
-        console.log('tabla comentarios creada');
 
         await connection.query(`
-        CREATE TABLE voto (
-            id INTEGER PRIMARY KEY AUTO_INCREMENT,
-            id_users INTEGER NOT NULL,
-            FOREIGN KEY (id_users) REFERENCES users(id),
-            id_recomendaciones INTEGER NOT NULL,
-            FOREIGN KEY (id_recomendaciones) REFERENCES recomendaciones(id),
-            likes BOOLEAN
-        );
-        
+            create table if not exists travel_photo (
+                id int unsigned primary key auto_increment,
+                name varchar (255) not null,
+                idTravel int unsigned not null,
+                foreign key (idTravel) references travel (id)               
+            )
         `);
 
-        console.log('tabla voto creada');
+        await connection.query(`
+            create table if not exists comment (
+                id int unsigned primary key auto_increment,
+                createdAt datetime,
+                idUser int unsigned not null,
+                idTravel int unsigned not null,
+                foreign key (idUser) references user (id),
+                foreign key (idTravel) references travel (id)
+            )        
+        `);
 
-        console.log('Tablas creadas con exito');
+        await connection.query(`
+            create table if not exists vote (
+                id int unsigned primary key auto_increment,
+                voted boolean default false,
+                idUser int unsigned not null,
+                idTravel int unsigned not null,
+                foreign key (idUser) references user (id),
+                foreign key (idTravel) references travel (id)
+            )
+        `);
+
+        console.log('¡Tablas creadas con éxito!');
     } catch (error) {
         console.error(error);
     } finally {

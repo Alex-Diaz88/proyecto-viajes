@@ -10,31 +10,31 @@ const getUser = async (req, res, next) => {
         const { idUser } = req.params;
 
         const [[user]] = await connection.query(
-            `SELECT id, name, email, created_at, avatar FROM users WHERE id = ?`,
+            `select * from user where id = ?`,
             [idUser]
         );
 
         if (!user) {
-            throw generateError('No existe el usuario seleccionado', 404); // Not found
+            throw generateError('No existe el usuario seleccionado', 404);
         }
 
-        const [userRecomendaciones] = await connection.query(
-            `SELECT * FROM recomendaciones WHERE id = ?`,
+        const [userTravels] = await connection.query(
+            `select * from user where id = ?`,
             [idUser]
         );
 
-        for (let i = 0; i < userRecomendaciones.length; i++) {
-            const [experience] = await connection.query(
-                `SELECT tittle FROM recomendaciones WHERE idUser = ?`,
-                [userRecomendaciones[i].id]
+        for (let i = 0; i < userTravels.length; i++) {
+            const [travel] = await connection.query(
+                `select id, title, entry, content from travel where id = ?`,
+                [userTravels[i].id]
             );
 
-            userRecomendaciones[i].experience = experience;
+            userTravels[i].travel = travel;
         }
 
         res.send({
             status: 'Ok',
-            data: { ...user, userRecomendaciones },
+            data: { ...user, userTravels },
         });
     } catch (error) {
         next(error);

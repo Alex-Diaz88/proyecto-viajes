@@ -8,7 +8,6 @@ const loginUser = async (req, res, next) => {
     let connection;
 
     try {
-        // establecemos una conexion a la base de datos
         connection = await getDB();
 
         const { email, password } = req.body;
@@ -18,7 +17,7 @@ const loginUser = async (req, res, next) => {
         }
 
         const [user] = await connection.query(
-            `SELECT id, email, password FROM users WHERE email = ?`,
+            `select id, email, password from user where email = ?`,
             [email]
         );
         console.log(user);

@@ -9,26 +9,26 @@ const editUser = async (req, res, next) => {
 
         const { idUser } = req.params;
 
-        const { name, email } = req.body;
+        const { username, email } = req.body;
 
-        if (!(name || email)) {
-            throw generateError('Si no vas a hacer nada pa que tocas', 400);
+        if (!(username || email)) {
+            throw generateError('No has modificado ningún campo', 400);
         }
 
         const [user] = await connection.query(
-            `select name, email from users where id = ?`,
+            `select username, email from user where id = ?`,
             [idUser]
         );
 
-        await connection.query(`update users set name = ?, email = ?`, [
-            name || user[0].name,
-            email || user[0].email,
-            idUser,
-        ]);
+        await connection.query(
+            `update user set username = ?, email = ? where id = ?`,
+            [username || user[0].username, email || user[0].email, idUser]
+        );
 
         res.send({
             status: 'Ok',
             message: 'Datos del usuario modificados con éxito',
+            data: { username, email },
         });
     } catch (error) {
         next(error);

@@ -1,5 +1,5 @@
 const getDB = require('../../db/getDB');
-const { generateError } = require('../../helpers');
+const { generateError, deletePhoto } = require('../../helpers');
 const bcrypt = require('bcrypt');
 
 const deleteUser = async (req, res, next) => {
@@ -20,7 +20,7 @@ const deleteUser = async (req, res, next) => {
         }
 
         const [user] = await connection.query(
-            `select password from users where id = ?`,
+            `select password, avatar from user where id = ?`,
             [idUser]
         );
 
@@ -33,11 +33,15 @@ const deleteUser = async (req, res, next) => {
             );
         }
 
-        await connection.query(`delete from users where id = ?`, [idUser]);
+        if (user[0].avatar) {
+            await deletePhoto(user[0].avatar, 0);
+        }
+
+        await connection.query(`delete from user where id = ?`, [idUser]);
 
         res.send({
             status: 'Ok',
-            message: 'Usuario eliminado!',
+            message: 'Usuario eliminado',
         });
     } catch (error) {
         next(error);

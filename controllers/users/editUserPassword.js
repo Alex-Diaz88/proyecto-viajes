@@ -20,7 +20,7 @@ const editUserPassword = async (req, res, next) => {
         }
 
         const [user] = await connection.query(
-            `select password from users where id =?`,
+            `select password from user where id = ?`,
             [idUser]
         );
 
@@ -32,7 +32,7 @@ const editUserPassword = async (req, res, next) => {
 
         const hashedPassword = await bcrypt.hash(newPass, 10);
 
-        await connection.query(`update users set password = ? where id = ?`, [
+        await connection.query(`update user set password = ? where id = ?`, [
             hashedPassword,
             idUser,
         ]);

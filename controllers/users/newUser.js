@@ -8,14 +8,14 @@ const newUser = async (req, res, next) => {
     try {
         connection = await getDB();
 
-        const { email, name, password } = req.body;
+        const { username, email, password } = req.body;
 
-        if (!email || !name || !password) {
+        if (!username || !email || !password) {
             throw generateError('Faltan campos obligatorios', 400);
         }
 
         const [user] = await connection.query(
-            `SELECT id FROM users WHERE email = ?`,
+            `select id from user where email = ?`,
             [email]
         );
 
@@ -26,9 +26,9 @@ const newUser = async (req, res, next) => {
         const hashedPassword = await bcrypt.hash(password, 10);
 
         await connection.query(
-            `INSERT INTO users (name, email, password, created_at)
-            VALUES (?, ?, ?, ?)`,
-            [name, email, hashedPassword, new Date()]
+            `insert user (username, email, password, createdAt)
+            values (?, ?, ?, ?)`,
+            [username, email, hashedPassword, new Date()]
         );
 
         res.send({
