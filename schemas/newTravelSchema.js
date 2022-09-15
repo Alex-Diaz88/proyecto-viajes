@@ -37,7 +37,7 @@ const newTravelSchema = Joi.object().keys({
             );
         }),
 
-    text: Joi.string()
+    content: Joi.string()
         .min(50)
         .max(500)
         .regex(/[A-Za-z0-9]/)
