@@ -1,41 +1,44 @@
 const getDB = require('../../db/getDB');
+const { generateError } = require('../../helpers');
 
-const getExperiences = async (req, res, next) => {
+const getTravel = async (req, res, next) => {
     let connection;
 
     try {
         connection = await getDB();
 
-        const { search, order, direction } = req.query;
+        const { idTravel } = req.params;
 
-        const validOrderOptions = ['title', 'createdAt'];
+        const [travel] = await connection.query(
+            `select t.*, count (v.id) as votes from travel t left join vote v on t.id = v.idTravel where t.id = ? group by t.id`,
+            [idTravel]
+        );
 
-        const validDirectionOptions = ['DESC', 'ASC'];
-
-        const orderBy = validOrderOptions.includes(order) ? order : 'createdAt';
-
-        const orderDirection = validDirectionOptions.includes(direction)
-            ? direction
-            : 'ASC';
-
-        let travels;
-
-        if (search) {
-            [travels] = await connection.query(
-                `select * from travel where title like ? or entry like ? or content like ? order by ${orderBy} ${orderDirection}`,
-                [`%${search}%`, `%${search}%`]
-            );
-        } else {
-            [travels] = await connection.query(
-                `select * from travel order by ${orderBy} ${orderDirection}`
-            );
+        if (travel.length < 1) {
+            throw generateError('No existe el viaje seleccionado', 400);
         }
 
-        const data = [];
+        for (let i = 0; i < travel.length; i++) {
+            const [photos] = await connection.query(
+                `select * from travel_photo where idTravel = ?`,
+                [travel[i].id]
+            );
+
+            travel[i].photos = photos;
+        }
+
+        for (let i = 0; i < travel.length; i++) {
+            const [comments] = await connection.query(
+                `select * from comment where idTravel = ?`,
+                [travel[i].id]
+            );
+
+            travel[i].comments = comments;
+        }
 
         res.send({
             status: 'Ok',
-            data: data,
+            data: travel,
         });
     } catch (error) {
         next(error);
@@ -44,4 +47,4 @@ const getExperiences = async (req, res, next) => {
     }
 };
 
-module.exports = getExperiences;
+module.exports = getTravel;
