@@ -26,7 +26,7 @@ async function main() {
                 email varchar(100) not null,
                 password varchar(200) not null,
                 avatar varchar(255),
-                createdAt datetime            
+                createdAt datetime default CURRENT_TIMESTAMP           
             )
         `);
 
@@ -38,7 +38,7 @@ async function main() {
                 place enum ('Coriolis', 'Jina', 'Kua', 'Lubau', 'Surha', 'Xene') not null,
                 activity enum ('Cultural', 'Deportes', 'Gastronomía', 'Naturaleza', 'Relajación') not null,
                 content text,
-                createdAt datetime,
+                createdAt datetime default CURRENT_TIMESTAMP,
                 idUser int unsigned not null,
                 foreign key (idUser) references user(id)
             )        
@@ -57,7 +57,7 @@ async function main() {
             create table if not exists comment (
                 id int unsigned primary key auto_increment,
                 content text,
-                createdAt datetime,
+                createdAt datetime default CURRENT_TIMESTAMP,
                 idUser int unsigned not null,
                 idTravel int unsigned not null,
                 foreign key (idUser) references user (id),

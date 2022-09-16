@@ -44,7 +44,7 @@ const newComment = require('./controllers/comments');
 app.post('/register', newUser);
 app.post('/login', loginUser);
 app.get('/users/:idUser', getUser);
-app.put('/users/:idUser', isAuth, canEditUser, editUser);
+app.put('/users', isAuth, editUser);
 app.put('/users/:idUser/password', isAuth, canEditUser, editUserPassword);
 app.put('/users/:idUser/avatar', isAuth, canEditUser, editUserAvatar);
 app.delete('/users/:idUser', isAuth, canEditUser, deleteUser);
