@@ -37,7 +37,17 @@ const deleteUser = async (req, res, next) => {
             await deletePhoto(user[0].avatar, 0);
         }
 
+/*         await connection.query(`delete from comment where idUser = ?`, [
+            idUser,
+        ]);
+        await connection.query(`delete from travel_photo where idTravel = ?`, [
+            idUser,
+        ]);
+        
+        await connection.query(`delete from travel where idUser = ?`, [idUser]);  */
+       
         await connection.query(`delete from user where id = ?`, [idUser]);
+
 
         res.send({
             status: 'Ok',
