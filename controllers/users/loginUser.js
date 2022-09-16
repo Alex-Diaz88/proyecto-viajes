@@ -1,8 +1,10 @@
 const getDB = require('../../db/getDB');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { generateError } = require('../../helpers');
+const { generateError, validate } = require('../../helpers');
 require('dotenv').config();
+const loginUserSchema = require('../../schemas/loginUserSchema');
+
 
 const loginUser = async (req, res, next) => {
     let connection;
@@ -12,8 +14,15 @@ const loginUser = async (req, res, next) => {
 
         const { email, password } = req.body;
 
-        if (!email || !password) {
-            throw generateError('Faltan campos obligatorios', 400);
+       /*  await validate(loginUserSchema, req.body); */
+
+
+
+        if (!email) {
+            throw generateError('Falta indicar el email', 400);
+        }
+        if (!password) {
+            throw generateError('Falta indicar el password', 400);
         }
 
         const [user] = await connection.query(
