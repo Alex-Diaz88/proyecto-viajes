@@ -10,7 +10,7 @@ const newTravel = async (req, res, next) => {
 
         const { title, entry, content } = req.body;
 
-        await validate(newTravelSchema, req.body);
+        //await validate(newTravelSchema, req.body);
 
         const idReqUser = req.userAuth.id;
 
