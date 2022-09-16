@@ -10,40 +10,35 @@ const newComment = async (req, res, next) => {
         const { idTravel } = req.params;
         const { content } = req.body;
         await validate(newCommentSchema, req.body);
-        const [comment] = await connection.query(
-            `select idUser, content from comment where idTravel = ?;`,
+        const [[travel]] = await connection.query(
+            `select * from travel where idTravel = ?;`,
             [idTravel]
         );
-
-        const idReqUser = req.userAuth.id;
-
-        if (!idReqUser /*  !== Number(comment[0].idUser) */) {
-            const error = new Error(
-                'Debes ser un usuario registrado para comentar un viaje'
-            );
+        if (!travel) {
+            const error = new Error('El viaje a comentar no existe');
             error.httpStatus = 401;
             throw error;
         }
+        const idReqUser = req.userAuth.id;
 
-        await connection.query(
+        const [{ insertId }] = await connection.query(
             `
-            UPDATE comment
-            SET comment.content = ?
-            FROM comment
-            INNER JOIN travel
-            ON comment.idTravel = travel.id
-            AND comment.idUser = travel.idUser
+            insert into comment (content, idUser, idTravel)
+            values(?, ?, ?)
         `,
-            [content]
+            [content, idReqUser, idTravel]
+        );
+
+        const [[createdComment]] = await connection.query(
+            `
+            select * from comment where id = ?
+        `,
+            [insertId]
         );
 
         res.status(200).send({
             status: 200,
-            data: {
-                idExp: comment[0].idTravel,
-                idUser: comment[0].idUser,
-                contentt: content,
-            },
+            data: createdComment,
         });
     } catch (error) {
         next(error);
