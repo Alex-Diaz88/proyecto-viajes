@@ -10,7 +10,7 @@ const getUser = async (req, res, next) => {
         const { idUser } = req.params;
 
         const [[user]] = await connection.query(
-            `select * from user where id = ?`,
+            `select id, username, avatar, createdAt from user where id = ?`,
             [idUser]
         );
 
@@ -19,17 +19,17 @@ const getUser = async (req, res, next) => {
         }
 
         const [userTravels] = await connection.query(
-            `select * from user where id = ?`,
+            `select * from travel where idUser = ?`,
             [idUser]
         );
 
         for (let i = 0; i < userTravels.length; i++) {
-            const [travel] = await connection.query(
-                `select id, title, entry, content from travel where id = ?`,
+            const [photos] = await connection.query(
+                `select * from travel_photo where idTravel = ?`,
                 [userTravels[i].id]
             );
 
-            userTravels[i].travel = travel;
+            userTravels[i].photos = photos;
         }
 
         res.send({
