@@ -41,10 +41,46 @@ const newTravelSchema = Joi.object().keys({
         .min(50)
         .max(500)
         .regex(/[A-Za-z0-9]/)
-        .error((_) => {
+        .error((errors) => {
+            if (
+                errors[0].code === 'any.required' ||
+                errors[0].code === 'string.empty'
+            ) {
+                return new Error('La descripción es un campo obligatorio.');
+            }
             return new Error(
                 'La descripcion debe tener entre 50 y 500 caracteres'
             );
+        }),
+
+    place: Joi.string()
+        .min(3)
+        .max(50)
+        .regex(/[A-Za-z0-9]/)
+        .error((errors) => {
+            if (
+                errors[0].code === 'any.required' ||
+                errors[0].code === 'string.empty'
+            ) {
+                return new Error('La localización es un campo obligatorio.');
+            }
+            return new Error(
+                'La localización debe tener entre 3 y 50 caracteres'
+            );
+        }),
+
+    activity: Joi.string()
+        .min(3)
+        .max(20)
+        .regex(/[A-Za-z0-9]/)
+        .error((errors) => {
+            if (
+                errors[0].code === 'any.required' ||
+                errors[0].code === 'string.empty'
+            ) {
+                return new Error('La actividad es un campo obligatorio.');
+            }
+            return new Error('La actividad debe tener entre 3 y 20 caracteres');
         }),
 });
 
