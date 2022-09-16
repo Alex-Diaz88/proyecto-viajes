@@ -20,15 +20,18 @@ const searchTravels = async (req, res, next) => {
         }
 
         for (let i = 0; i < travels.length; i++) {
-            const [comments] = await connection.query(
-                `select * from comment where idTravel = ?`,
+            const [owner] = await connection.query(
+                `select username, avatar from user where id = ?`,
                 [travels[i].id]
             );
 
-            travels[i].comments = comments;
+            travels[i].owner = owner;
         }
 
-        res.send({ status: 'ok', data: travels });
+        res.send({
+            status: 'ok',
+            data: travels,
+        });
     } catch (error) {
         next(error);
     } finally {
