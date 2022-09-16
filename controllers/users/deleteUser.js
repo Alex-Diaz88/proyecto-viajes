@@ -9,6 +9,7 @@ const deleteUser = async (req, res, next) => {
         connection = await getDB();
 
         const { idUser } = req.params;
+        console.log(req.params);
 
         const { password } = req.body;
 
@@ -36,6 +37,19 @@ const deleteUser = async (req, res, next) => {
         if (user[0].avatar) {
             await deletePhoto(user[0].avatar, 0);
         }
+
+        const [photos] = await connection.query(
+            `select name from travel_photo where idtravel = ?`,
+            [idUser]
+        );
+
+        for (let i = 0; i < photos.length; i++)
+            await deletePhoto(photos[i].name, 1);
+
+        await connection.query(`delete from travel_photo where idTravel = ?`, [
+            idUser,
+        ]);
+        await connection.query(`delete from travel where idUser = ?`, [idUser]);
 
         await connection.query(`delete from user where id = ?`, [idUser]);
 
