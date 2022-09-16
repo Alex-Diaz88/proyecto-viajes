@@ -7,7 +7,7 @@ const editUser = async (req, res, next) => {
     try {
         connection = await getDB();
 
-        const { idUser } = req.params;
+        const idReqUser = req.userAuth.id;
 
         const { username, email } = req.body;
 
@@ -17,12 +17,12 @@ const editUser = async (req, res, next) => {
 
         const [user] = await connection.query(
             `select username, email from user where id = ?`,
-            [idUser]
+            [idReqUser]
         );
 
         await connection.query(
             `update user set username = ?, email = ? where id = ?`,
-            [username || user[0].username, email || user[0].email, idUser]
+            [username || user[0].username, email || user[0].email, idReqUser]
         );
 
         res.send({
