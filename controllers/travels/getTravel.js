@@ -36,9 +36,14 @@ const getTravel = async (req, res, next) => {
             travel[i].comments = comments;
         }
 
+        const [owner] = await connection.query(
+            `select username, avatar from user where id = ?`,
+            [idTravel]
+        );
+
         res.send({
             status: 'Ok',
-            data: travel,
+            data: { ...travel, owner },
         });
     } catch (error) {
         next(error);
