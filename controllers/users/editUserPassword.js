@@ -1,6 +1,8 @@
 const getDB = require('../../db/getDB');
 const { generateError } = require('../../helpers');
 const bcrypt = require('bcrypt');
+const  editUserPasswordSchema  = require('../../schemas/editUserPasswordSchema');
+const  {validate } = require('../../helpers');
 
 const editUserPassword = async (req, res, next) => {
     let connection;
@@ -11,13 +13,13 @@ const editUserPassword = async (req, res, next) => {
         const { idUser } = req.params;
 
         const { oldPass, newPass } = req.body;
-
-        if (!oldPass || !newPass) {
+        await validate(editUserPasswordSchema, req.body);
+        /*         if (!oldPass || !newPass) {
             throw generateError(
                 'Debes indicar la contraseña antigua y la nueva para el cambio',
                 400
             );
-        }
+        } */
 
         const [user] = await connection.query(
             `select password from user where id = ?`,

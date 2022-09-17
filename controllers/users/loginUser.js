@@ -5,6 +5,7 @@ const { generateError, validate } = require('../../helpers');
 require('dotenv').config();
 const loginUserSchema = require('../../schemas/loginUserSchema');
 
+
 const loginUser = async (req, res, next) => {
     let connection;
 

@@ -1,5 +1,7 @@
 const getDB = require('../../db/getDB');
 const { generateError, deletePhoto, savePhoto } = require('../../helpers');
+const { validate } = require('../../helpers');
+const editUserSchema = require('../../schemas/editUserSchema');
 
 const editUser = async (req, res, next) => {
     let connection;
@@ -10,10 +12,11 @@ const editUser = async (req, res, next) => {
         const idReqUser = req.userAuth.id;
 
         const { username, email } = req.body;
+        await validate(editUserSchema, req.body);
 
-        if (!(username || email)) {
+/*         if (!(username || email)) {
             throw generateError('No has modificado ningún campo', 400);
-        }
+        } */
 
         if (!req.files || !req.files.avatar) {
             throw generateError('Debes indicar un nuevo avatar', 400);
