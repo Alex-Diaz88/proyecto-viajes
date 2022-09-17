@@ -14,13 +14,13 @@ const loginUserSchema = Joi.object().keys({
                     return new Error('No es un email valido...');
 
                 default:
-                    return new Error('No has indicado ningun email...');
+                    return new Error('Atento,No has indicado ningun email...');
             }
         }),
-        
+
     password: Joi.string()
         .required()
-        .min(5)
+        //.min(5)
         .error((errors) => {
             switch (errors[0].code) {
                 case 'any.required':
@@ -33,10 +33,10 @@ const loginUserSchema = Joi.object().keys({
                     );
                 default:
                     return new Error(
-                        'El campo password no puede estar vacio'
-                        );
+                        'Cuidado! El campo password no puede estar vacio'
+                    );
             }
         }),
 });
 
-module.exports = { loginUserSchema };
+module.exports = loginUserSchema;

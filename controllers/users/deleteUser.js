@@ -1,6 +1,8 @@
 const getDB = require('../../db/getDB');
 const { generateError, deletePhoto } = require('../../helpers');
 const bcrypt = require('bcrypt');
+const deleteUserSchema = require('../../schemas/deleteUserSchema');
+const { validate } = require('../../helpers');
 
 const deleteUser = async (req, res, next) => {
     let connection;
@@ -13,12 +15,14 @@ const deleteUser = async (req, res, next) => {
 
         const { password } = req.body;
 
-        if (!password) {
+        await validate(deleteUserSchema, req.body);
+        
+/*         if (!password) {
             throw generateError(
                 'Debes indicar la contraseña para eliminar al usuario',
                 400
             );
-        }
+        } */
 
         const [user] = await connection.query(
             `select password, avatar from user where id = ?`,
@@ -29,7 +33,7 @@ const deleteUser = async (req, res, next) => {
 
         if (!isValid) {
             throw generateError(
-                'La contraseña no es correcta, no puede eliminar al usuario',
+                'lo sentimos, contraseña incorrecta, no se puede eliminar al usuario',
                 401
             );
         }
