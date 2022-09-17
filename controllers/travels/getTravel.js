@@ -36,14 +36,18 @@ const getTravel = async (req, res, next) => {
             travel[i].comments = comments;
         }
 
-        const [owner] = await connection.query(
-            `select username, avatar from user where id = ?`,
-            [idTravel]
-        );
+        for (let i = 0; i < travel.length; i++) {
+            const [owner] = await connection.query(
+                `select username, avatar from user where id = ?`,
+                [travel[i].id]
+            );
+
+            travel[i].owner = owner;
+        }
 
         res.send({
             status: 'Ok',
-            data: { ...travel, owner },
+            data: travel,
         });
     } catch (error) {
         next(error);
