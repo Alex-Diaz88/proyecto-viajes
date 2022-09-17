@@ -1,6 +1,8 @@
 const getDB = require('../../db/getDB');
 const bcrypt = require('bcrypt');
 const { generateError } = require('../../helpers');
+const {newUserSchema }= require('../../schemas/newUserSchema');
+const { validate } = require('../../helpers');
 
 const newUser = async (req, res, next) => {
     let connection;
@@ -9,6 +11,7 @@ const newUser = async (req, res, next) => {
         connection = await getDB();
 
         const { username, email, password } = req.body;
+        await validate(newUserSchema, req.body);
 
         if (!username || !email || !password) {
             throw generateError('Faltan campos obligatorios', 400);
@@ -22,6 +25,18 @@ const newUser = async (req, res, next) => {
         if (user.length > 0) {
             throw generateError('Ya existe un usuario con ese email.', 409);
         }
+
+        const [user2] = await connection.query(
+            `select id from user where username = ?`,
+            [username]
+        );
+
+        if (user2.length > 0) {
+            throw generateError('Ya existe un usuario con ese nombre.', 409);
+        }
+
+
+
 
         const hashedPassword = await bcrypt.hash(password, 10);
 

@@ -1,5 +1,7 @@
 const getDB = require('../../db/getDB');
 const { generateError } = require('../../helpers');
+const editTravelSchema = require('../../schemas//editTravelSchema');
+const { validate } = require('../../helpers');
 
 const editTravel = async (req, res, next) => {
     let connection;
@@ -10,6 +12,8 @@ const editTravel = async (req, res, next) => {
         const { idTravel } = req.params;
 
         const { title, entry, content } = req.body;
+
+        await validate(editTravelSchema, req.body);
 
         if (!title || !entry || !content) {
             throw generateError('No has modificado ningún campo', 400);

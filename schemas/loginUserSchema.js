@@ -20,7 +20,7 @@ const loginUserSchema = Joi.object().keys({
 
     password: Joi.string()
         .required()
-        //.min(5)
+        .min(5)
         .error((errors) => {
             switch (errors[0].code) {
                 case 'any.required':
