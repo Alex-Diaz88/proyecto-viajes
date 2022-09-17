@@ -22,7 +22,7 @@ const searchTravels = async (req, res, next) => {
         for (let i = 0; i < travels.length; i++) {
             const [owner] = await connection.query(
                 `select username, avatar from user where id = ?`,
-                [travels[i].id]
+                [travels[i].idUser]
             );
 
             travels[i].owner = owner;
