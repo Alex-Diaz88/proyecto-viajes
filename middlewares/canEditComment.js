@@ -1,24 +1,24 @@
 const getDB = require('../db/getDB');
 const { generateError } = require('../helpers');
 
-const canEditTravel = async (req, res, next) => {
+const canEditComment = async (req, res, next) => {
     let connection;
 
     try {
         connection = await getDB();
 
-        const { idTravel } = req.params;
+        const { idComment } = req.params;
 
         const idReqUser = req.userAuth.id;
 
         const [user] = await connection.query(
-            `select * from travel where id = ? and idUser = ?`,
-            [idTravel, idReqUser]
+            `select * from comment where id = ? and idUser = ?`,
+            [idComment, idReqUser]
         );
 
         if (user.length < 1) {
             throw generateError(
-                'No eres el propietario del viaje a editar',
+                'No eres el propietario del comentario a editar',
                 401
             );
         }
@@ -31,4 +31,4 @@ const canEditTravel = async (req, res, next) => {
     }
 };
 
-module.exports = canEditTravel;
+module.exports = canEditComment;

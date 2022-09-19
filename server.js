@@ -12,6 +12,7 @@ app.use(fileUpload());
 const isAuth = require('./middlewares/isAuth');
 const canEditUser = require('./middlewares/canEditUser');
 const canEditTravel = require('./middlewares/canEditTravel');
+const canEditComment = require('./middlewares/canEditComment');
 
 // ## CONTROLADORES USUARIOS ##
 const {
@@ -66,8 +67,8 @@ app.post('/votes/new/:idTravel', isAuth, newVote);
 
 // ## ENDPOINTS COMENTARIOS ##
 app.post('/comments/:idTravel', isAuth, newComment);
-app.post('/comment/:idComment', isAuth, editComment);
-app.delete('/comment/:idComment', isAuth, deleteComment);
+app.put('/comment/:idComment', isAuth, canEditComment, editComment);
+app.delete('/comment/:idComment', isAuth, canEditComment, deleteComment);
 
 // ## ENDPOINTS DE ERROR ##
 app.use((req, res) => {
