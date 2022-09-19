@@ -11,7 +11,7 @@ const newComment = async (req, res, next) => {
         const { content } = req.body;
         await validate(newCommentSchema, req.body);
         const [[travel]] = await connection.query(
-            `select * from travel where idTravel = ?;`,
+            `select * from travel where id = ?;`,
             [idTravel]
         );
         if (!travel) {

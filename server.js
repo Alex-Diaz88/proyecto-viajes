@@ -38,7 +38,8 @@ const {
 const { newVote } = require('./controllers/votes');
 
 // ## CONTROLADORES COMENTARIOS ##
-const newComment = require('./controllers/comments');
+const newComment = require('./controllers/comments/newComment');
+const editComment = require('./controllers/comments/editComment');
 
 // ## ENDPOINTS DE USUARIOS ##
 app.post('/register', newUser);
@@ -62,6 +63,7 @@ app.post('/votes/new/:idTravel', isAuth, newVote);
 
 // ## ENDPOINTS COMENTARIOS ##
 app.post('/comments/:idTravel', isAuth, newComment);
+app.post('/comment/:idComment', isAuth,editComment)
 
 // ## ENDPOINTS DE ERROR ##
 app.use((req, res) => {
