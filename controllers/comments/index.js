@@ -1,3 +1,4 @@
 const newComment = require('./newComment');
-
-module.exports = newComment;
+const deleteComment = require('./deleteComment')
+const editComment = require('./editComment')
+module.exports = {newComment, deleteComment, editComment};
