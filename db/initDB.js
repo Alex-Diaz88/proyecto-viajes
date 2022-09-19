@@ -40,7 +40,7 @@ async function main() {
                 content text,
                 createdAt datetime default CURRENT_TIMESTAMP,
                 idUser int unsigned not null,
-                foreign key (idUser) references user(id)
+                foreign key (idUser) references user(id) on delete cascade
             )        
         `);
 
@@ -49,7 +49,7 @@ async function main() {
                 id int unsigned primary key auto_increment,
                 name varchar (255) not null,
                 idTravel int unsigned not null,
-                foreign key (idTravel) references travel (id)               
+                foreign key (idTravel) references travel (id) on delete cascade        
             )
         `);
 
@@ -60,8 +60,8 @@ async function main() {
                 createdAt datetime default CURRENT_TIMESTAMP,
                 idUser int unsigned not null,
                 idTravel int unsigned not null,
-                foreign key (idUser) references user (id),
-                foreign key (idTravel) references travel (id)
+                foreign key (idUser) references user (id) on delete cascade,
+                foreign key (idTravel) references travel (id) on delete cascade
             )        
         `);
 
@@ -71,8 +71,8 @@ async function main() {
                 voted boolean default false,
                 idUser int unsigned not null,
                 idTravel int unsigned not null,
-                foreign key (idUser) references user (id),
-                foreign key (idTravel) references travel (id)
+                foreign key (idUser) references user (id) on delete cascade,
+                foreign key (idTravel) references travel (id) on delete cascade
             )
         `);
 
