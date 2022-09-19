@@ -1,6 +1,6 @@
 const getDB = require('../../db/getDB');
 const { generateError } = require('../../helpers');
-/* const editCommentSchema = require('../../schemas//editTravelSchema'); */
+const editCommentSchema = require('../../schemas//editCommentSchema');
 const { validate } = require('../../helpers');
 
 const editComment = async (req, res, next) => {
@@ -13,7 +13,7 @@ const editComment = async (req, res, next) => {
 
         const { content } = req.body;
 
-        /* await validate(editTravelSchema, req.body); */
+        await validate(editCommentSchema, req.body);
 
         if (!content) {
             throw generateError('No has escrito el commentario', 400);
@@ -24,10 +24,10 @@ const editComment = async (req, res, next) => {
             [idComment]
         );
 
-        await connection.query(
-            `update comment set content = ? where id = ?`,
-            [content || comment[0].content, idComment]
-        );
+        await connection.query(`update comment set content = ? where id = ?`, [
+            content || comment[0].content,
+            idComment,
+        ]);
 
         res.send({
             status: 'Ok',
