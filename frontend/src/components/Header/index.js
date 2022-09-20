@@ -1,11 +1,12 @@
 import "./styles.css";
+import banner from "../../assets/images/banner.png";
 import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
     <header>
       <Link to="/">
-        <h1>Star Rider</h1>
+        <img src={banner} />
       </Link>
     </header>
   );
