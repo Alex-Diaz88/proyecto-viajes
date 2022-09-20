@@ -1,0 +1,12 @@
+#root > header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  background-color: rgb(28, 28, 28);
+  color: white;
+}
+
+#root > header a {
+  color: white;
+}
