@@ -40,7 +40,7 @@ const RegisterForm = () => {
             }
             */
 
-            navigate("/login");
+            navigate("/");
           } catch (error) {
             console.error(error.message);
           }

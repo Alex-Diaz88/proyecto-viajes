@@ -10,6 +10,7 @@ const LoginForm = () => {
 
   return (
     <form
+      className="login_form"
       onSubmit={async (event) => {
         try {
           event.preventDefault();
@@ -43,7 +44,6 @@ const LoginForm = () => {
           setEmail(event.target.value);
         }}
       />
-
       <label htmlFor="password">Contraseña:</label>
       <input
         id="password"
@@ -53,8 +53,8 @@ const LoginForm = () => {
           setPassword(event.target.value);
         }}
       />
-
       <button>Ingresar</button>
+      <a href="/register">¿No tienes una cuenta? Regístrate.</a>
     </form>
   );
 };

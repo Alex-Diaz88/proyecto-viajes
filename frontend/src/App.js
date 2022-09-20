@@ -1,21 +1,23 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import FrontPage from "./pages/FrontPage.js";
+import Header from "./components/Header";
+import FrontPage from "./pages/FrontPage/index.js";
 import RegisterPage from "./pages/RegisterPage";
 import { CustomTokenContextProvider } from "./contexts/TokenContext";
 
 function App() {
   return (
-    <div className="App">
-      <BrowserRouter>
-        <CustomTokenContextProvider>
+    <BrowserRouter>
+      <CustomTokenContextProvider>
+        <Header />
+        <main>
           <Routes>
             <Route path="/" element={<FrontPage />} />
             <Route path="/register" element={<RegisterPage />} />
           </Routes>
-        </CustomTokenContextProvider>
-      </BrowserRouter>
-    </div>
+        </main>
+      </CustomTokenContextProvider>
+    </BrowserRouter>
   );
 }
 
