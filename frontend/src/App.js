@@ -1,10 +1,15 @@
 import "./App.css";
+
+
+
 import NewTravelPage from "./pages/NewProductPage";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import FrontPage from "./pages/FrontPage.js";
 import RegisterPage from "./pages/RegisterPage";
 import Header from "./components/Header";
 import { CustomTokenContextProvider } from "./contexts/TokenContext";
+import RegisterButton from "./components/RegisterButton";
 
 function App() {
   return (
@@ -12,6 +17,7 @@ function App() {
       <BrowserRouter>
         <CustomTokenContextProvider>
           <Header />
+           <RegisterButton />
           <Routes>
             <Route path="/" element={<FrontPage />} />
             <Route path="/register" element={<RegisterPage />} />
