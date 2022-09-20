@@ -7,21 +7,20 @@ import RegisterPage from "./pages/RegisterPage";
 import Header from "./components/Header";
 import { CustomTokenContextProvider } from "./contexts/TokenContext";
 
-
 function App() {
   return (
-    <div className="App">
-      <BrowserRouter>
-        <CustomTokenContextProvider>
-          <Header />
+    <BrowserRouter>
+      <CustomTokenContextProvider>
+        <Header />
+        <main>
           <Routes>
             <Route path="/" element={<FrontPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/travels/new" element={<NewTravelPage />} />
           </Routes>
-        </CustomTokenContextProvider>
-      </BrowserRouter>
-    </div>
+        </main>
+      </CustomTokenContextProvider>
+    </BrowserRouter>
   );
 }
 
