@@ -18,16 +18,13 @@ const RegisterForm = () => {
 
             const newUser = { username, email, password };
 
-            const res = await fetch(
-              `${process.env.REACT_APP_API_URL}/register`,
-              {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify(newUser),
-              }
-            );
+            const res = await fetch(`${process.env.REACT_APP_API_URL}/register`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(newUser),
+            });
             const body = await res.json();
 
             if (!res.ok) {
@@ -40,7 +37,7 @@ const RegisterForm = () => {
             }
             */
 
-            navigate("/login");
+            navigate("/");
           } catch (error) {
             console.error(error.message);
           }
