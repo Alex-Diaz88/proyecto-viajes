@@ -20,9 +20,7 @@ export const CustomTokenContextProvider = ({ children }) => {
 
         console.log("2");
 
-        const res = await fetch(
-          `${process.env.REACT_APP_API_URL}/users/${decodedToken.id}`
-        );
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/users/${decodedToken.id}`);
 
         const body = await res.json();
 
@@ -43,17 +41,12 @@ export const CustomTokenContextProvider = ({ children }) => {
   }, [token]);
 
   return (
-    <TokenContext.Provider
-      value={{ token, setToken, loggedUser, setLoggedUser }}
-    >
-      {children}
-    </TokenContext.Provider>
+    <TokenContext.Provider value={{ token, setToken, loggedUser, setLoggedUser }}>{children}</TokenContext.Provider>
   );
 };
 
 export const useTokenContext = () => {
-  const { token, setToken, loggedUser, setLoggedUser } =
-    useContext(TokenContext);
+  const { token, setToken, loggedUser, setLoggedUser } = useContext(TokenContext);
 
   return { token, setToken, loggedUser, setLoggedUser };
 
