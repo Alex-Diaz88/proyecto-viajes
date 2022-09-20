@@ -1,4 +1,5 @@
 import "./App.css";
+import NewTravelForm from "./components/NewTravelForm/index";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import FrontPage from "./pages/FrontPage.js";
 import RegisterPage from "./pages/RegisterPage";
@@ -17,6 +18,7 @@ function App() {
       </BrowserRouter>
     </div>
   );
+
 }
 
 export default App;
