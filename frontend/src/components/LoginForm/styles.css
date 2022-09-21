@@ -1,1 +1,35 @@
+.login_form {
+  position: absolute;
+  top: 46%;
+  left: 85%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
 
+.login_form input {
+  border: 1px solid white;
+  border-radius: 3px;
+  outline: none;
+  padding-left: 2px;
+}
+
+.login_form a {
+  font-size: small;
+}
+
+.login_button {
+  position: absolute;
+  top: 114px;
+  left: 108px;
+}
+
+.login_button button {
+  border: 1px solid white;
+  border-radius: 3px;
+  width: 65px;
+  height: 20px;
+}
+
+.login_button button:active {
+  transform: scale(0.98);
+}

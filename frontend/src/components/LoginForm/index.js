@@ -10,6 +10,7 @@ const LoginForm = () => {
 
   return (
     <form
+      className="login_form"
       onSubmit={async (event) => {
         try {
           event.preventDefault();
@@ -34,9 +35,11 @@ const LoginForm = () => {
         }
       }}
     >
-      <label htmlFor="email">Email:</label>
+      <h3>Iniciar sesión</h3>
+
+      <label htmlFor="login_email">Email:</label>
       <input
-        id="email"
+        id="login_email"
         type="email"
         value={email}
         onChange={(event) => {
@@ -44,9 +47,9 @@ const LoginForm = () => {
         }}
       />
 
-      <label htmlFor="password">Contraseña:</label>
+      <label htmlFor="login_password">Contraseña:</label>
       <input
-        id="password"
+        id="login_password"
         type="password"
         value={password}
         onChange={(event) => {
@@ -54,7 +57,11 @@ const LoginForm = () => {
         }}
       />
 
-      <button>Ingresar</button>
+      <a href="/register">Regístrate</a>
+
+      <div className="login_button">
+        <button>Ingresar</button>
+      </div>
     </form>
   );
 };
