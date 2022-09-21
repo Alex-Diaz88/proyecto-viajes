@@ -8,7 +8,7 @@ const Header = () => {
     <header>
       <div className="banner">
         <Link to="/">
-          <img src={banner} />
+          <img src={banner} alt="Banner ha fallado" />
         </Link>
         <LoginForm />
       </div>

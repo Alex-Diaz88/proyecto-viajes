@@ -1,12 +1,17 @@
-import LoginForm from "../../components/LoginForm";
+import TravelList from "../../components/TravelList";
+import { useState } from "react";
 
 const FrontPage = () => {
+  const [travels, setTravels] = useState([]);
   return (
-    <section>
-      <h2>Ingresar</h2>
-      <LoginForm />
-      <a href="/register">¿No tienes una cuenta? Regístrate.</a>
-    </section>
+    <>
+      <section>
+
+      </section>
+      <section>
+        <TravelList travels={travels} />
+      </section>
+    </>
   );
 };
 

@@ -1,9 +1,10 @@
 import Travel from "../Travel";
 import "./styles.css";
+import { travels } from "../../App";
 
 const TravelList = ({ travels }) => {
   return (
-    <ul className="travel_list">
+    <ul>
       {travels.map((travel) => {
         return (
           <li key={travel.id}>
