@@ -4,11 +4,13 @@ import { CustomTokenContextProvider } from "./contexts/TokenContext";
 import { CustomAlertContextProvider } from "./contexts/AlertContext";
 import Header from "./components/Header";
 import Alert from "./components/Alert";
+import FrontPage from "./pages/FrontPage/index.js";
 import RegisterPage from "./pages/RegisterPage";
 import NewTravelPage from "./pages/NewTravelPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
+
   return (
     <div className="global_container">
       <BrowserRouter>
@@ -18,6 +20,7 @@ function App() {
             <main>
               <Alert />
               <Routes>
+                <Route path="/" element={<FrontPage />} />
                 <Route path="/register" element={<RegisterPage />} />
                 <Route path="/travels/new" element={<NewTravelPage />} />
                 <Route path="*" element={<NotFoundPage />} />

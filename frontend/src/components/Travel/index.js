@@ -4,18 +4,7 @@ import Avatar from "../Avatar";
 import PhotoSlider from "../PhotosSlider";
 
 const Travel = ({ travel }) => {
-  const {
-    title,
-    entry,
-    place,
-    activity,
-    content,
-    createdAt,
-    idUser,
-    photos,
-    username,
-    avatar,
-  } = travel;
+  const { title, entry, place, activity, content, createdAt, idUser, photos, username, avatar } = travel;
 
   return (
     <article className="travel">
@@ -38,9 +27,7 @@ const Travel = ({ travel }) => {
         <p>{place}</p>
         <p>{activity}</p>
 
-        {photos.length > 0 && (
-          <PhotoSlider photos={photos} travelName={title} />
-        )}
+        {photos.length > 0 && <PhotoSlider photos={photos} travelName={title} />}
         <p>{createdAt.split("T")[0]}</p>
       </section>
     </article>
