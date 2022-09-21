@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const morgan = require('morgan');
 const fileUpload = require('express-fileupload');
+const cors = require('cors');
 const app = express();
 
 app.use(express.json());
@@ -70,6 +71,9 @@ app.post('/comments/:idTravel', isAuth, newComment);
 app.put('/comment/:idComment', isAuth, canEditComment, editComment);
 app.delete('/comment/:idComment', isAuth, canEditComment, deleteComment);
 
+// ## ENDPOINT CORS
+app.use(cors());
+
 // ## ENDPOINTS DE ERROR ##
 app.use((req, res) => {
     res.status(404).send({
@@ -87,6 +91,6 @@ app.use((error, req, res, next) => {
     });
 });
 
-app.listen(3000, () => {
-    console.log('Server listening at: localhost://3000');
+app.listen(4000, () => {
+    console.log('Server listening at: localhost://4000');
 });

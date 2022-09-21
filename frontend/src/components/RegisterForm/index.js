@@ -1,3 +1,4 @@
+import "./styles.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -10,11 +11,16 @@ const RegisterForm = () => {
   const navigate = useNavigate();
 
   return (
-    <>
+    <div className="register_form">
       <form
         onSubmit={async (event) => {
           try {
             event.preventDefault();
+
+            if (password !== repeatPassword) {
+              console.log("Las contraseñas no coinciden.");
+              return;
+            }
 
             const newUser = { username, email, password };
 
@@ -34,21 +40,15 @@ const RegisterForm = () => {
               throw new Error(body.message);
             }
 
-            /*
-            if (password !== repeatPassword) {
-              console.log("Las contraseñas no coinciden.");
-            }
-            */
-
-            navigate("/login");
+            navigate("/");
           } catch (error) {
             console.error(error.message);
           }
         }}
       >
-        <label htmlFor="username">Nombre de usuario:</label>
+        <label htmlFor="register_username">Nombre de usuario:</label>
         <input
-          id="username"
+          id="register_username"
           value={username}
           onChange={(event) => {
             setUsername(event.target.value);
@@ -57,17 +57,17 @@ const RegisterForm = () => {
 
         <label htmlFor="email">Email:</label>
         <input
-          id="email"
-          type="email"
+          id="register_email"
+          type="register_email"
           value={email}
           onChange={(event) => {
             setEmail(event.target.value);
           }}
         />
 
-        <label htmlFor="password">Contraseña:</label>
+        <label htmlFor="register_password">Contraseña:</label>
         <input
-          id="password"
+          id="register_password"
           type="password"
           value={password}
           onChange={(event) => {
@@ -75,9 +75,9 @@ const RegisterForm = () => {
           }}
         />
 
-        <label htmlFor="repeatPassword">Repite la contraseña:</label>
+        <label htmlFor="register_repeatPassword">Repite la contraseña:</label>
         <input
-          id="repeatPassword"
+          id="register_repeatPassword"
           type="password"
           value={repeatPassword}
           onChange={(event) => {
@@ -87,7 +87,7 @@ const RegisterForm = () => {
 
         <button>Registro</button>
       </form>
-    </>
+    </div>
   );
 };
 
