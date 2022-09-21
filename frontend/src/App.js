@@ -4,7 +4,7 @@ import { CustomTokenContextProvider } from "./contexts/TokenContext";
 import Header from "./components/Header";
 import FrontPage from "./pages/FrontPage/index.js";
 import RegisterPage from "./pages/RegisterPage";
-import NewTravelPage from "./pages/NewProductPage";
+import NewTravelPage from "./pages/NewTravelPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
