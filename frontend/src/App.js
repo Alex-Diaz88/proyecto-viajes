@@ -4,13 +4,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import RegisterPage from "./pages/RegisterPage";
 import Header from "./components/Header";
 import { CustomTokenContextProvider } from "./contexts/TokenContext";
-import Header from "./components/Header";
+import usestate from "usestate";
 import FrontPage from "./pages/FrontPage/index.js";
 import RegisterPage from "./pages/RegisterPage";
 import NewTravelPage from "./pages/NewTravelPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
+
   return (
     <div className="global_container">
       <BrowserRouter>
@@ -19,12 +20,12 @@ function App() {
 
           <main>
             <Routes>
+              <Route path="/" element={<FrontPage />} />
               <Route path="/register" element={<RegisterPage />} />
               <Route path="/travels/new" element={<NewTravelPage />} />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </main>
-
         </CustomTokenContextProvider>
       </BrowserRouter>
     </div>

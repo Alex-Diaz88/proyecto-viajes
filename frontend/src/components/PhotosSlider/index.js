@@ -1,4 +1,4 @@
-import "./styles.css";
+/* import "./styles.css"; */
 import { useState } from "react";
 
 const PhotoSlider = ({ photos, travelName }) => {
@@ -28,10 +28,7 @@ const PhotoSlider = ({ photos, travelName }) => {
         return (
           <>
             {index === currentPhoto && (
-              <img
-                src={`${process.env.REACT_APP_API_URL}/products/${photo.name}`}
-                alt={travelName}
-              />
+              <img src={`${process.env.REACT_APP_API_URL}/products/${photo.name}`} alt={travelName} />
             )}
           </>
         );
