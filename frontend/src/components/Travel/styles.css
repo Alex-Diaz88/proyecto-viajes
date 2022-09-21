@@ -1,0 +1,30 @@
+.product {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 20%);
+  border-radius: 5px;
+}
+
+.product_user_info {
+  display: flex;
+  padding: 1rem;
+  gap: 1rem;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 10%);
+}
+
+.product_user_info img {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+}
+
+.product_info {
+  flex-grow: 1;
+  padding: 1rem;
+}
+
+.product_info img {
+  width: 100%;
+}

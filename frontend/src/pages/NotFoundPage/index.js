@@ -1,7 +1,9 @@
 const NotFoundPage = () => {
   return (
     <section>
-      <h2>Not found!!!! 404!!!</h2>git add. 
+
+      <h2>Error 404: Página no encontrada...</h2>
+
     </section>
   );
 };
