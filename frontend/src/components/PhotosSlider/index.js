@@ -1,7 +1,5 @@
 import "./styles.css";
 import { useState } from "react";
-import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
-import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 
 const PhotoSlider = ({ photos, travelName }) => {
   const [currentPhoto, setCurrentPhoto] = useState(0);
@@ -42,10 +40,10 @@ const PhotoSlider = ({ photos, travelName }) => {
       {photos.length > 1 && (
         <>
           <button className="previous_photo" onClick={previousPhoto}>
-            <NavigateBeforeIcon />
+            {"<-"}
           </button>
           <button className="next_photo" onClick={nextPhoto}>
-            <NavigateNextIcon />
+            {"->"}
           </button>
         </>
       )}

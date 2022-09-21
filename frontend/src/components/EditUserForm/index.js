@@ -27,7 +27,7 @@ const EditUserForm = ({ user, setUser, setShowEditForm }) => {
           const file = newAvatarRef.current.files[0];
 
           if (!(newUsername || newEmail || file)) {
-            toast.warn("Rellena los espacios con tus nuevos datos de usuario");
+            toast.warn("No has introducido ningún dato nuevo");
             return;
           }
 
@@ -60,7 +60,7 @@ const EditUserForm = ({ user, setUser, setShowEditForm }) => {
             formData.append("avatar", file);
 
             const res = await fetch(
-              `${process.env.REACT_APP_API_URL}/users/:idUser/avatar`,
+              `${process.env.REACT_APP_API_URL}/users/avatar`,
               {
                 method: "PUT",
                 headers: {
