@@ -5,6 +5,8 @@ const useTravels = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(true);
 
+
+
   useEffect(() => {
     const fetchTravels = async () => {
       try {
