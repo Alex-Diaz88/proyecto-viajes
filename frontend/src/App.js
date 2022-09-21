@@ -1,13 +1,11 @@
 import "./App.css";
-import NewTravelPage from "./pages/NewProductPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import RegisterPage from "./pages/RegisterPage";
-import Header from "./components/Header";
 import { CustomTokenContextProvider } from "./contexts/TokenContext";
+import { CustomAlertContextProvider } from "./contexts/AlertContext";
 import Header from "./components/Header";
-import FrontPage from "./pages/FrontPage/index.js";
+import Alert from "./components/Alert";
 import RegisterPage from "./pages/RegisterPage";
-import NewTravelPage from "./pages/NewProductPage";
+import NewTravelPage from "./pages/NewTravelPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
@@ -15,16 +13,17 @@ function App() {
     <div className="global_container">
       <BrowserRouter>
         <CustomTokenContextProvider>
-          <Header />
-
-          <main>
-            <Routes>
-              <Route path="/register" element={<RegisterPage />} />
-              <Route path="/travels/new" element={<NewTravelPage />} />
-              <Route path="*" element={<NotFoundPage />} />
-            </Routes>
-          </main>
-
+          <CustomAlertContextProvider>
+            <Header />
+            <main>
+              <Alert />
+              <Routes>
+                <Route path="/register" element={<RegisterPage />} />
+                <Route path="/travels/new" element={<NewTravelPage />} />
+                <Route path="*" element={<NotFoundPage />} />
+              </Routes>
+            </main>
+          </CustomAlertContextProvider>
         </CustomTokenContextProvider>
       </BrowserRouter>
     </div>
