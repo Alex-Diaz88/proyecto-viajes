@@ -25,11 +25,11 @@ const LoginForm = () => {
 
           const body = await res.json();
 
-          setToken(body.authToken);
-
           if (!res.ok) {
             throw new Error(body.message);
           }
+
+          setToken(body.authToken);
         } catch (error) {
           console.error(error.message);
         }

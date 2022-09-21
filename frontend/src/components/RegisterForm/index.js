@@ -1,14 +1,15 @@
 import "./styles.css";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { AlertContext } from "../../contexts/AlertContext";
 
 const RegisterForm = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
-
   const navigate = useNavigate();
+  const { setAlert } = useContext(AlertContext);
 
   return (
     <div className="register_form">
@@ -18,8 +19,7 @@ const RegisterForm = () => {
             event.preventDefault();
 
             if (password !== repeatPassword) {
-              console.log("Las contraseñas no coinciden.");
-              return;
+              throw new Error("Las contraseñas no coinciden.");
             }
 
             const newUser = { username, email, password };
@@ -40,9 +40,11 @@ const RegisterForm = () => {
               throw new Error(body.message);
             }
 
+            setAlert({ type: "success", msg: body.message });
             navigate("/");
           } catch (error) {
             console.error(error.message);
+            setAlert({ type: "error", msg: error.message });
           }
         }}
       >

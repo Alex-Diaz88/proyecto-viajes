@@ -8,6 +8,7 @@ const app = express();
 app.use(express.json());
 app.use(morgan('dev'));
 app.use(fileUpload());
+app.use(cors());
 
 // ## MIDDLEWARES ##
 const isAuth = require('./middlewares/isAuth');
@@ -70,9 +71,6 @@ app.post('/votes/new/:idTravel', isAuth, newVote);
 app.post('/comments/:idTravel', isAuth, newComment);
 app.put('/comment/:idComment', isAuth, canEditComment, editComment);
 app.delete('/comment/:idComment', isAuth, canEditComment, deleteComment);
-
-// ## ENDPOINT CORS
-app.use(cors());
 
 // ## ENDPOINTS DE ERROR ##
 app.use((req, res) => {
