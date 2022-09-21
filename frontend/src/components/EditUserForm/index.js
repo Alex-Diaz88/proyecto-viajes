@@ -1,5 +1,6 @@
 import Avatar from "../Avatar";
 import { useState, useRef } from "react";
+import { toast } from "react-toastify";
 import { useTokenContext } from "../../contexts/TokenContext";
 
 const EditUserForm = ({ user, setUser, setShowEditForm }) => {
@@ -80,6 +81,7 @@ const EditUserForm = ({ user, setUser, setShowEditForm }) => {
             setUser({ ...user, avatar });
           }
 
+          toast.success("Profile updated succesfully!");
           setShowEditForm(false);
         } catch (error) {
           console.error(error.message);

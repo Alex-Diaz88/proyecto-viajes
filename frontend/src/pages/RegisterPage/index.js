@@ -1,9 +1,9 @@
+import "./styles.css";
 import RegisterForm from "../../components/RegisterForm";
 
 const RegisterPage = () => {
   return (
-    <section>
-      <h2>Registro</h2>
+    <section className="register_page">
       <RegisterForm />
     </section>
   );
