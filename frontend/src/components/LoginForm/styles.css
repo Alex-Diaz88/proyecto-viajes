@@ -1,9 +1,13 @@
 .login_form {
   position: absolute;
-  top: 46%;
-  left: 85%;
-  transform: translate(-50%, -50%);
+  top: 50%;
+  right: 7%;
+  transform: translateY(-50%);
   color: white;
+}
+
+.login_form label {
+  display: block;
 }
 
 .login_form input {
@@ -18,19 +22,18 @@
   color: white;
 }
 
-.login_button {
-  position: absolute;
-  top: 114px;
-  left: 108px;
+.login_buttons {
+  display: flex;
 }
 
-.login_button button {
+.login_buttons button {
   border: 1px solid white;
   border-radius: 3px;
-  width: 65px;
-  height: 20px;
+  padding: 0.25rem 0.75rem;
+  margin-left: auto;
+  margin-top: 0.3rem;
 }
 
-.login_button button:active {
+.login_buttons button:active {
   transform: scale(0.98);
 }

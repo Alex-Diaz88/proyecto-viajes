@@ -57,9 +57,8 @@ const LoginForm = () => {
         }}
       />
 
-      <a href="/register">Regístrate</a>
-
-      <div className="login_button">
+      <div className="login_buttons">
+        <a href="/register">Regístrate</a>
         <button>Ingresar</button>
       </div>
     </form>
