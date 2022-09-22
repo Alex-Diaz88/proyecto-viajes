@@ -5,7 +5,6 @@ const { generateError, validate } = require('../../helpers');
 require('dotenv').config();
 const loginUserSchema = require('../../schemas/loginUserSchema');
 
-
 const loginUser = async (req, res, next) => {
     let connection;
 
@@ -16,13 +15,6 @@ const loginUser = async (req, res, next) => {
 
         await validate(loginUserSchema, req.body);
 
-        /*         if (!email) {
-            throw generateError('Falta indicar el email', 400);
-        }
-        if (!password) {
-            throw generateError('Falta indicar el password', 400);
-        } */
-
         const [user] = await connection.query(
             `select id, email, password from user where email = ?`,
             [email]
@@ -31,7 +23,7 @@ const loginUser = async (req, res, next) => {
 
         if (user.length < 1) {
             throw generateError(
-                'Ups! No existe un usuario registrado con ese email',
+                '¡Ups! No existe un usuario registrado con ese email.',
                 404
             );
         }
@@ -39,7 +31,10 @@ const loginUser = async (req, res, next) => {
         const validPassword = await bcrypt.compare(password, user[0].password);
 
         if (!validPassword) {
-            throw generateError('Lo sentimos,la contraseña es incorrecta', 401); // Unauthorized
+            throw generateError(
+                'Lo sentimos, la contraseña es incorrecta.',
+                401
+            );
         }
 
         const tokenInfo = {
