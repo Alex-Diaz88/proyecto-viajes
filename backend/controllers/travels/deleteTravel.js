@@ -1,5 +1,6 @@
 const getDB = require('../../db/getDB');
 const { deletePhoto } = require('../../helpers');
+const { generateError } = require('../../helpers');
 
 const deleteTravel = async (req, res, next) => {
     let connection;

@@ -16,6 +16,18 @@ const canEditTravel = async (req, res, next) => {
             [idTravel, idReqUser]
         );
 
+        const [travel] = await connection.query(
+            `select * from travel where id = ?`,
+            [idTravel]
+        );
+
+        if (travel.length < 1) {
+            throw generateError(
+                'No se puede eliminar un viaje que no existe...',
+                400
+            );
+        }
+
         if (user.length < 1) {
             throw generateError(
                 'No eres el propietario del viaje a editar',
