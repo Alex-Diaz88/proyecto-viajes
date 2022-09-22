@@ -1,11 +1,12 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useContext } from "react";
 import { useTokenContext } from "../../contexts/TokenContext";
+import { AlertContext } from "../../contexts/AlertContext";
+import { useNavigate } from "react-router-dom";
 
 const NewCommentForm = () => {
   const [comment, setComment] = useState("");
-  const navigate = useNavigate();
   const { token } = useTokenContext();
+  const navigate = useNavigate();
 
   return (
     <form
@@ -14,14 +15,17 @@ const NewCommentForm = () => {
           event.preventDefault();
 
           const newComment = [comment];
-          const res = await fetch(`${process.env.REACT_APP_API_URL}/comment/new`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: token,
-            },
-            body: JSON.stringify(newComment),
-          });
+          const res = await fetch(
+            `${process.env.REACT_APP_API_URL}/comment/new`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: token,
+              },
+              body: JSON.stringify(newComment),
+            }
+          );
           const body = await res.json();
           if (!res.ok) {
             throw new Error(body.message);
@@ -29,6 +33,7 @@ const NewCommentForm = () => {
           navigate("/");
         } catch (error) {
           console.error(error.message);
+          setAlert({ type: "error", msg: error.message });
         }
       }}
     >
