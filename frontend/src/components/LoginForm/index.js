@@ -1,12 +1,14 @@
 import "./styles.css";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useTokenContext } from "../../contexts/TokenContext";
 import { useNavigate } from "react-router-dom";
+import { AlertContext } from "../../contexts/AlertContext";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { setToken } = useTokenContext();
+  const { setAlert } = useContext(AlertContext);
   const navigate = useNavigate();
 
   return (
@@ -30,10 +32,12 @@ const LoginForm = () => {
             throw new Error(body.message);
           }
 
+          setAlert({ type: "success", msg: body.message });
           setToken(body.authToken);
           navigate("/");
         } catch (error) {
           console.error(error.message);
+          setAlert({ type: "error", msg: error.message });
         }
       }}
     >

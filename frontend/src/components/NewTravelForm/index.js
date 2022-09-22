@@ -1,6 +1,7 @@
 import "./styles.css";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useTokenContext } from "../../contexts/TokenContext";
+import { AlertContext } from "../../contexts/AlertContext";
 import { useNavigate } from "react-router-dom";
 
 const NewTravelForm = () => {
@@ -10,7 +11,7 @@ const NewTravelForm = () => {
   const [activity, setActivity] = useState("");
   const [content, setContent] = useState("");
   const { token } = useTokenContext();
-
+  const { setAlert } = useContext(AlertContext);
   const navigate = useNavigate();
 
   return (
@@ -22,14 +23,17 @@ const NewTravelForm = () => {
 
           const newTravel = { title, entry, place, activity, content };
 
-          const res = await fetch(`${process.env.REACT_APP_API_URL}/travels/new`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: token,
-            },
-            body: JSON.stringify(newTravel),
-          });
+          const res = await fetch(
+            `${process.env.REACT_APP_API_URL}/travels/new`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: token,
+              },
+              body: JSON.stringify(newTravel),
+            }
+          );
           const body = await res.json();
           if (!res.ok) {
             throw new Error(body.message);
@@ -37,6 +41,7 @@ const NewTravelForm = () => {
           navigate("/");
         } catch (error) {
           console.error(error.message);
+          setAlert({ type: "error", msg: error.message });
         }
       }}
     >

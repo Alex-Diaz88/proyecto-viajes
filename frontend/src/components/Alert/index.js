@@ -1,6 +1,6 @@
 import "./styles.css";
-import checkedIcon from "../../assets/icons/checked.svg";
-import warningIcon from "../../assets/icons/warning.svg";
+import checkedIcon from "../../assets/icons/checked.png";
+import warningIcon from "../../assets/icons/warning.png";
 import { useContext, useEffect } from "react";
 import { AlertContext } from "../../contexts/AlertContext";
 
