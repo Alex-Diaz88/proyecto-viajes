@@ -1,7 +1,7 @@
 const getDB = require('../../db/getDB');
 const bcrypt = require('bcrypt');
 const { generateError } = require('../../helpers');
-const {newUserSchema }= require('../../schemas/newUserSchema');
+const { newUserSchema } = require('../../schemas/newUserSchema');
 const { validate } = require('../../helpers');
 
 const newUser = async (req, res, next) => {
@@ -13,17 +13,13 @@ const newUser = async (req, res, next) => {
         const { username, email, password } = req.body;
         await validate(newUserSchema, req.body);
 
-        if (!username || !email || !password) {
-            throw generateError('Faltan campos obligatorios', 400);
-        }
-
         const [user] = await connection.query(
             `select id from user where email = ?`,
             [email]
         );
 
         if (user.length > 0) {
-            throw generateError('Ya existe un usuario con ese email.', 409);
+            throw generateError('Ya existe un usuario con este email.', 409);
         }
 
         const [user2] = await connection.query(
@@ -32,11 +28,8 @@ const newUser = async (req, res, next) => {
         );
 
         if (user2.length > 0) {
-            throw generateError('Ya existe un usuario con ese nombre.', 409);
+            throw generateError('El nombre de usuario ya está en uso.', 409);
         }
-
-
-
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -48,7 +41,7 @@ const newUser = async (req, res, next) => {
 
         res.send({
             status: 'Ok',
-            message: 'Usuario creado con éxito',
+            message: 'Usuario registrado con éxito.',
         });
     } catch (error) {
         next(error);

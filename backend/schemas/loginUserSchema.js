@@ -7,14 +7,8 @@ const loginUserSchema = Joi.object().keys({
         .error((errors) => {
             switch (errors[0].code) {
                 case 'any.required':
-                    return new Error(
-                        'la direccion de email no puede estar vacia...'
-                    );
-                case 'string.email':
-                    return new Error('No es un email valido...');
-
                 default:
-                    return new Error('Atento,No has indicado ningun email...');
+                    return new Error('Debes indicar un email.');
             }
         }),
 
@@ -24,17 +18,8 @@ const loginUserSchema = Joi.object().keys({
         .error((errors) => {
             switch (errors[0].code) {
                 case 'any.required':
-                    return new Error(
-                        'Lo sentimos, la password no puede estar vacia..'
-                    );
-                case 'string.min':
-                    return new Error(
-                        'Lo sentimos, la password debe tener un minimo de 5 caracteres... '
-                    );
                 default:
-                    return new Error(
-                        'Cuidado! El campo password no puede estar vacio'
-                    );
+                    return new Error('Debes indicar una contraseña.');
             }
         }),
 });
