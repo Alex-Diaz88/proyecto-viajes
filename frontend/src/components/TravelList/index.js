@@ -1,8 +1,9 @@
 import Travel from "../Travel";
 import "./styles.css";
-import { travels } from "../../App";
+
 
 const TravelList = ({ travels }) => {
+  console.log(travels)
   return (
     <ul>
       {travels.map((travel) => {

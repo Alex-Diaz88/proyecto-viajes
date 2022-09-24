@@ -2,6 +2,7 @@ import "./styles.css";
 import { Link } from "react-router-dom";
 import Avatar from "../Avatar";
 import PhotoSlider from "../PhotosSlider";
+import  NewCommentForm from "../NewCommnetForm"
 
 const Travel = ({ travel }) => {
   const { title, entry, place, activity, content, createdAt, idUser, photos, username, avatar } = travel;
@@ -28,7 +29,8 @@ const Travel = ({ travel }) => {
         <p>{activity}</p>
 
         {photos.length > 0 && <PhotoSlider photos={photos} travelName={title} />}
-        <p>{createdAt.split("T")[0]}</p>
+        <p>{createdAt.split("T")[0]}</p>       
+          <NewCommentForm/>
       </section>
     </article>
   );

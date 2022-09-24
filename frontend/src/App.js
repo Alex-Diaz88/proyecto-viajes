@@ -8,8 +8,13 @@ import FrontPage from "./pages/FrontPage/index.js";
 import RegisterPage from "./pages/RegisterPage";
 import NewTravelPage from "./pages/NewTravelPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import SearchTravelsForm from "./components/SearchTravelsForm";
+import TravelList from "./components/TravelList";
+import { useState } from "react";
 
 function App() {
+  const [travels, setTravels]= useState([]);
+  
 
   return (
     <div className="global_container">
@@ -17,14 +22,18 @@ function App() {
         <CustomTokenContextProvider>
           <CustomAlertContextProvider>
             <Header />
+            
+   
             <main>
-              <Alert />
+            <SearchTravelsForm setTravels={setTravels} />
+            <TravelList travels={travels}/>
+{/*               <Alert />
               <Routes>
                 <Route path="/" element={<FrontPage />} />
                 <Route path="/register" element={<RegisterPage />} />
                 <Route path="/travels/new" element={<NewTravelPage />} />
                 <Route path="*" element={<NotFoundPage />} />
-              </Routes>
+              </Routes> */}
             </main>
           </CustomAlertContextProvider>
         </CustomTokenContextProvider>
