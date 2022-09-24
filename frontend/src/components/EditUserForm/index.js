@@ -1,7 +1,8 @@
 import Avatar from "../Avatar";
-import { useState, useRef } from "react";
+import { useState, useContext, useRef } from "react";
 import { toast } from "react-toastify";
 import { useTokenContext } from "../../contexts/TokenContext";
+import { AlertContext } from "../../contexts/AlertContext";
 
 const EditUserForm = ({ user, setUser, setShowEditForm }) => {
   const {
@@ -13,10 +14,9 @@ const EditUserForm = ({ user, setUser, setShowEditForm }) => {
   const [newUsername, setNewUsername] = useState("");
   const [newEmail, setNewEmail] = useState("");
   const [newAvatarPreview, setNewAvatarPreview] = useState("");
-
   const newAvatarRef = useRef();
-
   const { token } = useTokenContext();
+  const { setAlert } = useContext(AlertContext);
 
   return (
     <form
@@ -27,8 +27,7 @@ const EditUserForm = ({ user, setUser, setShowEditForm }) => {
           const file = newAvatarRef.current.files[0];
 
           if (!(newUsername || newEmail || file)) {
-            toast.warn("No has introducido ningún dato nuevo");
-            return;
+            throw new Error("No has introducido ningún dato nuevo");
           }
 
           if (newUsername || newEmail) {
@@ -85,7 +84,7 @@ const EditUserForm = ({ user, setUser, setShowEditForm }) => {
           setShowEditForm(false);
         } catch (error) {
           console.error(error.message);
-          toast.error(error.message);
+          setAlert({ type: "error", msg: error.message });
         }
       }}
     >
