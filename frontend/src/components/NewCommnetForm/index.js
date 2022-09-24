@@ -1,15 +1,15 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+/* import { useNavigate } from "react-router-dom"; */
 import { useTokenContext } from "../../contexts/TokenContext";
 
 const NewCommentForm = () => {
   const [comment, setComment] = useState("");
-  const navigate = useNavigate();
+  /* const navigate = useNavigate(); */
   const { token } = useTokenContext();
 
   return (
     <form
-      onsubmit={async (event) => {
+      onSubmit={async (event) => {
         try {
           event.preventDefault();
 
@@ -26,13 +26,13 @@ const NewCommentForm = () => {
           if (!res.ok) {
             throw new Error(body.message);
           }
-          navigate("/");
+          /*navigate("/travels");*/
         } catch (error) {
           console.error(error.message);
         }
       }}
     >
-      <label htmlFor="content">Contenido:</label>
+      <label htmlFor="content">Comentario:</label>
       <input
         id="content"
         value={comment}
