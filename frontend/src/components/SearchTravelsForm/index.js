@@ -10,7 +10,9 @@ const SearchTravelsForm = ({ setTravels }) => {
         try {
           event.preventDefault();
           const res = await fetch(
-            `http://localhost:4000/travels?place=${searchByPlace}&activity=${searchByActivity}&votes=${orderByVotes}`,
+            `http://localhost:4000/travels?search=${
+              (searchByPlace, searchByActivity)
+            }&activity=${searchByActivity}&votes=${orderByVotes}`,
           );
           const body = await res.json();
 
