@@ -11,6 +11,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 import SearchTravelsForm from "./components/SearchTravelsForm";
 import TravelList from "./components/TravelList";
 import { useState } from "react";
+import RegisterForm from "./components/RegisterForm";
 
 function App() {
   const [travels, setTravels]= useState([]);
@@ -27,6 +28,7 @@ function App() {
             <main>
             <SearchTravelsForm setTravels={setTravels} />
             <TravelList travels={travels}/>
+            <RegisterForm />
 {/*               <Alert />
               <Routes>
                 <Route path="/" element={<FrontPage />} />
