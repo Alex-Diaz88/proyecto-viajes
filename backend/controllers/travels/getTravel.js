@@ -10,7 +10,7 @@ const getTravel = async (req, res, next) => {
         const { idTravel } = req.params;
 
         const [travel] = await connection.query(
-            `select t.*, count (v.id) as votes from travel t left join vote v on t.id = v.idTravel where t.id = ? group by t.id`,
+            `select t.*,u.avatar, u.username, count (v.id) as votes from travel t left join vote v on t.id = v.idTravel inner join user u on t.idUser = u.id where t.id = ? group by t.id`,
             [idTravel]
         );
 
@@ -36,14 +36,14 @@ const getTravel = async (req, res, next) => {
             travel[i].comments = comments;
         }
 
-        for (let i = 0; i < travel.length; i++) {
+        /*         for (let i = 0; i < travel.length; i++) {
             const [owner] = await connection.query(
                 `select username, avatar from user where id = ?`,
                 [travel[i].id]
             );
 
             travel[i].owner = owner;
-        }
+        } */
 
         res.send({
             status: 'Ok',

@@ -36,7 +36,7 @@ async function main() {
                 title varchar (100) not null,
                 entry varchar(200) not null,
                 place enum ('Coriolis', 'Jina', 'Kua', 'Lubau', 'Surha', 'Xene') not null,
-                activity enum ('Cultural', 'Deportes', 'Gastronomía', 'Naturaleza', 'Relajación') not null,
+                activity enum ('Cultural', 'Deportes', 'Gastronomía', 'Naturaleza', 'Naturaleza') not null,
                 content text,
                 createdAt datetime default CURRENT_TIMESTAMP,
                 idUser int unsigned not null,

@@ -3,7 +3,6 @@ const loginUser = require('./loginUser');
 const getUser = require('./getUser');
 const editUser = require('./editUser');
 const editUserPassword = require('./editUserPassword');
-const editUserAvatar = require('./editUserAvatar');
 const deleteUser = require('./deleteUser');
 
 module.exports = {
@@ -12,6 +11,5 @@ module.exports = {
     getUser,
     editUser,
     editUserPassword,
-    editUserAvatar,
     deleteUser,
 };
