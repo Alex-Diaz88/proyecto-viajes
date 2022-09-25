@@ -14,27 +14,26 @@ const editUser = async (req, res, next) => {
         const { username, email } = req.body;
         await validate(editUserSchema, req.body);
 
-/*         if (!(username || email)) {
+        /*         if (!(username || email)) {
             throw generateError('No has modificado ningún campo', 400);
         } */
-
-        if (!req.files || !req.files.avatar) {
-            throw generateError('Debes indicar un nuevo avatar', 400);
-        }
 
         const [user] = await connection.query(
             `select username, email, avatar from user where id = ?`,
             [idReqUser]
         );
 
-        if (user[0].avatar) {
-            await deletePhoto(user[0].avatar, 0);
+        let avatarName;
+
+        if (req.files?.avatar) {
+            if (user[0].avatar) {
+                await deletePhoto(user[0].avatar, 0);
+            }
+            avatarName = await savePhoto(req.files.avatar, 0);
         }
 
-        const avatarName = await savePhoto(req.files.avatar, 0);
-
         await connection.query(
-            `update user set username = ?, email = ?, avatar = ?, where id = ?`,
+            `update user set username = ?, email = ?, avatar = ? where id = ?`,
             [
                 username || user[0].username,
                 email || user[0].email,
@@ -46,7 +45,11 @@ const editUser = async (req, res, next) => {
         res.send({
             status: 'Ok',
             message: 'Datos del usuario modificados con éxito',
-            data: { username, email },
+            data: {
+                username: username || user[0].username,
+                email: email || user[0].email,
+                avatar: avatarName || user[0].avatar,
+            },
         });
     } catch (error) {
         next(error);

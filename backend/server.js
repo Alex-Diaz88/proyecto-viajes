@@ -23,7 +23,6 @@ const {
     getUser,
     editUser,
     editUserPassword,
-    editUserAvatar,
     deleteUser,
 } = require('./controllers/users');
 
@@ -36,6 +35,7 @@ const {
     addTravelPhoto,
     deleteTravel,
 } = require('./controllers/travels');
+const getTravels = require('./controllers/travels/getTravels');
 
 // ## CONTROLADORES DE VOTES ##
 const { newVote } = require('./controllers/votes');
@@ -53,13 +53,13 @@ app.post('/login', loginUser);
 app.get('/users/:idUser', getUser);
 app.put('/users', isAuth, editUser);
 app.put('/users/:idUser/password', isAuth, canEditUser, editUserPassword);
-app.put('/users/:idUser/avatar', isAuth, canEditUser, editUserAvatar);
 app.delete('/users/:idUser', isAuth, canEditUser, deleteUser);
 
 // ## ENDPOINTS VIAJES ##
 app.post('/travels/new', isAuth, newTravel);
 app.get('/travels/:idTravel', getTravel);
-app.get('/travels', searchTravels);
+/* app.get('/travels', searchTravels); */
+app.get('/travels', getTravels);
 app.put('/travels/:idTravel', isAuth, canEditTravel, editTravel);
 app.put('/travels/:idTravel/photo', isAuth, canEditTravel, addTravelPhoto);
 app.delete('/travels/:idTravel', isAuth, canEditTravel, deleteTravel);

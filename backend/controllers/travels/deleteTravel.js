@@ -14,13 +14,9 @@ const deleteTravel = async (req, res, next) => {
             [idTravel]
         );
 
-        for (let i = 0; i < photos.length; i++)
+        for (let i = 0; i < photos.length; i++) {
             await deletePhoto(photos[i].name, 1);
-
-        await connection.query(`delete from travel_photo where idTravel = ?`, [
-            idTravel,
-        ]);
-
+        }
         await connection.query(`delete from travel where id = ?`, [idTravel]);
 
         res.send({
