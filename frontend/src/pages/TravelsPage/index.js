@@ -2,14 +2,13 @@ import ErrorMessage from "../../components/ErrorMessage";
 import SearchTravelsForm from "../../components/SearchTravelsForm";
 import TravelList from "../../components/TravelList";
 import useTravels from "../../hooks/useTravels";
-import setTravels from "../../App.js";
 
 const TravelsPage = () => {
-  const { travels, errorMessage } = useTravels();
+  const { travels, setSearchParams, errorMessage, searchParams } = useTravels();
   console.log(travels);
   return (
     <section>
-      <SearchTravelsForm />
+      <SearchTravelsForm setSearchParams={setSearchParams} searchParams={searchParams} />
       <h2>Viajes</h2>
       {travels.length > 0 && <TravelList travels={travels} />}
       {errorMessage && <ErrorMessage msg={errorMessage} />}
