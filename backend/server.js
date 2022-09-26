@@ -32,12 +32,11 @@ const {
 const {
     newTravel,
     getTravel,
-    searchTravels,
+    getTravels,
     editTravel,
     addTravelPhoto,
     deleteTravel,
 } = require('./controllers/travels');
-const getTravels = require('./controllers/travels/getTravels');
 
 // ## CONTROLADORES DE VOTES ##
 const { newVote } = require('./controllers/votes');
@@ -61,7 +60,6 @@ app.delete('/users/:idUser', isAuth, canEditUser, deleteUser);
 
 app.post('/travels/new', isAuth, newTravel);
 app.get('/travels/:idTravel', getTravel);
-app.get('/travels', searchTravels);
 app.get('/travels', getTravels);
 app.put('/travels/:idTravel', isAuth, canEditTravel, editTravel);
 app.put('/travels/:idTravel/photo', isAuth, canEditTravel, addTravelPhoto);
