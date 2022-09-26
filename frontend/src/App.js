@@ -12,6 +12,7 @@ import TravelPage from "./pages/TravelPage";
 import RegisterPage from "./pages/RegisterPage";
 import NewTravelPage from "./pages/NewTravelPage";
 
+
 function App() {
   return (
     <div className="global_container">
@@ -21,6 +22,7 @@ function App() {
             <Header />
 
             <main>
+
               <Alert />
               <Routes>
                 <Route path="/" element={<TravelsPage />} />

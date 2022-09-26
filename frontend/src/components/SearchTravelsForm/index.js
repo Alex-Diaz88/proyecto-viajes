@@ -1,51 +1,38 @@
+import "./styles.css";
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
 
-const SearchTravelsForm = ({ setTravels }) => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [searchByPlace, setSearchByPlace] = useState(
-    searchParams.get("search") || ""
-  );
-  const [searchByActivity, setSearchByActivity] = useState(
-    searchParams.get("order") || ""
-  );
-  const [orderByVotes, setOrderByVotes] = useState(
-    searchParams.get("direction") || "DESC"
-  );
+const SearchTravelsForm = ({ setSearchParams, searchParams }) => {
+  const [place, setPlace] = useState(searchParams.get("place") || "");
+  const [activity, setActivity] = useState(searchParams.get("activity") || "");
+  const [order, setOrder] = useState(searchParams.get("order") || "DESC");
 
   return (
     <form
-      onSubmit={async (event) => {
-        try {
-          event.preventDefault();
-          const res = await fetch(
-            `http://localhost:4000/travels?search=${
-              searchByPlace || searchByActivity
-            }&order=${
-              searchByPlace || searchByActivity
-            }&direction=${orderByVotes}`
-          );
-          const body = await res.json();
+      onSubmit={(event) => {
+        event.preventDefault();
+        const queryParams = { place, activity };
 
-          if (!res.ok) {
-            throw new Error(body.message);
-          }
-
-          setTravels(body.data);
-        } catch (error) {
-          console.error(error.message);
+        if (place) {
+          queryParams.place = place;
         }
+
+        if (activity) {
+          queryParams.activity = activity;
+        }
+
+        setSearchParams(new URLSearchParams(queryParams));
       }}
+      className="searchTravelForm"
     >
       <label htmlFor="searchByPlace">Buscar por Lugar:</label>
       <select
         id="searchByPlace"
-        value={searchByPlace}
+        value={place}
         onChange={(event) => {
-          setSearchByPlace(event.target.value);
+          setPlace(event.target.value);
         }}
       >
-        <option></option>
+        <option value="">Todas las localizaciones</option>
         <option value={"Coriolis"}>Coriolis</option>
         <option value={"Jina"}>Jina</option>
         <option value={"Kua"}>Kua</option>
@@ -57,12 +44,12 @@ const SearchTravelsForm = ({ setTravels }) => {
       <label htmlFor="searchByActivity">Buscar por Actividad</label>
       <select
         id="searchByActivity"
-        value={searchByActivity}
+        value={activity}
         onChange={(event) => {
-          setSearchByActivity(event.target.value);
+          setActivity(event.target.value);
         }}
       >
-        <option></option>
+        <option value="">Todas las Actividades</option>
         <option value={"Cultura"}>Cultura</option>
         <option value={"Deportes"}>Deportes</option>
         <option value={"Gastronomía"}>Gastronomía</option>
@@ -73,9 +60,9 @@ const SearchTravelsForm = ({ setTravels }) => {
       <label htmlFor="searchByVotes">Ordenar por Votos:</label>
       <select
         id="searchByVotes"
-        value={orderByVotes}
+        value={order}
         onChange={(event) => {
-          setOrderByVotes(event.target.value);
+          setOrder(event.target.value);
         }}
       >
         <option value="ASC">Mas votados</option>
