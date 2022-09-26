@@ -6,7 +6,7 @@ const getTravels = async (req, res, next) => {
     try {
         connection = await getDB();
 
-        const { search, order, direction } = req.query;
+        const { place, activity, order, direction } = req.query;
 
         const validOrderOptions = ['place', 'activity', 'votes'];
 
@@ -18,26 +18,24 @@ const getTravels = async (req, res, next) => {
             ? direction
             : 'DESC';
 
-        let travels;
+        let query = `SELECT t.*, u.username, u.avatar, count(v.id) as votes FROM travel t INNER JOIN user u ON t.idUser = u.id LEFT JOIN vote v ON t.id = v.idTravel`;
 
-        if (search) {
-            [travels] = await connection.query(
-                `SELECT t.*, u.username, u.avatar FROM travel t 
-                INNER JOIN user u ON t.idUser = u.id 
-                WHERE place LIKE ? OR activity LIKE ?
-                ORDER BY ${orderBy} ${orderDirection}`,
-                [`%${search}%`, `%${search}%`]
-            );
-        } else {
-            [travels] = await connection.query(
-                `SELECT t.*, u.username, u.avatar FROM travel t 
-                INNER JOIN user u ON t.idUser = u.id
-                ORDER BY ${orderBy} ${orderDirection}`,
-                [`%${search}%`, `%${search}%`]
-            );
+        let values = [];
+        let clause = 'WHERE';
+
+        if (place) {
+            query += ` ${clause} place LIKE ?`;
+            values.push(place);
+            clause = 'AND';
         }
 
-        const data = [];
+        if (activity) {
+            query += ` ${clause} activity LIKE ?`;
+            values.push(activity);
+        }
+        query += ` GROUP BY t.id ORDER BY ${orderBy} ${orderDirection}`;
+
+        const [travels] = await connection.query(query, values);
 
         for (let i = 0; i < travels.length; i++) {
             const [photos] = await connection.query(
@@ -56,12 +54,11 @@ const getTravels = async (req, res, next) => {
 
             travels[i].comments = comments;
         }
-        
+
         res.send({
             status: 'Ok',
-            data: data,
+            data: travels,
         });
-        
     } catch (error) {
         next(error);
     } finally {
