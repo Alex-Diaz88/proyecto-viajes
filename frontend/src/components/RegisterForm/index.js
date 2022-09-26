@@ -11,41 +11,44 @@ const RegisterForm = () => {
   const { setAlert } = useContext(AlertContext);
   const navigate = useNavigate();
 
-  const registerUser = async (e) => {
-    e.preventDefault();
-
-    if (password !== repeatPassword) {
-      throw new Error("Las contraseñas no coinciden.");
-    } else {
-      try {
-        const newUser = { username, email, password };
-
-        const res = await fetch(`${process.env.REACT_APP_API_URL}/register`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(newUser),
-        });
-        const body = await res.json();
-
-        if (!res.ok) {
-          throw new Error(body.message);
-        }
-
-        setAlert({ type: "success", msg: body.message });
-        navigate("/");
-      } catch (error) {
-        console.error(error.message);
-        setAlert({ type: "error", msg: error.message });
-      }
-    }
-  };
-
   return (
-    <div className="register_form" onSubmit={(e) => registerUser(e)}>
+    <div className="register_form">
       <h2>Registro</h2>
-      <form>
+      <form
+        onSubmit={async (e) => {
+          e.preventDefault();
+
+          if (password !== repeatPassword) {
+            throw new Error("Las contraseñas no coinciden.");
+          } else {
+            try {
+              const newUser = { username, email, password };
+
+              const res = await fetch(
+                `${process.env.REACT_APP_API_URL}/register`,
+                {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify(newUser),
+                }
+              );
+              const body = await res.json();
+
+              if (!res.ok) {
+                throw new Error(body.message);
+              }
+
+              setAlert({ type: "success", msg: body.message });
+              navigate("/");
+            } catch (error) {
+              console.error(error.message);
+              setAlert({ type: "error", msg: error.message });
+            }
+          }
+        }}
+      >
         <label htmlFor="register_username">Nombre de usuario:</label>
         <input
           id="register_username"
