@@ -1,6 +1,6 @@
 const newTravel = require('./newTravel');
 const getTravel = require('./getTravel');
-const searchTravels = require('./searchTravels');
+const getTravels = require('./getTravels');
 const editTravel = require('./editTravel');
 const addTravelPhoto = require('./addTravelPhoto');
 const deleteTravel = require('./deleteTravel');
@@ -8,7 +8,7 @@ const deleteTravel = require('./deleteTravel');
 module.exports = {
     newTravel,
     getTravel,
-    searchTravels,
+    getTravels,
     editTravel,
     addTravelPhoto,
     deleteTravel,
