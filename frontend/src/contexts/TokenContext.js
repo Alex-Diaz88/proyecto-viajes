@@ -13,21 +13,18 @@ export const CustomTokenContextProvider = ({ children }) => {
       return;
     }
 
-    console.log("1");
     const fetchUser = async () => {
       try {
         const decodedToken = JSON.parse(atob(token.split(".")[1]));
 
-        console.log("2");
-
-        const res = await fetch(`${process.env.REACT_APP_API_URL}/users/${decodedToken.id}`);
+        const res = await fetch(
+          `${process.env.REACT_APP_API_URL}/users/${decodedToken.id}`
+        );
 
         const body = await res.json();
         console.log(body);
-        console.log("3");
 
         if (!res.ok) {
-          console.log("4");
           throw new Error(body.message);
         }
 
@@ -41,12 +38,17 @@ export const CustomTokenContextProvider = ({ children }) => {
   }, [token]);
 
   return (
-    <TokenContext.Provider value={{ token, setToken, loggedUser, setLoggedUser }}>{children}</TokenContext.Provider>
+    <TokenContext.Provider
+      value={{ token, setToken, loggedUser, setLoggedUser }}
+    >
+      {children}
+    </TokenContext.Provider>
   );
 };
 
 export const useTokenContext = () => {
-  const { token, setToken, loggedUser, setLoggedUser } = useContext(TokenContext);
+  const { token, setToken, loggedUser, setLoggedUser } =
+    useContext(TokenContext);
 
   return { token, setToken, loggedUser, setLoggedUser };
 };

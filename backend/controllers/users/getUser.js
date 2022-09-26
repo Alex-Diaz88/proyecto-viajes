@@ -10,7 +10,7 @@ const getUser = async (req, res, next) => {
         const { idUser } = req.params;
 
         const [[user]] = await connection.query(
-            `select id, username, avatar, createdAt from user where id = ?`,
+            `select id, username, email, avatar, createdAt from user where id = ?`,
             [idUser]
         );
 
@@ -19,7 +19,7 @@ const getUser = async (req, res, next) => {
         }
 
         const [userTravels] = await connection.query(
-            `select * from travel where idUser = ?`,
+            `select t.*, count (v.id) as votes from travel t left join vote v on t.id = v.idTravel where t.idUser = ? group by t.id`,
             [idUser]
         );
 

@@ -4,11 +4,13 @@ const morgan = require('morgan');
 const fileUpload = require('express-fileupload');
 const cors = require('cors');
 const app = express();
+const path = require('path');
 
 app.use(express.json());
 app.use(morgan('dev'));
 app.use(fileUpload());
 app.use(cors());
+app.use(express.static(path.join(__dirname, 'static/')));
 
 // ## MIDDLEWARES ##
 const isAuth = require('./middlewares/isAuth');
@@ -56,9 +58,7 @@ app.put('/users/:idUser/password', isAuth, canEditUser, editUserPassword);
 app.delete('/users/:idUser', isAuth, canEditUser, deleteUser);
 
 // ## ENDPOINTS VIAJES ##
-/* app.use(express.static(path.join(__dirname, 'static/'))); */
 
-const path = require('path');
 app.post('/travels/new', isAuth, newTravel);
 app.get('/travels/:idTravel', getTravel);
 /* app.get('/travels', searchTravels); */

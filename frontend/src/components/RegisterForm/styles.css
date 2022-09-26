@@ -1,7 +1,48 @@
-.register_form label {
-  display: block;
+.register_form {
+  margin: auto;
+  margin-top: 1rem;
+  width: 25rem;
+  padding: 1rem;
+}
+
+.register_form h2 {
+  color: var(--space-blue);
+  margin-bottom: 0.5rem;
+}
+
+.register_form input {
+  width: 100%;
+  border: none;
+  background-color: var(--space-blue-light);
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  outline: none;
+  font-size: medium;
+  margin-bottom: 0.5rem;
+}
+
+.register_form p {
+  text-align: center;
+  font-size: small;
+  margin-bottom: 0.5rem;
+}
+
+.register_form p span {
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .register_form button {
-  display: block;
+  width: 100%;
+  border: none;
+  background-color: var(--space-blue);
+  padding: 0.3rem;
+  border-radius: 0.25rem;
+  font-size: medium;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.register_form button:active {
+  transform: scale(0.98);
 }

@@ -9,7 +9,6 @@ import RegisterPage from "./pages/RegisterPage";
 
 import Header from "./components/Header";
 import Alert from "./components/Alert";
-import FrontPage from "./pages/FrontPage/index.js";
 import NewTravelPage from "./pages/NewTravelPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import SearchTravelsForm from "./components/SearchTravelsForm";
