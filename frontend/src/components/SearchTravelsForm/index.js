@@ -1,9 +1,13 @@
 import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 const SearchTravelsForm = ({ setTravels }) => {
-  const [searchByPlace, setSearchByPlace] = useState("");
-  const [searchByActivity, setSearchByActivity] = useState("");
-  const [orderByVotes, setOrderByVotes] = useState("ASC");
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const [searchByPlace, setSearchByPlace] = useState(searchParams.get("search") || "");
+  const [searchByActivity, setSearchByActivity] = useState(searchParams.get("order") || "");
+  const [orderByVotes, setOrderByVotes] = useState(searchParams.get("direction") || "DESC");
+
   return (
     <form
       onSubmit={async (event) => {
