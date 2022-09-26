@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const getDB = require('./getDB');
+const bcrypt = require('bcrypt');
 
 async function main() {
     let connection;
@@ -26,7 +27,9 @@ async function main() {
                 email varchar(100) not null,
                 password varchar(200) not null,
                 avatar varchar(255),
-                createdAt datetime default CURRENT_TIMESTAMP           
+                active boolean default false,
+                createdAt datetime default CURRENT_TIMESTAMP
+                           
             )
         `);
 
@@ -36,7 +39,7 @@ async function main() {
                 title varchar (100) not null,
                 entry varchar(200) not null,
                 place enum ('Coriolis', 'Jina', 'Kua', 'Lubau', 'Surha', 'Xene') not null,
-                activity enum ('Cultural', 'Deportes', 'Gastronomía', 'Naturaleza', 'Relajacion') not null,
+                activity enum ('Cultural', 'Deportes', 'Gastronomía', 'Naturaleza', 'Relajación') not null,
                 content text,
                 createdAt datetime default CURRENT_TIMESTAMP,
                 idUser int unsigned not null,
@@ -68,6 +71,7 @@ async function main() {
         await connection.query(`
             create table if not exists vote (
                 id int unsigned primary key auto_increment,
+                voted boolean default false,
                 idUser int unsigned not null,
                 idTravel int unsigned not null,
                 foreign key (idUser) references user (id) on delete cascade,
@@ -77,14 +81,23 @@ async function main() {
 
         console.log('¡Tablas creadas con éxito!');
 
-        await connection.query(`
-            INSERT INTO user (id, username, email,  password, avatar)
-                VALUES (1, 'Rick', 'rickmail@gmail.com', '12345', 'Rick_Sanchez_Avatar.png'),
-                (2, 'Morty', 'mortymail@gmail.com', '12345', 'Morty_Avatar.jpg'),
-                (3, 'StarLord', 'starlordmail@gmail.com', '12345', 'Starlord_Avatar.jpg'),
-                (4, 'Bender', 'bendermail@gmail.com', '12345', 'Bender_Avatar.jpg'),
-                (5, 'Paco', 'pacomail@gmail.com', '12345', 'Paco_Avatar.png');
-        `);
+        const hashedPassword = await bcrypt.hash('12345', 10);
+
+        await connection.query(
+            `INSERT INTO user (id, username, email,  password, avatar, active)
+                VALUES (1, 'Rick', 'rickmail@gmail.com', ?, 'Rick_Sanchez_Avatar.png', true),
+                (2, 'Morty', 'mortymail@gmail.com', ?, 'Morty_Avatar.jpg', true),
+                (3, 'StarLord', 'starlordmail@gmail.com', ?, 'Starlord_Avatar.jpg', true),
+                (4, 'Bender', 'bendermail@gmail.com', ?, 'Bender_Avatar.jpg', true),
+                (5, 'Paco', 'pacomail@gmail.com', ?, 'Paco_Avatar.png', true)`,
+            [
+                hashedPassword,
+                hashedPassword,
+                hashedPassword,
+                hashedPassword,
+                hashedPassword,
+            ]
+        );
 
         console.log('¡Usuarios insertados con éxito!');
 
@@ -97,7 +110,6 @@ async function main() {
                 Get ready para hacer filigranas increíbles en el aire!', 4),
                 (5, 'Casa Rural Paco', 'Viaje de relax y tranquilidad absoluta en casa de Paco', 'Kua', 'Relajación', 'Relájate y evádete de la rutina con nuestras experiencias de spa. Masajes para dos, spas y balnearios, baños árabes, chocolaterapia y mucho más. Todas nuestras experiencias son regalos perfectos para ella y para él, para hacer solo o en pareja. ¡Momentos de relax y belleza ideales!', 5),
                 (6, 'Ruta por museos de ciencia y tecnología alienígena', 'Si eres una persona curiosa y a la que le gusta la ciencia este es tu lugar', 'Jina', 'Cultural', 'El Museo Nacional de Ciencia y Tecnología es un museo tecnológico dedicado a la promoción y conservación de la tecnología. Posee una colección de más de 17.000 instrumentos científicos, dispositivos tecnológicos, vehículos, máquinas y herramientas industriales desde el siglo XVI hasta la actualidad.', 5);
-
         `);
 
         console.log('¡Viajes insertados con éxito!');

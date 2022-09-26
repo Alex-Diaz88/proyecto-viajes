@@ -3,10 +3,15 @@ import { useSearchParams } from "react-router-dom";
 
 const SearchTravelsForm = ({ setTravels }) => {
   const [searchParams, setSearchParams] = useSearchParams();
-
-  const [searchByPlace, setSearchByPlace] = useState(searchParams.get("search") || "");
-  const [searchByActivity, setSearchByActivity] = useState(searchParams.get("order") || "");
-  const [orderByVotes, setOrderByVotes] = useState(searchParams.get("direction") || "DESC");
+  const [searchByPlace, setSearchByPlace] = useState(
+    searchParams.get("search") || ""
+  );
+  const [searchByActivity, setSearchByActivity] = useState(
+    searchParams.get("order") || ""
+  );
+  const [orderByVotes, setOrderByVotes] = useState(
+    searchParams.get("direction") || "DESC"
+  );
 
   return (
     <form
@@ -14,9 +19,11 @@ const SearchTravelsForm = ({ setTravels }) => {
         try {
           event.preventDefault();
           const res = await fetch(
-            `http://localhost:4000/travels?search=${searchByPlace || searchByActivity}&order=${
+            `http://localhost:4000/travels?search=${
               searchByPlace || searchByActivity
-            }&direction=${orderByVotes}`,
+            }&order=${
+              searchByPlace || searchByActivity
+            }&direction=${orderByVotes}`
           );
           const body = await res.json();
 
