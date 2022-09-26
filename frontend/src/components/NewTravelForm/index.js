@@ -48,17 +48,18 @@ const NewTravelForm = () => {
           formData.append("activity", activity);
           formData.append("content", content);
 
-          const res = await fetch(`${process.env.REACT_APP_API_URL}/travels/new`, {
-            method: "POST",
-            headers: {
-              Authorization: token,
-            },
-            body: formData,
-          });
+          const res = await fetch(
+            `${process.env.REACT_APP_API_URL}/travels/new`,
+            {
+              method: "POST",
+              headers: {
+                Authorization: token,
+              },
+              body: formData,
+            }
+          );
 
           const body = await res.json();
-          console.log(res);
-          console.log(body);
 
           if (!res.ok) {
             throw new Error(body.message);
