@@ -36,7 +36,7 @@ async function main() {
                 title varchar (100) not null,
                 entry varchar(200) not null,
                 place enum ('Coriolis', 'Jina', 'Kua', 'Lubau', 'Surha', 'Xene') not null,
-                activity enum ('Cultural', 'Deportes', 'Gastronomía', 'Naturaleza', 'Naturaleza') not null,
+                activity enum ('Cultural', 'Deportes', 'Gastronomía', 'Naturaleza', 'Relajacion') not null,
                 content text,
                 createdAt datetime default CURRENT_TIMESTAMP,
                 idUser int unsigned not null,
@@ -68,7 +68,6 @@ async function main() {
         await connection.query(`
             create table if not exists vote (
                 id int unsigned primary key auto_increment,
-                voted boolean default false,
                 idUser int unsigned not null,
                 idTravel int unsigned not null,
                 foreign key (idUser) references user (id) on delete cascade,
@@ -98,6 +97,7 @@ async function main() {
                 Get ready para hacer filigranas increíbles en el aire!', 4),
                 (5, 'Casa Rural Paco', 'Viaje de relax y tranquilidad absoluta en casa de Paco', 'Kua', 'Relajación', 'Relájate y evádete de la rutina con nuestras experiencias de spa. Masajes para dos, spas y balnearios, baños árabes, chocolaterapia y mucho más. Todas nuestras experiencias son regalos perfectos para ella y para él, para hacer solo o en pareja. ¡Momentos de relax y belleza ideales!', 5),
                 (6, 'Ruta por museos de ciencia y tecnología alienígena', 'Si eres una persona curiosa y a la que le gusta la ciencia este es tu lugar', 'Jina', 'Cultural', 'El Museo Nacional de Ciencia y Tecnología es un museo tecnológico dedicado a la promoción y conservación de la tecnología. Posee una colección de más de 17.000 instrumentos científicos, dispositivos tecnológicos, vehículos, máquinas y herramientas industriales desde el siglo XVI hasta la actualidad.', 5);
+
         `);
 
         console.log('¡Viajes insertados con éxito!');

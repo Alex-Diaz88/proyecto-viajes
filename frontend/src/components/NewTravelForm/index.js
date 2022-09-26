@@ -5,6 +5,7 @@ import { useState, useRef, useContext } from "react";
 import { useTokenContext } from "../../contexts/TokenContext";
 import { AlertContext } from "../../contexts/AlertContext";
 import { useNavigate } from "react-router-dom";
+/* import { travel } from "../../components/"; */
 
 const NewTravelForm = () => {
   const [title, setTitle] = useState("");
@@ -19,7 +20,6 @@ const NewTravelForm = () => {
   const photoRef = useRef();
   const [files, setFiles] = useState([]);
 
-
   const { setAlert } = useContext(AlertContext);
 
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ const NewTravelForm = () => {
     setFiles([...files]);
   }; */
 
-  /*   const body = { title, entry, place, activity, content, createdAt }; */
+  /* const body = { title, entry, place, activity, content }; */
 
   return (
     <form
@@ -41,27 +41,23 @@ const NewTravelForm = () => {
 
           const formData = new FormData();
 
-          formData.append("travelPhoto", travelPhoto);
+          formData.append("travel-photo", travelPhoto);
           formData.append("title", title);
           formData.append("entry", entry);
           formData.append("place", place);
           formData.append("activity", activity);
           formData.append("content", content);
 
-
-          const res = await fetch(
-            `${process.env.REACT_APP_API_URL}/travels/new`,
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: token,
-              },
-              body: JSON.stringify(newTravel),
-            }
-          );
+          const res = await fetch(`${process.env.REACT_APP_API_URL}/travels/new`, {
+            method: "POST",
+            headers: {
+              Authorization: token,
+            },
+            body: formData,
+          });
 
           const body = await res.json();
+          console.log(res);
           console.log(body);
 
           if (!res.ok) {
@@ -150,6 +146,7 @@ const NewTravelForm = () => {
         id="photo"
         value={travelPhoto}
         alt="Sin Imagen"
+        multiple
         onChange={(event) => {
           setTravelPhoto(event.target.value);
         }}

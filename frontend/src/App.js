@@ -12,10 +12,11 @@ import SearchTravelsForm from "./components/SearchTravelsForm";
 import TravelList from "./components/TravelList";
 import { useState } from "react";
 import RegisterForm from "./components/RegisterForm";
+import ButtonCheck from "./components/ButtonCheck";
+import NewTravelForm from "./components/NewTravelForm";
 
 function App() {
-  const [travels, setTravels]= useState([]);
-  
+  const [travels, setTravels] = useState([]);
 
   return (
     <div className="global_container">
@@ -23,13 +24,15 @@ function App() {
         <CustomTokenContextProvider>
           <CustomAlertContextProvider>
             <Header />
-            
-   
+
             <main>
-            <SearchTravelsForm setTravels={setTravels} />
-            <TravelList travels={travels}/>
-            <RegisterForm />
-{/*               <Alert />
+            <ButtonCheck/>
+              <SearchTravelsForm setTravels={setTravels} />
+              <TravelList travels={travels} />
+              <RegisterForm />
+              <NewTravelForm />
+
+{/*                             <Alert />
               <Routes>
                 <Route path="/" element={<FrontPage />} />
                 <Route path="/register" element={<RegisterPage />} />

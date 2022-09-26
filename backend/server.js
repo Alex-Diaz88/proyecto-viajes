@@ -56,6 +56,9 @@ app.put('/users/:idUser/password', isAuth, canEditUser, editUserPassword);
 app.delete('/users/:idUser', isAuth, canEditUser, deleteUser);
 
 // ## ENDPOINTS VIAJES ##
+/* app.use(express.static(path.join(__dirname, 'static/'))); */
+
+const path = require('path');
 app.post('/travels/new', isAuth, newTravel);
 app.get('/travels/:idTravel', getTravel);
 /* app.get('/travels', searchTravels); */
