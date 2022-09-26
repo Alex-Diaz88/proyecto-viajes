@@ -1,4 +1,3 @@
-
 /* import { useNavigate } from "react-router-dom"; */
 
 import { useState, useContext } from "react";
@@ -40,7 +39,6 @@ const NewCommentForm = () => {
           /*navigate("/travels");*/
         } catch (error) {
           console.error(error.message);
-          setAlert({ type: "error", msg: error.message });
         }
       }}
     >

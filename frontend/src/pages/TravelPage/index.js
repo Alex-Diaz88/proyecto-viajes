@@ -1,18 +1,9 @@
-
-import Travel from "../../components/Travel";
-
-
 const TravelPage = () => {
-
-
-
-    return(
-        <section>
-            <h2>Travel Page:</h2>
-            <Travel/>
-           
-        </section>
-    )
-}
+  return (
+    <section>
+      <h2>TRAVEL PAGE</h2>
+    </section>
+  );
+};
 
 export default TravelPage;
