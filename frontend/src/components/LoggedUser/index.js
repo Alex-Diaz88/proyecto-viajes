@@ -1,10 +1,15 @@
 import "./styles.css";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import DefaultAvatar from "../../../../assets/images/defaultAvatar.png";
+import { useTokenContext } from "../../contexts/TokenContext";
+import DefaultAvatar from "../../assets/images/defaultAvatar.png";
 
-const UserProfileHeader = ({ loggedUser }) => {
-  const avatar = loggedUser.avatar ? loggedUser?.avatar : DefaultAvatar;
+const LoggedUser = () => {
+  const { loggedUser } = useTokenContext();
+
+  const avatar = loggedUser.avatar
+    ? `${process.env.REACT_APP_API_URL}/avatars/${loggedUser?.avatar}`
+    : DefaultAvatar;
 
   const navigate = useNavigate();
 
@@ -32,4 +37,4 @@ const UserProfileHeader = ({ loggedUser }) => {
   );
 };
 
-export default UserProfileHeader;
+export default LoggedUser;
