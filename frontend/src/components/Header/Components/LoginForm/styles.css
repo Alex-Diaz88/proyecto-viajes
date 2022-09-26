@@ -1,9 +1,14 @@
 .login_form {
   position: absolute;
   top: 50%;
-  right: 7%;
+  right: 5%;
   transform: translateY(-50%);
   color: white;
+}
+
+.login_form h2 {
+  font-size: large;
+  margin-bottom: 0.25rem;
 }
 
 .login_form label {
@@ -11,10 +16,12 @@
 }
 
 .login_form input {
-  border: 1px solid white;
-  border-radius: 3px;
+  border: none;
+  padding: 0.1rem;
+  border-radius: 0.25rem;
   outline: none;
-  padding-left: 2px;
+  font-size: medium;
+  margin-bottom: 0.25rem;
 }
 
 .login_form a {
@@ -27,11 +34,12 @@
 }
 
 .login_buttons button {
-  border: 1px solid white;
-  border-radius: 3px;
+  border: none;
+  border-radius: 0.2rem;
   padding: 0.25rem 0.75rem;
   margin-left: auto;
   margin-top: 0.3rem;
+  outline: none;
 }
 
 .login_buttons button:active {

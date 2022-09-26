@@ -1,0 +1,30 @@
+.header_profile {
+  position: absolute;
+  display: flex;
+  top: 75%;
+  right: 5%;
+  transform: translateY(-50%);
+  align-items: center;
+}
+
+.header_profile img {
+  width: 50px;
+  height: 50px;
+  border-radius: 150px;
+}
+
+.header_profile p {
+  color: white;
+  margin-left: 0.5rem;
+  font-size: large;
+}
+
+.header_profile li {
+  float: right;
+  list-style: none;
+  margin-left: 0.5rem;
+  font-size: small;
+  text-decoration: underline;
+  cursor: pointer;
+  color: white;
+}

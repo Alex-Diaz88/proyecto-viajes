@@ -10,7 +10,6 @@ import Alert from "./components/Alert";
 import TravelsPage from "./pages/TravelsPage";
 import TravelPage from "./pages/TravelPage";
 import RegisterPage from "./pages/RegisterPage";
-
 import NewTravelPage from "./pages/NewTravelPage";
 
 function App() {

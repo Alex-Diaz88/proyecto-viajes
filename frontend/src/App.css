@@ -1,3 +1,10 @@
+@import url("https://fonts.googleapis.com/css?family=Modak|Roboto");
+
+:root {
+  --space-blue: #234672;
+  --space-blue-light: #c9d8eb;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -7,5 +14,6 @@
 body {
   width: 1024px;
   margin: 0px auto;
-  /* background-image: url("assets/images/background.jpg"); */
+  font-family: "Roboto", sans-serif;
+  /*background-image: url("assets/images/background.jpg");*/
 }
