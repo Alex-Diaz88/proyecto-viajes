@@ -26,11 +26,11 @@ const NewTravelForm = () => {
         onSubmit={async (event) => {
           try {
             event.preventDefault();
-            const travelPhoto = photoRef.current.files[0];
+            const travelPhoto = photoRef.current.files.slice(0, 5);
 
             const formData = new FormData();
 
-            formData.append("travel_photo", travelPhoto);
+            formData.append("travelPhotos[]", travelPhoto);
             formData.append("title", title);
             formData.append("entry", entry);
             formData.append("place", place);

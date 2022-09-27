@@ -1,7 +1,7 @@
 import "./styles.css";
 import { useParams } from "react-router-dom";
-import UserProfileInfo from "../../components/userProfileInfo";
-import UserProfileTravels from "../../components/userProfileTravels";
+import UserProfileInfo from "../../components/UserProfileInfo";
+import UserProfileTravels from "../../components/UserProfileTravels";
 import useUserById from "../../hooks/useUserById";
 
 const ProfilePage = () => {
