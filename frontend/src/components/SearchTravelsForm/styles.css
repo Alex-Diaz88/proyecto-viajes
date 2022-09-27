@@ -17,13 +17,14 @@
 
 .search-travel button {
   width: 20%;
-
+  margin-top: 0.2rem;
+  margin-right: 0.2rem;
+  margin-bottom: 0.5rem;
   background-color: var(--space-blue);
   padding: 0.5rem;
   border-radius: 5rem;
   font-size: medium;
   color: white;
-  margin-bottom: 0.5rem;
   box-shadow: 1px 0px rgb(55, 55, 198);
 }
 
