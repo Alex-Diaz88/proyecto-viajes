@@ -11,7 +11,6 @@ const NewTravelPage = () => {
 
   return (
     <section>
-      <h2>Nuevo Viaje</h2>
       <NewTravelForm />
     </section>
   );

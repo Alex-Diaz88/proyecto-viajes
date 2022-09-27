@@ -1,0 +1,61 @@
+.travel-formContainer {
+  margin: auto;
+  margin-top: 3rem;
+  width: 25rem;
+  padding: 1rem;
+  box-shadow: 1px 1px 5px rgb(214, 211, 211);
+  border-radius: 0.2rem;
+}
+
+.travel-formContainer h2 {
+  color: var(--space-blue);
+  text-align: left;
+  margin-top: 1rem;
+  margin-bottom: 0.2rem;
+  width: 25rem;
+}
+
+.travel-form input {
+  width: 100%;
+  border: none;
+  background-color: var(--space-blue-light);
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  outline: none;
+  font-size: medium;
+  margin-bottom: 0.5rem;
+}
+
+.travel-form button {
+  width: 100%;
+  border: none;
+  background-color: var(--space-blue);
+  padding: 0.3rem;
+  border-radius: 0.25rem;
+  font-size: medium;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.travel-form button:active {
+  transform: scale(0.98);
+}
+
+.newTravel-Select {
+  margin: 1rem;
+}
+
+textarea {
+  resize: none;
+  width: 23rem;
+  height: 10rem;
+}
+
+.newTravel-Select {
+  display: flex;
+  gap: 0.6rem;
+  padding: 0.3rem;
+  border-radius: 0.25rem;
+  font-size: medium;
+  background-color: var(--space-blue-light);
+}

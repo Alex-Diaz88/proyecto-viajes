@@ -1,0 +1,14 @@
+@font-face {
+  font-family: "space_font";
+  src: url("../../fonts/good_times.otf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.travel_page_header {
+  font-family: "space_font";
+  word-spacing: 30px;
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 40px;
+}

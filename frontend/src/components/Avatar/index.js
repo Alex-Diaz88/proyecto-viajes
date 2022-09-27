@@ -1,8 +1,9 @@
+import "./styles.css";
 import defaultAvatar from "../../assets/images/defaultAvatar.png";
 
 const Avatar = ({ avatar, username }) => {
   return (
-    <>
+    <div className="avatar">
       {!avatar && <img src={defaultAvatar} alt={username} />}
       {avatar && (
         <img
@@ -10,7 +11,7 @@ const Avatar = ({ avatar, username }) => {
           alt={username}
         />
       )}
-    </>
+    </div>
   );
 };
 

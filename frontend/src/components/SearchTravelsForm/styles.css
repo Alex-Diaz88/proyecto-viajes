@@ -1,0 +1,40 @@
+
+.search-travel {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  background-color: var(--space-blue);
+  padding: 0.3rem;
+  color: white;
+  border-radius: 2px;
+}
+.search-travel select {
+  padding: 0.1rem;
+  border-radius: 3px;
+  font-weight: bold;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.search-travel button {
+  width: 20%;
+  margin-top: 0.2rem;
+  margin-right: 0.2rem;
+  margin-bottom: 0.5rem;
+  background-color: var(--space-blue);
+  padding: 0.5rem;
+  border-radius: 5rem;
+  font-size: medium;
+  color: white;
+  box-shadow: 1px 0px rgb(55, 55, 198);
+}
+
+.search-travel:active {
+  transform: scale(0.98);
+}
+.search-travel label {
+  font-weight: bold;
+  text-align: center;
+  margin-top: 0.2rem;
+}
+

@@ -1,4 +1,5 @@
 import "./styles.css";
+import React from "react";
 import { useState } from "react";
 
 const SearchTravelsForm = ({ setSearchParams, searchParams }) => {
@@ -7,7 +8,9 @@ const SearchTravelsForm = ({ setSearchParams, searchParams }) => {
   const [order, setOrder] = useState(searchParams.get("order") || "DESC");
 
   return (
-    <form
+
+    <form 
+    className="search-travel"
       onSubmit={(event) => {
         event.preventDefault();
         const queryParams = { place, activity };
@@ -22,9 +25,8 @@ const SearchTravelsForm = ({ setSearchParams, searchParams }) => {
 
         setSearchParams(new URLSearchParams(queryParams));
       }}
-      className="searchTravelForm"
     >
-      <label htmlFor="searchByPlace">Buscar por Lugar:</label>
+      <label htmlFor="searchByPlace">Busca por Lugar:</label>
       <select
         id="searchByPlace"
         value={place}
@@ -41,7 +43,7 @@ const SearchTravelsForm = ({ setSearchParams, searchParams }) => {
         <option value={"Xene"}>Xene</option>
       </select>
 
-      <label htmlFor="searchByActivity">Buscar por Actividad</label>
+      <label htmlFor="searchByActivity">Busca por Actividad</label>
       <select
         id="searchByActivity"
         value={activity}
@@ -57,7 +59,7 @@ const SearchTravelsForm = ({ setSearchParams, searchParams }) => {
         <option value={"Naturaleza"}>Naturaleza</option>
       </select>
 
-      <label htmlFor="searchByVotes">Ordenar por Votos:</label>
+      <label htmlFor="searchByVotes">Ordena por Votos:</label>
       <select
         id="searchByVotes"
         value={order}
