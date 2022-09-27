@@ -1,4 +1,5 @@
 import "./styles.css";
+import React from "react";
 import { useState } from "react";
 
 const SearchTravelsForm = ({ setSearchParams, searchParams }) => {
@@ -7,7 +8,9 @@ const SearchTravelsForm = ({ setSearchParams, searchParams }) => {
   const [order, setOrder] = useState(searchParams.get("order") || "DESC");
 
   return (
-    <form className="search-travel"
+
+    <form 
+    className="search-travel"
       onSubmit={(event) => {
         event.preventDefault();
         const queryParams = { place, activity };
