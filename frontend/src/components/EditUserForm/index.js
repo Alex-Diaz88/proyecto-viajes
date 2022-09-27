@@ -2,6 +2,7 @@ import Avatar from "../Avatar";
 import { useState, useRef } from "react";
 import { toast } from "react-toastify";
 import { useTokenContext } from "../../contexts/TokenContext";
+import LoggedUser from "../LoggedUser";
 
 const EditUserForm = ({ user, setUser, setShowEditForm }) => {
   const {
@@ -10,13 +11,14 @@ const EditUserForm = ({ user, setUser, setShowEditForm }) => {
     email: currentEmail,
   } = user;
 
-  const [newUsername, setNewUsername] = useState("");
-  const [newEmail, setNewEmail] = useState("");
+  const { loggedUser, setLoggedUser } = useTokenContext();
+  const { token } = useTokenContext();
+
+  const [newUsername, setNewUsername] = useState(currentUsername);
+  const [newEmail, setNewEmail] = useState(currentEmail);
   const [newAvatarPreview, setNewAvatarPreview] = useState("");
 
   const newAvatarRef = useRef();
-
-  const { token } = useTokenContext();
 
   return (
     <form
@@ -31,14 +33,21 @@ const EditUserForm = ({ user, setUser, setShowEditForm }) => {
             return;
           }
 
+          const data = new FormData();
+          data.append("username", newUsername);
+          data.append("email", newEmail);
+
+          if (file) {
+            data.append("avatar", file);
+          }
+
           if (newUsername || newEmail) {
             const res = await fetch(`${process.env.REACT_APP_API_URL}/users`, {
               method: "PUT",
               headers: {
-                "Content-Type": "application/json",
                 Authorization: token,
               },
-              body: JSON.stringify({ username: newUsername, email: newEmail }),
+              body: data,
             });
 
             const body = await res.json();
@@ -46,43 +55,21 @@ const EditUserForm = ({ user, setUser, setShowEditForm }) => {
             if (!res.ok) {
               throw new Error(body.message);
             }
+
+            setLoggedUser({
+              ...loggedUser,
+              avatar: body.data.avatar,
+              email: body.data.email,
+              username: body.data.username,
+            });
 
             setUser({
               ...user,
-              username: newUsername || user.username,
-              email: newEmail || user.email,
+              avatar: body.data.avatar,
+              email: body.data.email,
+              username: body.data.username,
             });
           }
-
-          if (file) {
-            const formData = new FormData();
-
-            formData.append("avatar", file);
-
-            const res = await fetch(
-              `${process.env.REACT_APP_API_URL}/users/avatar`,
-              {
-                method: "PUT",
-                headers: {
-                  Authorization: token,
-                },
-                body: formData,
-              }
-            );
-
-            const body = await res.json();
-
-            if (!res.ok) {
-              throw new Error(body.message);
-            }
-
-            const avatar = body.data.avatarName;
-
-            setUser({ ...user, avatar });
-          }
-
-          toast.success("Profile updated succesfully!");
-          setShowEditForm(false);
         } catch (error) {
           console.error(error.message);
           toast.error(error.message);

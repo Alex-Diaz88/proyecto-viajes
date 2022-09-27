@@ -3,6 +3,7 @@ const Joi = require('joi');
 const editUserSchema = Joi.object().keys({
     email: Joi.string()
         .email()
+        .optional()
         .error((errors) => {
             switch (errors[0].code) {
                 case 'string.email':
@@ -16,6 +17,7 @@ const editUserSchema = Joi.object().keys({
         .min(2)
         .max(20)
         .regex(/[A-Za-z0-9]/)
+        .optional()
         .error((errors) => {
             switch (errors[0].code) {
                 case 'string.min':

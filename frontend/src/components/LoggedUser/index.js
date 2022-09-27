@@ -13,10 +13,6 @@ const LoggedUser = () => {
 
   const navigate = useNavigate();
 
-  const redirect = () => {
-    navigate("/profile");
-  };
-
   const logOut = () => {
     localStorage.removeItem("token");
     navigate("/");
@@ -30,7 +26,11 @@ const LoggedUser = () => {
         <p>¡Bienvenido/a, {loggedUser?.username}!</p>
         <ul>
           <li onClick={() => logOut()}>Cerrar sesión</li>
-          <li onClick={() => redirect(`/profile/${loggedUser?.id}`)}>
+          <li
+            onClick={() => {
+              navigate(`/profile/${loggedUser?.id}`);
+            }}
+          >
             Mi cuenta
           </li>
         </ul>
