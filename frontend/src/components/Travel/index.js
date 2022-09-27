@@ -4,24 +4,10 @@ import Avatar from "../Avatar";
 import PhotoSlider from "../PhotosSlider";
 
 import Comment from "../Comment";
-
-/* let hideTextButton = document.getElementById("hideTextButton");
-
-let hideText = document.getElementById("hideText");
-
-hideTextButton.addEventListener("click", toggleText);
-function toggleText() {
-  hideText.classList.toggle("show");
-
-  if (hideText.classList.contains("show")) {
-    hideTextButton.innerHTML = "Leer menos";
-  } else {
-    hideTextButton.innerHTML = "Leer mas";
-  }
-} */
-
+import { useState } from "react";
 
 const Travel = ({ travel }) => {
+  const [viewMore, setViewMore] = useState(false);
   const {
     title,
     entry,
@@ -50,12 +36,12 @@ const Travel = ({ travel }) => {
 
         <p>Localización - {place}</p>
         <p>Tipo de actividad - {activity}</p>
-        <span className="hide" id="hideText">
+        <span hidden={!viewMore}>
           <p>{content}</p>
           {/* <Comment /> */}
         </span>
-        <button className="readMore" id="hideTextButton">
-          Leer mas
+        <button onClick={() => setViewMore(!viewMore)}>
+          {viewMore ? "Leer mas" : "Leer menos"}
         </button>
 
         {avatar !== undefined && username && (
@@ -70,7 +56,6 @@ const Travel = ({ travel }) => {
             <p>{createdAt.split("T")[0]}</p>
           </section>
         )}
-
 
         {photos.length > 0 && (
           <PhotoSlider photos={photos} travelName={title} />

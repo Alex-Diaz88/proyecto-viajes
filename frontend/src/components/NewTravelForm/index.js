@@ -17,7 +17,7 @@ const NewTravelForm = () => {
 
   const photoRef = useRef();
   const navigate = useNavigate();
-  
+
   return (
     <div className="travel-formContainer">
       <h2>Nuevo viaje:</h2>
@@ -26,24 +26,27 @@ const NewTravelForm = () => {
         onSubmit={async (event) => {
           try {
             event.preventDefault();
-            const travelPhoto = photoRef.current.files[0];
+            const travelPhoto = photoRef.current.files.slice(0, 5);
 
             const formData = new FormData();
 
-            formData.append("travel_photo", travelPhoto);
+            formData.append("travelPhotos[]", travelPhoto);
             formData.append("title", title);
             formData.append("entry", entry);
             formData.append("place", place);
             formData.append("activity", activity);
             formData.append("content", content);
 
-            const res = await fetch(`${process.env.REACT_APP_API_URL}/travels/new`, {
-              method: "POST",
-              headers: {
-                Authorization: token,
-              },
-              body: formData,
-            });
+            const res = await fetch(
+              `${process.env.REACT_APP_API_URL}/travels/new`,
+              {
+                method: "POST",
+                headers: {
+                  Authorization: token,
+                },
+                body: formData,
+              }
+            );
 
             const body = await res.json();
             console.log(body);
@@ -59,7 +62,6 @@ const NewTravelForm = () => {
             navigate("/");
           } catch (error) {
             console.error(error.message);
-            setAlert({ type: "error", msg: error.message });
           }
         }}
       >
