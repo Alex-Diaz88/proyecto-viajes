@@ -2,6 +2,7 @@ import "./styles.css";
 import { Link } from "react-router-dom";
 import Avatar from "../Avatar";
 import PhotoSlider from "../PhotosSlider";
+
 import Comment from "../Comment";
 
 /* let hideTextButton = document.getElementById("hideTextButton");
@@ -19,6 +20,7 @@ function toggleText() {
   }
 } */
 
+
 const Travel = ({ travel }) => {
   const {
     title,
@@ -31,6 +33,7 @@ const Travel = ({ travel }) => {
     photos,
     username,
     avatar,
+    votes,
   } = travel;
 
   return (
@@ -38,6 +41,13 @@ const Travel = ({ travel }) => {
       <section className="travel_info">
         <h3>{title}</h3>
         <p>{entry}</p>
+        <p>{place}</p>
+        <p>{activity}</p>
+        <p>
+          <span>votos: </span>
+          {votes}
+        </p>
+
         <p>Localización - {place}</p>
         <p>Tipo de actividad - {activity}</p>
         <span className="hide" id="hideText">
@@ -60,6 +70,7 @@ const Travel = ({ travel }) => {
             <p>{createdAt.split("T")[0]}</p>
           </section>
         )}
+
 
         {photos.length > 0 && (
           <PhotoSlider photos={photos} travelName={title} />

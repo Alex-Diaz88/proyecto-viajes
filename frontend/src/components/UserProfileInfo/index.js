@@ -5,18 +5,19 @@ import { useTokenContext } from "../../contexts/TokenContext";
 
 const UserProfileInfo = ({ user, setUser }) => {
   const [showEditForm, setShowEditForm] = useState(false);
-  const { avatar, username, email } = user;
+  const { avatar, username, email, createdAt } = user;
   const { loggedUser } = useTokenContext();
 
   return (
     <section>
-      <h3>User info</h3>
+      <h3>Información</h3>
 
       {!showEditForm && (
         <>
           <Avatar avatar={avatar} username={username} />
           <p>{username}</p>
           <p>{email}</p>
+          <p>{createdAt.split("T")[0]}</p>
         </>
       )}
 

@@ -1,27 +1,23 @@
+import "./styles.css";
 import { useParams } from "react-router-dom";
+import UserProfileInfo from "../../components/userProfileInfo";
+import UserProfileTravels from "../../components/userProfileTravels";
 import useUserById from "../../hooks/useUserById";
-import UserProfileInfo from "../../components/UserProfileInfo";
-import UserProfileProducts from "../../components/UserProfileProducts";
 
 const ProfilePage = () => {
   const { userId } = useParams();
 
-  const { user, setUser, sellProduct } = useUserById(userId);
+  const { user, setUser } = useUserById(userId);
 
-  const { username, userProducts } = user;
+  const { username, userTravels } = user;
 
   return (
     <section>
-      <h2>Profile</h2>
+      <h2>Perfil del usuario</h2>
 
       {username && <UserProfileInfo user={user} setUser={setUser} />}
 
-      {userProducts && (
-        <UserProfileProducts
-          userProducts={userProducts}
-          sellProduct={sellProduct}
-        />
-      )}
+      {userTravels && <UserProfileTravels userTravels={userTravels} />}
     </section>
   );
 };
