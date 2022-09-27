@@ -26,7 +26,7 @@ const SearchTravelsForm = ({ setSearchParams, searchParams }) => {
         setSearchParams(new URLSearchParams(queryParams));
       }}
     >
-      <label htmlFor="searchByPlace">Busca por Lugar:</label>
+      <label htmlFor="searchByPlace">Lugar:</label>
       <select
         id="searchByPlace"
         value={place}
@@ -43,7 +43,7 @@ const SearchTravelsForm = ({ setSearchParams, searchParams }) => {
         <option value={"Xene"}>Xene</option>
       </select>
 
-      <label htmlFor="searchByActivity">Busca por Actividad</label>
+      <label htmlFor="searchByActivity">Actividad</label>
       <select
         id="searchByActivity"
         value={activity}
@@ -59,7 +59,7 @@ const SearchTravelsForm = ({ setSearchParams, searchParams }) => {
         <option value={"Naturaleza"}>Naturaleza</option>
       </select>
 
-      <label htmlFor="searchByVotes">Ordena por Votos:</label>
+      <label htmlFor="searchByVotes">Orden por Votos:</label>
       <select
         id="searchByVotes"
         value={order}

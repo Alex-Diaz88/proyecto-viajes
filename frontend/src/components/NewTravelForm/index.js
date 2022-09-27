@@ -17,18 +17,12 @@ const NewTravelForm = () => {
   const { token } = useTokenContext();
 
   const photoRef = useRef();
-  const [files, setFiles] = useState([]);
+
 
   const { setAlert } = useContext(AlertContext);
 
   const navigate = useNavigate();
 
-  /*   const handle = async (event) => {
-    const files = event.target.files;
-    setFiles([...files]);
-  }; */
-
-  /* const body = { title, entry, place, activity, content }; */
 
   return (
     <div className="travel-formContainer">

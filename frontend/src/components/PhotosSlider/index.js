@@ -28,7 +28,11 @@ const PhotoSlider = ({ photos, travelName }) => {
         return (
           <>
             {index === currentPhoto && (
-              <img src={`${process.env.REACT_APP_API_URL}/travels/${photo.name}`} alt={travelName} />
+              <img
+                className="img-image"
+                src={`${process.env.REACT_APP_API_URL}/travels/${photo.name}`}
+                alt={travelName}
+              />
             )}
           </>
         );
