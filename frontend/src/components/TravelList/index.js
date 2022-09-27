@@ -2,7 +2,7 @@ import Travel from "../Travel";
 import "./styles.css";
 
 const TravelList = ({ travels }) => {
-  console.log(travels);
+
   return (
     <ul className="travel_list">
       {travels.map((travel) => {

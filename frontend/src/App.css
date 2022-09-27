@@ -22,9 +22,11 @@ body {
   width: 1024px;
   margin: 0px auto;
   font-family: "Roboto", sans-serif;
+
   background-image: url("assets/images/space_back.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+
 }
 
 h1,

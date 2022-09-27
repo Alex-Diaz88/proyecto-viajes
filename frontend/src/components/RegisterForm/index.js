@@ -1,14 +1,14 @@
 import "./styles.css";
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AlertContext } from "../../contexts/AlertContext";
+import { toast } from "react-toastify";
 
 const RegisterForm = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
-  const { setAlert } = useContext(AlertContext);
+
   const navigate = useNavigate();
 
   return (
@@ -40,11 +40,11 @@ const RegisterForm = () => {
                 throw new Error(body.message);
               }
 
-              setAlert({ type: "success", msg: body.message });
+              toast.success(body.message);
               navigate("/");
             } catch (error) {
               console.error(error.message);
-              setAlert({ type: "error", msg: error.message });
+              toast.error(error.message);
             }
           }
         }}

@@ -1,9 +1,8 @@
 import "./styles.css";
 
-import { useState, useRef, useContext } from "react";
+import { useState, useRef } from "react";
 
 import { useTokenContext } from "../../contexts/TokenContext";
-import { AlertContext } from "../../contexts/AlertContext";
 import { useNavigate } from "react-router-dom";
 /* import { travel } from "../../components/"; */
 
@@ -17,13 +16,8 @@ const NewTravelForm = () => {
   const { token } = useTokenContext();
 
   const photoRef = useRef();
-
-
-  const { setAlert } = useContext(AlertContext);
-
   const navigate = useNavigate();
-
-
+  
   return (
     <div className="travel-formContainer">
       <h2>Nuevo viaje:</h2>
