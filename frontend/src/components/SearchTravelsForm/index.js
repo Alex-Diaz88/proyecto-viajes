@@ -1,4 +1,5 @@
 import "./styles.css";
+import React from "react";
 import { useState } from "react";
 
 const SearchTravelsForm = ({ setSearchParams, searchParams }) => {
@@ -8,6 +9,7 @@ const SearchTravelsForm = ({ setSearchParams, searchParams }) => {
 
   return (
     <form
+      className="searchTravelForm"
       onSubmit={(event) => {
         event.preventDefault();
         const queryParams = { place, activity };
@@ -22,7 +24,6 @@ const SearchTravelsForm = ({ setSearchParams, searchParams }) => {
 
         setSearchParams(new URLSearchParams(queryParams));
       }}
-      className="searchTravelForm"
     >
       <label htmlFor="searchByPlace">Buscar por Lugar:</label>
       <select

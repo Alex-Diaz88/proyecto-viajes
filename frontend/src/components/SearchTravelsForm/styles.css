@@ -1,0 +1,19 @@
+.searchTravelForm {
+  display: flex;
+  padding: 1rem;
+  gap: 1rem;
+  align-items: center;
+}
+
+/* #searchByPlace {
+}
+
+#searchByActivity {
+}
+
+#searchByVotes {
+}
+
+.searchButton {
+}
+ */

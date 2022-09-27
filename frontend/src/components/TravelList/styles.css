@@ -1,6 +1,3 @@
-/* .products_list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-auto-rows: 400px;
-  gap: 2rem;
-}*/
+.travel_list li {
+  list-style-type: none;
+}
