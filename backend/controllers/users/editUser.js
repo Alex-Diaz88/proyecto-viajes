@@ -12,11 +12,7 @@ const editUser = async (req, res, next) => {
         const idReqUser = req.userAuth.id;
 
         const { username, email } = req.body;
-        //await validate(editUserSchema, req.body);
-
-        if (!(username || email)) {
-            throw generateError('No has modificado ningún campo', 400);
-        }
+        await validate(editUserSchema, req.body);
 
         const [user] = await connection.query(
             `select username, email, avatar from user where id = ?`,
