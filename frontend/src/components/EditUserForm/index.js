@@ -5,11 +5,7 @@ import { useTokenContext } from "../../contexts/TokenContext";
 import LoggedUser from "../LoggedUser";
 
 const EditUserForm = ({ user, setUser, setShowEditForm }) => {
-  const {
-    avatar: currentAvatar,
-    username: currentUsername,
-    email: currentEmail,
-  } = user;
+  const { avatar: currentAvatar, username: currentUsername, email: currentEmail } = user;
 
   const { loggedUser, setLoggedUser } = useTokenContext();
   const { token } = useTokenContext();
@@ -77,13 +73,9 @@ const EditUserForm = ({ user, setUser, setShowEditForm }) => {
       }}
     >
       <label htmlFor="avatar">
-        {!newAvatarPreview && (
-          <Avatar avatar={currentAvatar} username={currentUsername} />
-        )}
+        {!newAvatarPreview && <Avatar avatar={currentAvatar} username={currentUsername} />}
 
-        {newAvatarPreview && (
-          <img src={newAvatarPreview} alt={currentUsername} />
-        )}
+        {newAvatarPreview && <img src={newAvatarPreview} alt={currentUsername} />}
       </label>
       <input
         id="avatar"

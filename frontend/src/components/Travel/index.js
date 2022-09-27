@@ -8,19 +8,7 @@ import { useState } from "react";
 
 const Travel = ({ travel }) => {
   const [viewMore, setViewMore] = useState(false);
-  const {
-    title,
-    entry,
-    place,
-    activity,
-    content,
-    createdAt,
-    idUser,
-    photos,
-    username,
-    avatar,
-    votes,
-  } = travel;
+  const { title, entry, place, activity, content, createdAt, idUser, photos, username, avatar, votes } = travel;
 
   return (
     <article className="travel">
@@ -40,9 +28,7 @@ const Travel = ({ travel }) => {
           <p>{content}</p>
           {/* <Comment /> */}
         </span>
-        <button onClick={() => setViewMore(!viewMore)}>
-          {viewMore ? "Leer mas" : "Leer menos"}
-        </button>
+        <button onClick={() => setViewMore(!viewMore)}>{viewMore ? "Leer mas" : "Leer menos"}</button>
 
         {avatar !== undefined && username && (
           <section className="travel_user_info">
@@ -57,9 +43,7 @@ const Travel = ({ travel }) => {
           </section>
         )}
 
-        {photos.length > 0 && (
-          <PhotoSlider photos={photos} travelName={title} />
-        )}
+        {photos.length > 0 && <PhotoSlider photos={photos} travelName={title} />}
       </section>
     </article>
   );
