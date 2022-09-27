@@ -1,9 +1,8 @@
 import "./styles.css";
 
-import { useState, useRef, useContext } from "react";
+import { useState, useRef } from "react";
 
 import { useTokenContext } from "../../contexts/TokenContext";
-import { AlertContext } from "../../contexts/AlertContext";
 import { useNavigate } from "react-router-dom";
 /* import { travel } from "../../components/"; */
 
@@ -18,9 +17,6 @@ const NewTravelForm = () => {
 
   const [createdAt] = useState("");
   const photoRef = useRef();
-  const [files, setFiles] = useState([]);
-
-  const { setAlert } = useContext(AlertContext);
 
   const navigate = useNavigate();
 
@@ -48,13 +44,16 @@ const NewTravelForm = () => {
           formData.append("activity", activity);
           formData.append("content", content);
 
-          const res = await fetch(`${process.env.REACT_APP_API_URL}/travels/new`, {
-            method: "POST",
-            headers: {
-              Authorization: token,
-            },
-            body: formData,
-          });
+          const res = await fetch(
+            `${process.env.REACT_APP_API_URL}/travels/new`,
+            {
+              method: "POST",
+              headers: {
+                Authorization: token,
+              },
+              body: formData,
+            }
+          );
 
           const body = await res.json();
           console.log(body);
@@ -70,7 +69,6 @@ const NewTravelForm = () => {
           navigate("/");
         } catch (error) {
           console.error(error.message);
-          setAlert({ type: "error", msg: error.message });
         }
       }}
     >

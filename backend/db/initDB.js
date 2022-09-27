@@ -85,7 +85,7 @@ async function main() {
 
         await connection.query(
             `INSERT INTO user (id, username, email,  password, avatar, active)
-                VALUES (1, 'Rick', 'rickmail@gmail.com', ?, 'Rick_Sanchez_Avatar.png', true),
+                VALUES (1, 'Rick', 'rick@email.com', ?, 'rick_avatar.png', true),
                 (2, 'Morty', 'mortymail@gmail.com', ?, 'Morty_Avatar.jpg', true),
                 (3, 'StarLord', 'starlordmail@gmail.com', ?, 'Starlord_Avatar.jpg', true),
                 (4, 'Bender', 'bendermail@gmail.com', ?, 'Bender_Avatar.jpg', true),

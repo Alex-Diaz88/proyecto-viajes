@@ -30,7 +30,9 @@ const LoggedUser = () => {
         <p>¡Bienvenido/a, {loggedUser?.username}!</p>
         <ul>
           <li onClick={() => logOut()}>Cerrar sesión</li>
-          <li onClick={() => redirect()}>Mi cuenta</li>
+          <li onClick={() => redirect(`/profile/${loggedUser?.id}`)}>
+            Mi cuenta
+          </li>
         </ul>
       </div>
     </section>

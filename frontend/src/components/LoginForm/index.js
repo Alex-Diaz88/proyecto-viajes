@@ -1,14 +1,12 @@
 import "./styles.css";
-import React, { useContext, useState } from "react";
+import { useState } from "react";
 import { useTokenContext } from "../../contexts/TokenContext";
-import { AlertContext } from "../../contexts/AlertContext";
-import { Navigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { setToken } = useTokenContext();
-  const { setAlert } = useContext(AlertContext);
 
   return (
     <form
@@ -31,12 +29,11 @@ const LoginForm = () => {
             throw new Error(body.message);
           }
 
-          setAlert({ type: "success", msg: body.message });
           setToken(body.authToken);
-          Navigate("/");
+          toast.success("Sesión iniciada con éxito.");
         } catch (error) {
           console.log(error);
-          setAlert({ type: "error", msg: error.message });
+          toast.error(error.message);
         }
       }}
     >
