@@ -1,19 +1,27 @@
-
 .search-travel {
   display: flex;
   flex-direction: row;
   gap: 1rem;
-  background-color: var(--space-blue);
+  align-items: center;
   padding: 0.3rem;
-  color: white;
+  color: var(--space-blue);
   border-radius: 2px;
 }
 .search-travel select {
   padding: 0.1rem;
-  border-radius: 3px;
+  border-radius: 0.5rem;
   font-weight: bold;
   font-size: 1rem;
   text-align: center;
+  border: none;
+  box-shadow: 1px 1px 1px rgb(208, 205, 205);
+  cursor: pointer;
+}
+
+.search-travel select option {
+  background-color: whitesmoke;
+  font-size: large;
+  font-family: sans-serif;
 }
 
 .search-travel button {
@@ -23,13 +31,13 @@
   margin-bottom: 0.5rem;
   background-color: var(--space-blue);
   padding: 0.5rem;
-  border-radius: 5rem;
+  border-radius: 0.4rem;
   font-size: medium;
   color: white;
-  box-shadow: 1px 0px rgb(55, 55, 198);
+  box-shadow: 1px 0px rgb(238, 238, 243);
 }
 
-.search-travel:active {
+.search-travel button:active {
   transform: scale(0.98);
 }
 .search-travel label {
@@ -37,4 +45,3 @@
   text-align: center;
   margin-top: 0.2rem;
 }
-

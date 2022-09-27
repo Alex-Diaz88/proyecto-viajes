@@ -16,9 +16,8 @@ const NewTravelForm = () => {
   const { token } = useTokenContext();
 
   const photoRef = useRef();
-
   const navigate = useNavigate();
-
+  
   return (
     <div className="travel-formContainer">
       <h2>Nuevo viaje:</h2>
