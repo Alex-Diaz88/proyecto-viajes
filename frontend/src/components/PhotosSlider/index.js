@@ -26,7 +26,7 @@ const PhotoSlider = ({ photos, travelName }) => {
     <section className="photo_slider">
       {photos.map((photo, index) => {
         return (
-          <>
+          <div key={`${photo}${index}`}>
             {index === currentPhoto && (
               <img
                 className="img-image"
@@ -34,7 +34,7 @@ const PhotoSlider = ({ photos, travelName }) => {
                 alt={travelName}
               />
             )}
-          </>
+          </div>
         );
       })}
 
