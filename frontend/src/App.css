@@ -22,6 +22,9 @@ body {
   width: 1024px;
   margin: 0px auto;
   font-family: "Roboto", sans-serif;
+}
+
+main {
   background-image: url("assets/images/Backgroundo.jpg");
   background-size: contain;
   background-repeat: no-repeat;
