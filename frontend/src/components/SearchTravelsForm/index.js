@@ -63,7 +63,10 @@ const SearchTravelsForm = ({ setSearchParams, searchParams }) => {
         <option value={"Relajación"}>Relajación</option>
       </select>
 
+
+
       <label htmlFor="orderBy">Ordenado por:</label>
+
       <select
         id="orderBy"
         value={order}
@@ -71,8 +74,22 @@ const SearchTravelsForm = ({ setSearchParams, searchParams }) => {
           setOrder(event.target.value);
         }}
       >
-        <option value={"createdAt"}>Más recientes</option>
-        <option value={"votes"}>Mejor valorados</option>
+
+        <option value="ASC">Ascendente</option>
+        <option value="DESC">Descendente</option>
+      </select>
+
+      <label htmlFor="searchByCreatedAt">Orden Creacion:</label>
+      <select
+        id="searchByCreatedAt"
+        value={order}
+        onChange={(event) => {
+          setOrder(event.target.value);
+        }}
+      >
+        <option value="ASC">Ascendente</option>
+        <option value="DESC">Descendente</option>
+
       </select>
       <button>Buscar</button>
     </form>
