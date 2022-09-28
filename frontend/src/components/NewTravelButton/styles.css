@@ -1,0 +1,19 @@
+.new-travel-button {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.new-travel-button button {
+  border: none;
+  border-radius: 0.2rem;
+  padding: 0.5rem 1.5rem;
+  outline: none;
+  font-family: "space_font", sans-serif;
+  background-color: var(--space-blue);
+  color: white;
+  font-size: large;
+}
+
+.new-travel-button button:active {
+  transform: scale(0.98);
+}
