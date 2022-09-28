@@ -4,6 +4,7 @@
   right: 5%;
   transform: translateY(-50%);
   color: white;
+  line-height: 1.5rem;
 }
 
 .login_form h2 {

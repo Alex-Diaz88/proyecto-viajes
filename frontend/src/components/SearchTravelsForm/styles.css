@@ -1,47 +1,39 @@
 .search-travel {
   display: flex;
-  flex-direction: row;
-  gap: 1rem;
-  align-items: center;
-  padding: 0.3rem;
-  color: var(--space-blue);
-  border-radius: 2px;
-}
-.search-travel select {
-  padding: 0.1rem;
-  border-radius: 0.5rem;
-  font-weight: bold;
-  font-size: 1rem;
-  text-align: center;
-  border: none;
-  box-shadow: 1px 1px 1px rgb(208, 205, 205);
-  cursor: pointer;
+  justify-content: space-between;
+  background-color: var(--space-blue-light);
+  padding: 0.75rem;
 }
 
-.search-travel select option {
-  background-color: whitesmoke;
-  font-size: large;
-  font-family: sans-serif;
+.search-travel div {
+  display: flex;
+  align-items: center;
+}
+
+.search-travel label {
+  font-family: "space_font", sans-serif;
+  color: var(--space-blue);
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+
+.search-travel select {
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.15rem;
+  width: 9.5rem;
 }
 
 .search-travel button {
-  width: 20%;
-  margin-top: 0.2rem;
-  margin-right: 0.2rem;
-  margin-bottom: 0.5rem;
+  border: none;
+  border-radius: 0.2rem;
+  padding: 0.5rem 1.5rem;
+  outline: none;
+  font-family: "space_font", sans-serif;
   background-color: var(--space-blue);
-  padding: 0.5rem;
-  border-radius: 0.4rem;
-  font-size: medium;
   color: white;
-  box-shadow: 1px 0px rgb(238, 238, 243);
 }
 
 .search-travel button:active {
   transform: scale(0.98);
-}
-.search-travel label {
-  font-weight: bold;
-  text-align: center;
-  margin-top: 0.2rem;
 }

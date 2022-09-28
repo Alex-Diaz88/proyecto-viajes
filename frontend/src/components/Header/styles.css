@@ -1,3 +1,7 @@
+header {
+  line-height: 0;
+}
+
 .banner {
   position: relative;
   display: inline-block;
