@@ -32,7 +32,7 @@ const LoginForm = () => {
           setToken(body.authToken);
           toast.success("Sesión iniciada con éxito.");
         } catch (error) {
-          console.log(error);
+          console.error(error);
           toast.error(error.message);
         }
       }}

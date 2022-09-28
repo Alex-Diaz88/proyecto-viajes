@@ -5,10 +5,11 @@ import PhotoSlider from "../PhotosSlider";
 
 import Comment from "../Comment";
 import { useState } from "react";
+import ButtonCheck from "../ButtonCheck";
 
 const Travel = ({ travel }) => {
   const [viewMore, setViewMore] = useState(false);
-  const { title, entry, place, activity, content, createdAt, idUser, photos, username, avatar, votes } = travel;
+  const { title, entry, place, activity, content, createdAt, idUser, photos, username, avatar, votes, id } = travel;
 
   return (
     <article className="travel">
@@ -28,6 +29,9 @@ const Travel = ({ travel }) => {
           <p>{content}</p>
           {/* <Comment /> */}
         </span>
+
+        <ButtonCheck idTravel={id} />
+
         <button onClick={() => setViewMore(!viewMore)}>{viewMore ? "Leer mas" : "Leer menos"}</button>
 
         {avatar !== undefined && username && (

@@ -8,9 +8,8 @@ const SearchTravelsForm = ({ setSearchParams, searchParams }) => {
   const [order, setOrder] = useState(searchParams.get("order") || "DESC");
 
   return (
-
-    <form 
-    className="search-travel"
+    <form
+      className="search-travel"
       onSubmit={(event) => {
         event.preventDefault();
         const queryParams = { place, activity };
@@ -59,7 +58,7 @@ const SearchTravelsForm = ({ setSearchParams, searchParams }) => {
         <option value={"Naturaleza"}>Naturaleza</option>
       </select>
 
-      <label htmlFor="searchByVotes">Orden por Votos:</label>
+      <label htmlFor="searchByVotes">Por Votos:</label>
       <select
         id="searchByVotes"
         value={order}
@@ -67,8 +66,20 @@ const SearchTravelsForm = ({ setSearchParams, searchParams }) => {
           setOrder(event.target.value);
         }}
       >
-        <option value="ASC">Mas votados</option>
-        <option value="DESC">Menos votados</option>
+        <option value="ASC">Ascendente</option>
+        <option value="DESC">Descendente</option>
+      </select>
+
+      <label htmlFor="searchByCreatedAt">Orden Creacion:</label>
+      <select
+        id="searchByCreatedAt"
+        value={order}
+        onChange={(event) => {
+          setOrder(event.target.value);
+        }}
+      >
+        <option value="ASC">Ascendente</option>
+        <option value="DESC">Descendente</option>
       </select>
       <button>Buscar</button>
     </form>

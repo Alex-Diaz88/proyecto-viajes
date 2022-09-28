@@ -1,26 +1,28 @@
-import { useState } from "react";
+import { toast } from "react-toastify";
+import { useTokenContext } from "../../contexts/TokenContext";
 
-const ButtonCheck = () => {
-  const [vote, setVote] = useState(0);
-  /*  const [dislike, setDislike] = useState(0); */
-
-  const [voteActive, setvoteActive] = useState(false);
-  /*   const [dislikeActive, setDislikeActive] = useState(false); */
-
-  function votef() {
-    if (voteActive) {
-      setvoteActive(false);
-      setVote(vote - 1);
-    } else {
-      setvoteActive(true);
-      setVote(vote + 1);
-    }
-  }
+const ButtonCheck = ({ idTravel }) => {
+  const { token } = useTokenContext();
 
   return (
     <div>
-      <button onClick={votef} className={[voteActive ? "active-vote" : null, "button"].join("")}>
-        Like{vote}
+      <button
+        onClick={async (event) => {
+          try {
+            event.preventDefault();
+            await fetch(`${process.env.REACT_APP_API_URL}/votes/new/${idTravel}`, {
+              method: "POST",
+              headers: {
+                Authorization: token,
+              },
+            });
+          } catch (error) {
+            console.error(error.message);
+            toast.error(error.message);
+          }
+        }}
+      >
+        Like
       </button>
     </div>
   );
@@ -28,26 +30,4 @@ const ButtonCheck = () => {
 
 export default ButtonCheck;
 
-/*       <button onClick={dislikef} className={[dislikeActive ? "active-dislike" : null, "button"].join("")}>
-  Dislike{dislike}
-</button> */
-/*       if (dislikeActive) {
-        setDislikeActive(false);
-        setLike(like + 1);
-        setDislike(dislike - 1);
-      } */
-
-/*   function dislikef() {
-    if (dislikeActive) {
-      setDislikeActive(false);
-      setDislike(like - 1);
-    } else {
-      setDislikeActive(true);
-      setDislike(like + 1);
-      if (dislikeActive) {
-        setlikeActive(false);
-        setDislike(dislike + 1);
-        setLike(dislike - 1);
-      }
-    }
-  } */
+//className={[voteActive ? "active-vote" : null, "button"].join("")}  const [voteActive, setvoteActive] = useState(false);
