@@ -23,6 +23,7 @@ const ButtonCheck = ({ idTravel }) => {
         }}
       >
         Like
+
       </button>
     </div>
   );

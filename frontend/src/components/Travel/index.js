@@ -9,7 +9,9 @@ import ButtonCheck from "../ButtonCheck";
 
 const Travel = ({ travel }) => {
   const [viewMore, setViewMore] = useState(false);
+
   const { title, entry, place, activity, content, createdAt, idUser, photos, username, avatar, votes, id } = travel;
+
 
   return (
     <article className="travel">
@@ -30,9 +32,15 @@ const Travel = ({ travel }) => {
           {/* <Comment /> */}
         </span>
 
+
         <ButtonCheck idTravel={id} />
 
         <button onClick={() => setViewMore(!viewMore)}>{viewMore ? "Leer mas" : "Leer menos"}</button>
+
+        <button onClick={() => setViewMore(!viewMore)}>
+          {viewMore ? "Leer mas" : "Leer menos"}
+        </button>
+
 
         {avatar !== undefined && username && (
           <section className="travel_user_info">
@@ -47,7 +55,9 @@ const Travel = ({ travel }) => {
           </section>
         )}
 
-        {photos.length > 0 && <PhotoSlider photos={photos} travelName={title} />}
+        {photos.length > 0 && (
+          <PhotoSlider photos={photos} travelName={title} />
+        )}
       </section>
     </article>
   );
