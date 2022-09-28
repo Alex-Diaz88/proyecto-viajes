@@ -13,7 +13,7 @@ const newTravel = async (req, res, next) => {
         const travelPhotos = Array.isArray(req.files?.travelPhotos)
             ? req.files?.travelPhotos
             : [req.files?.travelPhotos];
-
+        console.log(travelPhotos);
         await validate(newTravelSchema, req.body);
 
         const idReqUser = req.userAuth.id;
