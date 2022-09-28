@@ -6,7 +6,6 @@ const SearchTravelsForm = ({ setSearchParams, searchParams }) => {
   const [place, setPlace] = useState(searchParams.get("place") || "");
   const [activity, setActivity] = useState(searchParams.get("activity") || "");
   const [order, setOrder] = useState(searchParams.get("order"));
-  const [direction, setDirection] = useState(searchParams.get("direction"));
 
   return (
     <form
