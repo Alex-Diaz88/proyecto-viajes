@@ -5,6 +5,7 @@
   right: 5%;
   transform: translateY(-50%);
   align-items: center;
+  line-height: 1.25rem;
 }
 
 .header_profile img {

@@ -4,9 +4,12 @@ import { useTokenContext } from "../../contexts/TokenContext";
 import banner from "../../assets/images/banner.png";
 import LoginForm from "../LoginForm";
 import LoggedUser from "../LoggedUser";
+import SearchTravelsForm from "../SearchTravelsForm";
+import useTravels from "../../hooks/useTravels";
 
 const Header = () => {
   const { token } = useTokenContext();
+  const { setSearchParams, searchParams } = useTravels();
 
   return (
     <header>
@@ -16,6 +19,10 @@ const Header = () => {
         </Link>
         {!token ? <LoginForm /> : <LoggedUser />}
       </div>
+      <SearchTravelsForm
+        setSearchParams={setSearchParams}
+        searchParams={searchParams}
+      />
     </header>
   );
 };

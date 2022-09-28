@@ -1,18 +1,13 @@
 import "./styles.css";
 import ErrorMessage from "../../components/ErrorMessage";
-import SearchTravelsForm from "../../components/SearchTravelsForm";
 import TravelList from "../../components/TravelList";
 import useTravels from "../../hooks/useTravels";
 
 const TravelsPage = () => {
-  const { travels, setSearchParams, errorMessage, searchParams } = useTravels();
-  console.log(travels);
+  const { travels, errorMessage } = useTravels();
+
   return (
     <section>
-      <SearchTravelsForm
-        setSearchParams={setSearchParams}
-        searchParams={searchParams}
-      />
       <h2 className="travel_page_header">Encuentra tu experiencia</h2>
       {travels.length > 0 && <TravelList travels={travels} />}
       {errorMessage && <ErrorMessage msg={errorMessage} />}

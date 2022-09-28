@@ -30,51 +30,56 @@ const SearchTravelsForm = ({ setSearchParams, searchParams }) => {
         setSearchParams(new URLSearchParams(queryParams));
       }}
     >
-      <label htmlFor="searchByPlace">Lugar:</label>
-      <select
-        id="searchByPlace"
-        value={place}
-        onChange={(event) => {
-          setPlace(event.target.value);
-        }}
-      >
-        <option value="">Cualquiera</option>
-        <option value={"Coriolis"}>Coriolis</option>
-        <option value={"Jina"}>Jina</option>
-        <option value={"Kua"}>Kua</option>
-        <option value={"Lubau"}>Lubau</option>
-        <option value={"Surha"}>Surha</option>
-        <option value={"Xene"}>Xene</option>
-      </select>
+      <div>
+        <label htmlFor="searchByPlace">Lugar</label>
+        <select
+          id="searchByPlace"
+          value={place}
+          onChange={(event) => {
+            setPlace(event.target.value);
+          }}
+        >
+          <option value="">Cualquiera</option>
+          <option value={"Coriolis"}>Coriolis</option>
+          <option value={"Jina"}>Jina</option>
+          <option value={"Kua"}>Kua</option>
+          <option value={"Lubau"}>Lubau</option>
+          <option value={"Surha"}>Surha</option>
+          <option value={"Xene"}>Xene</option>
+        </select>
+      </div>
 
-      <label htmlFor="searchByActivity">Actividad</label>
-      <select
-        id="searchByActivity"
-        value={activity}
-        onChange={(event) => {
-          setActivity(event.target.value);
-        }}
-      >
-        <option value="">Cualquiera</option>
-        <option value={"Cultural"}>Cultura</option>
-        <option value={"Deportes"}>Deportes</option>
-        <option value={"Gastronomía"}>Gastronomía</option>
-        <option value={"Naturaleza"}>Naturaleza</option>
-        <option value={"Relajación"}>Relajación</option>
-      </select>
+      <div>
+        <label htmlFor="searchByActivity">Actividad</label>
+        <select
+          id="searchByActivity"
+          value={activity}
+          onChange={(event) => {
+            setActivity(event.target.value);
+          }}
+        >
+          <option value="">Cualquiera</option>
+          <option value={"Cultural"}>Cultura</option>
+          <option value={"Deportes"}>Deportes</option>
+          <option value={"Gastronomía"}>Gastronomía</option>
+          <option value={"Naturaleza"}>Naturaleza</option>
+          <option value={"Relajación"}>Relajación</option>
+        </select>
+      </div>
 
-      <label htmlFor="orderBy">Ordenado por:</label>
-
-      <select
-        id="orderBy"
-        value={order}
-        onChange={(event) => {
-          setOrder(event.target.value);
-        }}
-      >
-        <option value="createdAt">Más recientes</option>
-        <option value="votes">Mejor valorados</option>
-      </select>
+      <div>
+        <label htmlFor="orderBy">Ordenar por</label>
+        <select
+          id="orderBy"
+          value={order}
+          onChange={(event) => {
+            setOrder(event.target.value);
+          }}
+        >
+          <option value="createdAt">Más recientes</option>
+          <option value="votes">Mejor valorados</option>
+        </select>
+      </div>
 
       <button>Buscar</button>
     </form>
