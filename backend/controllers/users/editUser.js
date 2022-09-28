@@ -22,7 +22,7 @@ const editUser = async (req, res, next) => {
         let avatarName;
 
         if (req.files?.avatar) {
-            if (user[0].avatar) {
+            if (user[0].avatar && user[0].avatar !== null) {
                 await deletePhoto(user[0].avatar, 0);
             }
             avatarName = await savePhoto(req.files.avatar, 0);
