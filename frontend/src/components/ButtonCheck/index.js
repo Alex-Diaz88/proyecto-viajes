@@ -19,7 +19,10 @@ const ButtonCheck = () => {
 
   return (
     <div>
-      <button onClick={votef} className={[voteActive ? "active-vote" : null, "button"].join("")}>
+      <button
+        onClick={votef}
+        className={[voteActive ? "active-vote" : null, "button"].join("")}
+      >
         Like{vote}
       </button>
     </div>
