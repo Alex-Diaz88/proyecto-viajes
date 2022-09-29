@@ -70,8 +70,8 @@ app.post('/votes/new/:idTravel', isAuth, newVote);
 
 // ## ENDPOINTS COMENTARIOS ##
 app.post('/comments/:idTravel', isAuth, newComment);
-app.put('/comment/:idComment', isAuth, canEditComment, editComment);
-app.delete('/comment/:idComment', isAuth, canEditComment, deleteComment);
+app.put('/comments/:idComment', isAuth, canEditComment, editComment);
+app.delete('/comments/:idComment', isAuth, canEditComment, deleteComment);
 
 // ## ENDPOINTS DE ERROR ##
 app.use((req, res) => {

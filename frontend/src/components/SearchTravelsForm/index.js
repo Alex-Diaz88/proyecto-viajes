@@ -5,7 +5,7 @@ import { useState } from "react";
 const SearchTravelsForm = ({ setSearchParams, searchParams }) => {
   const [place, setPlace] = useState(searchParams.get("place") || "");
   const [activity, setActivity] = useState(searchParams.get("activity") || "");
-  const [order, setOrder] = useState(searchParams.get("order"));
+  const [order, setOrder] = useState(searchParams.get("order") || "createdAt");
 
   return (
     <form

@@ -43,7 +43,7 @@ const getTravels = async (req, res, next) => {
 
         for (let i = 0; i < travels.length; i++) {
             const [comments] = await connection.query(
-                `SELECT * FROM comment WHERE idTravel = ?`,
+                `SELECT c.*, u.avatar , u.username FROM comment c INNER JOIN user u ON c.idUser = u.id WHERE c.idTravel = ?`,
                 [travels[i].id]
             );
 

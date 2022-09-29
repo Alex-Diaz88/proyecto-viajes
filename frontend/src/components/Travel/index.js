@@ -4,8 +4,10 @@ import Avatar from "../Avatar";
 import PhotoSlider from "../PhotosSlider";
 import { useState } from "react";
 import ButtonCheck from "../ButtonCheck";
+import NewCommentForm from "../NewCommnetForm";
+import CommentList from "../CommentList";
 
-const Travel = ({ travel }) => {
+const Travel = ({ travel, addComment }) => {
   const [viewMore, setViewMore] = useState(false);
 
   const {
@@ -21,6 +23,7 @@ const Travel = ({ travel }) => {
     avatar,
     votes,
     id,
+    comments,
   } = travel;
 
   return (
@@ -39,6 +42,10 @@ const Travel = ({ travel }) => {
         <p>Tipo de actividad - {activity}</p>
         <span hidden={!viewMore}>
           <p>{content}</p>
+          {addComment && (
+            <NewCommentForm idTravel={id} addComment={addComment} />
+          )}
+          <CommentList comments={comments} />
         </span>
 
         <ButtonCheck idTravel={id} />
