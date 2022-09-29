@@ -1,4 +1,5 @@
 import "./styles.css";
+import React from "react";
 import { Link } from "react-router-dom";
 import Avatar from "../Avatar";
 import PhotoSlider from "../PhotosSlider";
@@ -28,6 +29,7 @@ const Travel = ({ travel, addComment }) => {
 
   return (
     <article className="travel">
+
       <section className="travel_info">
         <h3>{title}</h3>
         <p>{entry}</p>
@@ -40,6 +42,7 @@ const Travel = ({ travel, addComment }) => {
 
         <p>Localización - {place}</p>
         <p>Tipo de actividad - {activity}</p>
+
         <span hidden={!viewMore}>
           <p>{content}</p>
           {addComment && (
@@ -70,6 +73,7 @@ const Travel = ({ travel, addComment }) => {
           <PhotoSlider photos={photos} travelName={title} />
         )}
       </section>
+
     </article>
   );
 };
