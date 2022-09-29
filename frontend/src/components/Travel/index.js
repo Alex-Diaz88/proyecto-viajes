@@ -4,6 +4,7 @@ import Avatar from "../Avatar";
 import PhotoSlider from "../PhotosSlider";
 import { useState } from "react";
 import ButtonCheck from "../ButtonCheck";
+import DeleteTravel from "../DeleteTravel";
 
 const Travel = ({ travel }) => {
   const [viewMore, setViewMore] = useState(false);
@@ -37,6 +38,7 @@ const Travel = ({ travel }) => {
 
         <p>Localización - {place}</p>
         <p>Tipo de actividad - {activity}</p>
+        <DeleteTravel idUser={id} />
         <span hidden={!viewMore}>
           <p>{content}</p>
         </span>
