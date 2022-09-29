@@ -89,6 +89,7 @@ const EditUserForm = ({ user, setUser }) => {
       <div className="edit-user-form-container">
         <label htmlFor="username">Usuario</label>
         <input
+          className={showEditForm ? "active-edit-input" : "inactive-edit-input"}
           id="username"
           value={newUsername}
           disabled={disableImput}
@@ -100,6 +101,7 @@ const EditUserForm = ({ user, setUser }) => {
 
         <label htmlFor="email">Email</label>
         <input
+          className={showEditForm ? "active-edit-input" : "inactive-edit-input"}
           id="email"
           value={newEmail}
           disabled={disableImput}
@@ -110,7 +112,7 @@ const EditUserForm = ({ user, setUser }) => {
         />
         <div className="edit-user-form-buttons">
           <div>
-            {loggedUser.id === user.id && (
+            {loggedUser.id === user.id ? (
               <button
                 onClick={(e) => {
                   e.preventDefault();
@@ -120,6 +122,8 @@ const EditUserForm = ({ user, setUser }) => {
                 {!showEditForm && "Editar"}
                 {showEditForm && "Cancelar"}
               </button>
+            ) : (
+              <div style={{ height: "2rem" }}></div>
             )}
           </div>
           <div className="edit-user-form">

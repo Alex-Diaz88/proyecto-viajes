@@ -30,10 +30,17 @@
   border-radius: 0.25rem;
   font-size: large;
   padding: 0.2rem;
-  border: none;
-  background-color: var(--space-blue-light);
-  outline-color: var(--space-blue);
   color: black;
+}
+
+.inactive-edit-input {
+  background-color: var(--space-blue-light);
+  border: none;
+}
+
+.active-edit-input {
+  background-color: #fff;
+  border: 1px solid var(--space-blue);
 }
 
 .edit-user-form-buttons {
