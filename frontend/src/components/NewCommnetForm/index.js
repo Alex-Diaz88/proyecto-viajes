@@ -4,6 +4,7 @@ import { useState, useContext } from "react";
 
 import { useTokenContext } from "../../contexts/TokenContext";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const NewCommentForm = ({ idTravel, addComment }) => {
   const [comment, setComment] = useState("");
@@ -39,6 +40,7 @@ const NewCommentForm = ({ idTravel, addComment }) => {
           setComment("");
         } catch (error) {
           console.error(error.message);
+          toast.error(error.message);
         }
       }}
     >

@@ -4,6 +4,7 @@ import Avatar from "../Avatar";
 import PhotoSlider from "../PhotosSlider";
 import { useState } from "react";
 import ButtonCheck from "../ButtonCheck";
+import DeleteTravel from "../DeleteTravel";
 import NewCommentForm from "../NewCommnetForm";
 import CommentList from "../CommentList";
 
@@ -40,6 +41,7 @@ const Travel = ({ travel, addComment }) => {
 
         <p>Localización - {place}</p>
         <p>Tipo de actividad - {activity}</p>
+        <DeleteTravel idUser={id} />
         <span hidden={!viewMore}>
           <p>{content}</p>
           {addComment && (

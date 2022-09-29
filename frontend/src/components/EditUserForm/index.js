@@ -118,7 +118,7 @@ const EditUserForm = ({ user, setUser }) => {
                 }}
               >
                 {!showEditForm && "Editar"}
-                {showEditForm && "Cerrar"}
+                {showEditForm && "Cancelar"}
               </button>
             )}
           </div>
