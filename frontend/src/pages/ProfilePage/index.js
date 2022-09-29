@@ -10,7 +10,7 @@ const ProfilePage = () => {
   const { user, setUser } = useUserById(userId);
 
   const { username, userTravels } = user;
-
+  console.log(userTravels);
   return (
     <section className="profile-page">
       <h2>Perfil del usuario</h2>

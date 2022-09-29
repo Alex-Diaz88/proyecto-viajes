@@ -6,13 +6,15 @@ import useTravels from "../../hooks/useTravels";
 import NewTravelButton from "../../components/NewTravelButton";
 
 const TravelsPage = () => {
-  const { travels, errorMessage } = useTravels();
+  const { travels, errorMessage, addComment } = useTravels();
 
   return (
     <section>
       <h2 className="travel_page_header">Descubre nuevas experiencias</h2>
       <NewTravelButton />
-      {travels.length > 0 && <TravelList travels={travels} />}
+      {travels.length > 0 && (
+        <TravelList travels={travels} addComment={addComment} />
+      )}
       {errorMessage && <ErrorMessage msg={errorMessage} />}
     </section>
   );
