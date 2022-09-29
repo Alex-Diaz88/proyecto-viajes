@@ -4,11 +4,30 @@ import Avatar from "../Avatar";
 import PhotoSlider from "../PhotosSlider";
 import { useState } from "react";
 import ButtonCheck from "../ButtonCheck";
+import DeleteTravel from "../DeleteTravel";
+import NewCommentForm from "../NewCommnetForm";
+import CommentList from "../CommentList";
 
-const Travel = ({ travel }) => {
+const Travel = ({ travel, addComment }) => {
   const [viewMore, setViewMore] = useState(false);
 
-  const { title, entry, place, activity, content, createdAt, idUser, photos, username, avatar, votes, id } = travel;
+
+  const {
+    title,
+    entry,
+    place,
+    activity,
+    content,
+    createdAt,
+    idUser,
+    photos,
+    username,
+    avatar,
+    votes,
+    id,
+    comments,
+  } = travel;
+
 
   return (
     <article className="travel">
@@ -28,6 +47,17 @@ const Travel = ({ travel }) => {
             <p>Localización - {place}</p>
             <p>Tipo de actividad - {activity}</p>
 
+
+        <p>Localización - {place}</p>
+        <p>Tipo de actividad - {activity}</p>
+        <DeleteTravel idUser={id} />
+        <span hidden={!viewMore}>
+          <p>{content}</p>
+          {addComment && (
+            <NewCommentForm idTravel={id} addComment={addComment} />
+          )}
+          <CommentList comments={comments} />
+        </span>
 
           </section>
           <section className="user_profile">

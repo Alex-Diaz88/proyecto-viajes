@@ -1,20 +1,20 @@
 import "./styles.css";
+import React from "react";
 import ErrorMessage from "../../components/ErrorMessage";
-import SearchTravelsForm from "../../components/SearchTravelsForm";
 import TravelList from "../../components/TravelList";
 import useTravels from "../../hooks/useTravels";
+import NewTravelButton from "../../components/NewTravelButton";
 
 const TravelsPage = () => {
-  const { travels, setSearchParams, errorMessage, searchParams } = useTravels();
-  console.log(travels);
+  const { travels, errorMessage, addComment } = useTravels();
+
   return (
     <section>
-      <SearchTravelsForm
-        setSearchParams={setSearchParams}
-        searchParams={searchParams}
-      />
-      <h2 className="travel_page_header">Encuentra tu experiencia</h2>
-      {travels.length > 0 && <TravelList travels={travels} />}
+      <h2 className="travel_page_header">Descubre nuevas experiencias</h2>
+      <NewTravelButton />
+      {travels.length > 0 && (
+        <TravelList travels={travels} addComment={addComment} />
+      )}
       {errorMessage && <ErrorMessage msg={errorMessage} />}
     </section>
   );

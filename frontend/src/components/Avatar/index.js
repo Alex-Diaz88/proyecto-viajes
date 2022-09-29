@@ -1,4 +1,3 @@
-import "./styles.css";
 import defaultAvatar from "../../assets/images/defaultAvatar.png";
 
 const Avatar = ({ avatar, username }) => {

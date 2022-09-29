@@ -10,13 +10,7 @@ const getTravels = async (req, res, next) => {
 
         const validOrderOptions = ['place', 'activity', 'votes'];
 
-        const validDirectionOptions = ['DESC', 'ASC'];
-
         const orderBy = validOrderOptions.includes(order) ? order : 'createdAt';
-
-        const orderDirection = validDirectionOptions.includes(direction)
-            ? direction
-            : 'DESC';
 
         let query = `SELECT t.*, u.username, u.avatar, count(v.id) as votes FROM travel t INNER JOIN user u ON t.idUser = u.id LEFT JOIN vote v ON t.id = v.idTravel`;
 
@@ -33,7 +27,8 @@ const getTravels = async (req, res, next) => {
             query += ` ${clause} activity LIKE ?`;
             values.push(activity);
         }
-        query += ` GROUP BY t.id ORDER BY ${orderBy} ${orderDirection}`;
+
+        query += ` GROUP BY t.id ORDER BY ${orderBy} DESC`;
 
         const [travels] = await connection.query(query, values);
 
@@ -48,7 +43,7 @@ const getTravels = async (req, res, next) => {
 
         for (let i = 0; i < travels.length; i++) {
             const [comments] = await connection.query(
-                `SELECT * FROM comment WHERE idTravel = ?`,
+                `SELECT c.*, u.avatar , u.username FROM comment c INNER JOIN user u ON c.idUser = u.id WHERE c.idTravel = ?`,
                 [travels[i].id]
             );
 
