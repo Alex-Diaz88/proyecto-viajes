@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Avatar from "../Avatar";
+import "./styles.css";
 
 const Comment = ({ comment }) => {
   const { content, idUser, idTravel, avatar, username } = comment;
