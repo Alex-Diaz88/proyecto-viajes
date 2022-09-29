@@ -1,4 +1,16 @@
-.travel {
+.travel-header {
+  text-align: center;
+}
+
+.travel-container {
+  display: flex;
+}
+
+.travel-viewMore {
+  text-align: center;
+}
+
+/*.travel {
   display: grid;
   grid-template-columns: 30% 70%;
   margin: 4rem;
@@ -47,9 +59,7 @@
   box-shadow: 1px 1px 3px 1px rgb(201, 201, 201);
   border-radius: 0.2rem;
   padding: 0.5rem;
-}
-
-
+}*/
 
 /* .travel_list {
   position: relative;
