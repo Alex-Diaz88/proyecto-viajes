@@ -67,7 +67,7 @@ const SearchTravelsForm = ({ setSearchParams, searchParams }) => {
 
       <select
         id="orderBy"
-        value={order}
+        value={direction}
         onChange={(event) => {
           setOrder(event.target.value);
         }}

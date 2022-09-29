@@ -3,7 +3,7 @@
 import { useState, useContext } from "react";
 
 import { useTokenContext } from "../../contexts/TokenContext";
-import { AlertContext } from "../../contexts/AlertContext";
+
 import { useNavigate } from "react-router-dom";
 
 const NewCommentForm = () => {
@@ -42,7 +42,7 @@ const NewCommentForm = () => {
         }
       }}
     >
-      <label htmlFor="content">Comentario:</label>
+      <label htmlFor="content">Escribe un comentario:</label>
       <input
         id="content"
         value={comment}

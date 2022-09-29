@@ -1,10 +1,8 @@
 import { Link } from "react-router-dom";
 import Avatar from "../Avatar";
 
-const Comment = ({ comment }) => {
+const Comment = (comment) => {
   const { content, idUser, idTravel, avatar, username } = comment;
-
-  return (
     <article>
         {avatar !== undefined && username && content &&(
           <section className="comment_user_info">
@@ -19,7 +17,7 @@ const Comment = ({ comment }) => {
         )}
       <section>{content}</section>
     </article>
-  );
+
 };
 
 
