@@ -1,20 +1,24 @@
-import Avatar from "../Avatar";
+import "./styles.css";
 import { useState, useRef } from "react";
 import { toast } from "react-toastify";
 import { useTokenContext } from "../../contexts/TokenContext";
-import LoggedUser from "../LoggedUser";
+import Avatar from "../Avatar";
 
-const EditUserForm = ({ user, setUser, setShowEditForm }) => {
-  const { avatar: currentAvatar, username: currentUsername, email: currentEmail } = user;
+const EditUserForm = ({ user, setUser }) => {
+  const {
+    avatar: currentAvatar,
+    username: currentUsername,
+    email: currentEmail,
+  } = user;
 
+  const [showEditForm, setShowEditForm] = useState(false);
   const { loggedUser, setLoggedUser } = useTokenContext();
   const { token } = useTokenContext();
-
   const [newUsername, setNewUsername] = useState(currentUsername);
   const [newEmail, setNewEmail] = useState(currentEmail);
-  const [newAvatarPreview, setNewAvatarPreview] = useState("");
-
+  const [newAvatarPreview, setNewAvatarPreview] = useState(null);
   const newAvatarRef = useRef();
+  const disableImput = !showEditForm ? true : false;
 
   return (
     <form
@@ -24,7 +28,7 @@ const EditUserForm = ({ user, setUser, setShowEditForm }) => {
 
           const file = newAvatarRef.current.files[0];
 
-          if (!(newUsername || newEmail || file)) {
+          if (!(newUsername && newEmail && file)) {
             toast.warn("No has introducido ningún cambio.");
             return;
           }
@@ -71,45 +75,71 @@ const EditUserForm = ({ user, setUser, setShowEditForm }) => {
           toast.error(error.message);
         }
       }}
+      className="edit-user-form"
     >
       <label htmlFor="avatar">
-        {!newAvatarPreview && <Avatar avatar={currentAvatar} username={currentUsername} />}
+        {!newAvatarPreview && (
+          <Avatar avatar={currentAvatar} username={currentUsername} />
+        )}
 
-        {newAvatarPreview && <img src={newAvatarPreview} alt={currentUsername} />}
+        {newAvatarPreview && (
+          <img src={newAvatarPreview} alt={currentUsername} />
+        )}
       </label>
-      <input
-        id="avatar"
-        type="file"
-        hidden
-        ref={newAvatarRef}
-        onChange={() => {
-          const file = newAvatarRef.current.files[0];
+      <div className="edit-user-form-container">
+        <label htmlFor="username">Usuario</label>
+        <input
+          id="username"
+          value={newUsername}
+          disabled={disableImput}
+          onChange={(event) => {
+            setNewUsername(event.target.value);
+          }}
+          placeholder={currentUsername}
+        />
 
-          setNewAvatarPreview(URL.createObjectURL(file));
-        }}
-      />
+        <label htmlFor="email">Email</label>
+        <input
+          id="email"
+          value={newEmail}
+          disabled={disableImput}
+          onChange={(event) => {
+            setNewEmail(event.target.value);
+          }}
+          placeholder={currentEmail}
+        />
+        <div className="edit-user-form-buttons">
+          <div>
+            {loggedUser.id === user.id && (
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  setShowEditForm(!showEditForm);
+                }}
+              >
+                {!showEditForm && "Editar"}
+                {showEditForm && "Cerrar"}
+              </button>
+            )}
+          </div>
+          <div className="edit-user-form">
+            {showEditForm && <button>Guardar</button>}
+          </div>
+        </div>
+      </div>
+      {showEditForm && (
+        <input
+          id="avatar"
+          type="file"
+          hidden
+          ref={newAvatarRef}
+          onChange={() => {
+            const file = newAvatarRef.current.files[0];
 
-      <label htmlFor="username">Username:</label>
-      <input
-        id="username"
-        value={newUsername}
-        onChange={(event) => {
-          setNewUsername(event.target.value);
-        }}
-        placeholder={currentUsername}
-      />
-
-      <label htmlFor="email">Email:</label>
-      <input
-        id="email"
-        value={newEmail}
-        onChange={(event) => {
-          setNewEmail(event.target.value);
-        }}
-        placeholder={currentEmail}
-      />
-
-      <button>Guardar cambios</button>
+            setNewAvatarPreview(URL.createObjectURL(file));
+          }}
+        />
+      )}
     </form>
   );
 };

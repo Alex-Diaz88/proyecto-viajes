@@ -1,8 +1,9 @@
+import "./styles.css";
 import TravelList from "../TravelList";
 
 const UserProfileTravels = ({ userTravels }) => {
   return (
-    <section>
+    <section className="user-profile-travels">
       <h3>Viajes</h3>
 
       {userTravels.length > 0 && <TravelList travels={userTravels} />}
