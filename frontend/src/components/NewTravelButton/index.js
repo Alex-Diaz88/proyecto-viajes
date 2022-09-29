@@ -1,4 +1,5 @@
 import "./styles.css";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const NewTravelButton = () => {
@@ -11,7 +12,7 @@ const NewTravelButton = () => {
           navigate(`/travels/new`);
         }}
       >
-        ¡O cuéntanos la tuya!
+        ¡ O cuentanos la tuya !
       </button>
     </div>
   );

@@ -12,7 +12,7 @@ const ProfilePage = () => {
   const { username, userTravels } = user;
 
   return (
-    <section>
+    <section className="profile-page">
       <h2>Perfil del usuario</h2>
 
       {username && <UserProfileInfo user={user} setUser={setUser} />}
