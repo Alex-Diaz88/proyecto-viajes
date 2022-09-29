@@ -4,16 +4,16 @@ import Avatar from "../Avatar";
 import "./styles.css";
 
 const Comment = ({ comment }) => {
-  const { content, idUser, idTravel, avatar, username } = comment;
+  const { content, idUser, avatar, username } = comment;
 
   return (
     <article>
       <section className="comment_user_info">
-        <Link to={`/travels/${idTravel}`}>
+        <Link to={`/profile/${idUser}`}>
           <Avatar avatar={avatar} username={username} />
         </Link>
 
-        <Link to={`/users/${idUser}`}>
+        <Link to={`/profile/${idUser}`}>
           <p>Subido por {username}</p>
         </Link>
       </section>

@@ -5,7 +5,7 @@ import Avatar from "../Avatar";
 import PhotoSlider from "../PhotosSlider";
 import { useState } from "react";
 import ButtonCheck from "../ButtonCheck";
-import NewCommentForm from "../NewCommnetForm";
+import NewCommentForm from "../NewCommentForm";
 import CommentList from "../CommentList";
 
 const Travel = ({ travel, addComment }) => {
@@ -29,7 +29,6 @@ const Travel = ({ travel, addComment }) => {
 
   return (
     <article className="travel">
-
       <section className="travel_info">
         <h3>{title}</h3>
         <p>{entry}</p>
@@ -59,10 +58,10 @@ const Travel = ({ travel, addComment }) => {
 
         {avatar !== undefined && username && (
           <section className="travel_user_info">
-            <Link to={`/users/${idUser}`}>
+            <Link to={`/profile/${idUser}`}>
               <Avatar className="avatar" avatar={avatar} username={username} />
             </Link>
-            <Link to={`/users/${idUser}`}>
+            <Link to={`/profile/${idUser}`}>
               <p>Subido por {username}</p>
             </Link>
             <p>{createdAt.split("T")[0]}</p>
@@ -73,7 +72,6 @@ const Travel = ({ travel, addComment }) => {
           <PhotoSlider photos={photos} travelName={title} />
         )}
       </section>
-
     </article>
   );
 };
