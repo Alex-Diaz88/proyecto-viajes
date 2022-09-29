@@ -1,3 +1,4 @@
+
 .search-travel {
   display: flex;
   justify-content: space-between;
@@ -38,3 +39,4 @@
 .search-travel button:active {
   transform: scale(0.98);
 }
+

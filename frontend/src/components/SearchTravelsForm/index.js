@@ -66,6 +66,7 @@ const SearchTravelsForm = ({ setSearchParams, searchParams }) => {
         </select>
       </div>
 
+
       <div>
         <label htmlFor="orderBy">Ordenar por</label>
         <select
@@ -79,6 +80,7 @@ const SearchTravelsForm = ({ setSearchParams, searchParams }) => {
           <option value="votes">Mejor valorados</option>
         </select>
       </div>
+
 
       <button>Buscar</button>
     </form>

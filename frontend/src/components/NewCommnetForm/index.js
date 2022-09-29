@@ -3,6 +3,7 @@
 import { useState, useContext } from "react";
 
 import { useTokenContext } from "../../contexts/TokenContext";
+
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -44,7 +45,7 @@ const NewCommentForm = ({ idTravel, addComment }) => {
         }
       }}
     >
-      <label htmlFor="content">Comentario:</label>
+      <label htmlFor="content">Escribe un comentario:</label>
       <input
         id="content"
         value={comment}
