@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import Avatar from "../Avatar";
 
-const Comment = (comment) => {
+const Comment = ({ comment }) => {
   const { content, idUser, idTravel, avatar, username } = comment;
+
+  return (
     <article>
       <section className="comment_user_info">
         <Link to={`/travels/${idTravel}`}>
@@ -16,7 +18,7 @@ const Comment = (comment) => {
 
       <p>{content}</p>
     </article>
-
+  );
 };
 
 export default Comment;
