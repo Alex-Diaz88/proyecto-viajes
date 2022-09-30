@@ -2,6 +2,7 @@ import "./styles.css";
 import { Link } from "react-router-dom";
 import { useTokenContext } from "../../contexts/TokenContext";
 import banner from "../../assets/images/banner.png";
+import logo from "../../assets/images/logo.png";
 import LoginForm from "../LoginForm";
 import LoggedUser from "../LoggedUser";
 import SearchTravelsForm from "../SearchTravelsForm";
@@ -13,10 +14,13 @@ const Header = () => {
 
   return (
     <header>
-      <div className="banner">
+      <div className="header-container">
         <Link to="/">
-          <img src={banner} />
+          <img className="banner" src={banner} />
         </Link>
+        <div className="logo">
+          <img src={logo} />
+        </div>
         {!token ? <LoginForm /> : <LoggedUser />}
       </div>
       <SearchTravelsForm
