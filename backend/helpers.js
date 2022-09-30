@@ -42,6 +42,7 @@ async function savePhoto(image, type) {
             sharpImage.resize(150, 150);
         } else if (type === 1) {
             imageDirectory = path.join(travelsDir, imageName);
+            sharpImage.resize(400, 250);
         }
 
         await sharpImage.toFile(imageDirectory);

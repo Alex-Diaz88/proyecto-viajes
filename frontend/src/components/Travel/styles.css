@@ -1,20 +1,106 @@
-.travel {
+.travel_container {
   display: grid;
-  grid-template-columns: 30% 70%;
-  margin: 4rem;
-  box-shadow: 2px 1px 6px 1px rgb(200, 198, 198);
-  padding: 0.3rem;
+  grid-template-columns: 20% 80%;
+  grid-template-rows: 8% 45% 10% 25% 12%;
+  box-shadow: 1px 1px 8px 1px rgb(226, 224, 224);
   border-radius: 0.2rem;
   transition-property: background-color;
   transition-duration: 1s;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  align-items: center;
 }
 
-.travel:hover {
+.travel_container:hover {
+  background-color: var(--space-blue-light);
+}
+
+.travel_title {
+  grid-column: 1 / span 2;
+  background-color: var(--space-blue);
+  color: rgb(251, 249, 247);
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.travel_info {
+  grid-column: 1 / 2;
+  grid-row: 2 / 4;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin: .02rem;
+}
+
+.likeB {
+  grid-column: 1 / 2;
+  grid-row: 3 / 4;
+padding: 1rem;
+margin-top: 1rem;
+}
+
+.travel_info p {
+  margin: 0.2rem;
+  font-weight: 400;
+  margin: 1rem;
+  box-shadow: 0rem 0rem 1px 2px rgb(235, 232, 232);
+  padding: 0.1rem;
+  background-color: whitesmoke;
+  border-radius: 1rem;
+}
+
+.travel_info h4 {
+  text-align: center;
+  padding: 0.3rem;
+  margin: 0.4rem;
+  margin-bottom: 2rem;
+  border-radius: 2px;
+  box-shadow: 1px 1px 6px 2px rgb(235, 232, 232);
+  background-color: whitesmoke;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.travel_user_info {
+  grid-column: 1 / 2;
+  grid-row: 4 / 5;
+  box-shadow: 1px 1px 3px 1px rgb(200, 198, 198);
+  margin: 1rem;
+  padding: 0.4rem;
+  border-radius: 12px;
+  background-color: whitesmoke;
+}
+
+.travel_user_info img {
+  width: 50px;
+  height: 50px;
+  border-radius: 150px;
+}
+
+.travel_slider {
+  grid-column: 2 / 3;
+  grid-row: 2 / 5;
+  object-fit: cover;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.travel_view {
+  grid-column: 2 / 3;
+  grid-row: 5 / 6;
+}
+
+.ver_mas_button {
+  width: 4rem;
+}
+/* .travel:hover {
   background-color: var(--space-blue-light);
 }
 
 .travel_info {
   margin-bottom: 2rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .travel_info h3 {
@@ -54,22 +140,4 @@
   height: 50px;
   border-radius: 150px;
 }
-
-/* .travel_list {
-  position: relative;
-}
-
-.travel_list li {
-  position: absolute;
-  left: 0;
-  top: 0;
-  opacity: 0;
-  width: inherit;
-  height: inherit;
-  background-color: antiquewhite;
-  transition: opacity 2s;
-}
-.travel_list li img {
-width: 100%;
-height: 300px;
-} */
+ */
