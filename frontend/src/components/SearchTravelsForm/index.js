@@ -10,7 +10,6 @@ const SearchTravelsForm = ({ setSearchParams, searchParams }) => {
   return (
     <nav>
       <form
-        className="search-travel"
         onSubmit={(event) => {
           event.preventDefault();
           const queryParams = { place, activity, order };
