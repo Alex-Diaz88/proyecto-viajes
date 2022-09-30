@@ -11,6 +11,7 @@ import TravelsPage from "./pages/TravelsPage";
 import TravelPage from "./pages/TravelPage";
 import RegisterPage from "./pages/RegisterPage";
 import NewTravelPage from "./pages/NewTravelPage";
+import Particle from "./components/Particles/Particle";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <CustomTokenContextProvider>
           <Header />
           <main>
+            <Particle />
             <Routes>
               <Route path="/" element={<TravelsPage />} />
               <Route path="/register" element={<RegisterPage />} />
