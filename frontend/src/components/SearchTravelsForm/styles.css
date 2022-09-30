@@ -1,23 +1,26 @@
-.search-travel {
-  display: flex;
-  justify-content: space-between;
+nav {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1024px 1fr;
+  height: 55px;
   background-color: var(--space-blue-light);
-  padding: 0.75rem;
 }
 
-.search-travel div {
+nav form {
+  grid-column: 2 / 3;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
-.search-travel label {
+nav form label {
   font-family: "space_font", sans-serif;
   color: var(--space-blue);
   font-weight: bold;
   margin-right: 0.5rem;
 }
 
-.search-travel select {
+nav form select {
   border: none;
   border-radius: 0.25rem;
   padding: 0.15rem;
@@ -25,7 +28,7 @@
   outline: none;
 }
 
-.search-travel button {
+nav form button {
   border: none;
   border-radius: 0.2rem;
   padding: 0.5rem 1.5rem;
@@ -35,6 +38,6 @@
   color: white;
 }
 
-.search-travel button:active {
+nav form button:active {
   transform: scale(0.98);
 }
