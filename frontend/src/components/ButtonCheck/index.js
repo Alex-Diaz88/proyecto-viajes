@@ -1,12 +1,18 @@
 import { toast } from "react-toastify";
 import { useTokenContext } from "../../contexts/TokenContext";
+import buttonLike from "../../assets/icons/button-like.png";
+import "./styles.css";
 
 const ButtonCheck = ({ idTravel }) => {
   const { token } = useTokenContext();
 
   return (
     <div>
-      <button
+      <img
+      
+        className="like"
+        alt="Not Found"
+        src={buttonLike}
         onClick={async (event) => {
           try {
             event.preventDefault();
@@ -21,10 +27,7 @@ const ButtonCheck = ({ idTravel }) => {
             toast.error(error.message);
           }
         }}
-      >
-        Like
-
-      </button>
+      />
     </div>
   );
 };

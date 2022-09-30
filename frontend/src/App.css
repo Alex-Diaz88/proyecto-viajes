@@ -31,8 +31,18 @@ h3 {
   font-family: "space_font", sans-serif;
 }
 
+h4{
+  font-family: "space_font", sans-serif;
+  font-weight: 100;
+}
+
 main {
   background-color: white;
   padding: 1rem;
 
+}
+
+img{
+  width: 100%;
+  height: 100%;
 }
