@@ -16,13 +16,15 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
 }
 
 body {
+  font-family: "Roboto", sans-serif;
+}
+
+main {
   width: 1024px;
   margin: 0px auto;
-  font-family: "Roboto", sans-serif;
 }
 
 h1,
@@ -39,7 +41,6 @@ h4{
 main {
   background-color: white;
   padding: 1rem;
-
 }
 
 img{
