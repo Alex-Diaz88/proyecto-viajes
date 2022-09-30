@@ -12,7 +12,7 @@ const NewTravelButton = () => {
           navigate(`/travels/new`);
         }}
       >
-        ¡ O cuentanos la tuya !
+        Añadir Viaje
       </button>
     </div>
   );

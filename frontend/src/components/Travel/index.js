@@ -48,8 +48,8 @@ const Travel = ({ travel, addComment }) => {
       </section>
       <section className="travel_view">
         <img className="ver_mas_button" alt="Not Found" src={verMas} onClick={() => setViewMore(!viewMore)} />
-        <span hidden={!viewMore}>
-          <p>{content}</p>
+        <span className="container_comments" hidden={!viewMore}>
+          <p className="item_comment">{content}</p>
           {addComment && <NewCommentForm idTravel={id} addComment={addComment} />}
           <CommentList comments={comments} />
         </span>
