@@ -22,8 +22,6 @@
   padding: 0.6rem;
   color: rgb(251, 249, 247);
   text-align: center;
-  position: static;
-  z-index: 1;
 }
 
 .travel_info {
@@ -95,6 +93,46 @@
 .ver_mas_button {
   width: 4rem;
 }
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  right: 0;
+  top: 0;
+  width: 30%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  align-content:flex-end;
+  text-align: left;
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin-left: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  border-radius: 4px;
+  width: 70%;
+}
+
+/* The Close Button */
+.close {
+  color: var(--space-blue);
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 /* .travel:hover {
   background-color: var(--space-blue-light);
 }

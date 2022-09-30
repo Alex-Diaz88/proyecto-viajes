@@ -1,5 +1,5 @@
 import "./styles.css";
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Avatar from "../Avatar";
 import PhotoSlider from "../PhotosSlider";
@@ -14,7 +14,23 @@ const Travel = ({ travel, addComment }) => {
 
   const { title, entry, place, activity, content, createdAt, idUser, photos, username, avatar, votes, id, comments } =
     travel;
+  let modal = document.getElementById("myModal");
+  let btn = document.getElementById("myBtn");
+  let span = document.getElementsByClassName("close")[0];
 
+  // Cortar y pegar cuando pete ########
+  /*  btn.onclick = function () {
+    modal.style.display = "block";
+  };
+  span.onclick = function () {
+    modal.style.display = "none";
+  };
+  window.onclick = function (event) {
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  }; */
+  // Cortar y pegar cuando pete ########
   return (
     <article className="travel_container">
       <section className="travel_title">
@@ -50,9 +66,21 @@ const Travel = ({ travel, addComment }) => {
         <img className="ver_mas_button" alt="Not Found" src={verMas} onClick={() => setViewMore(!viewMore)} />
         <span className="container_comments" hidden={!viewMore}>
           <p className="item_comment">{content}</p>
-          {addComment && <NewCommentForm idTravel={id} addComment={addComment} />}
-          <CommentList comments={comments} />
         </span>
+      </section>
+
+      <section>
+        <button id="myBtn">Open Modal</button>
+        <div id="myModal" className="modal">
+          <div className="modal-content">
+            <span className="close">&times;</span>
+
+            {addComment && <NewCommentForm idTravel={id} addComment={addComment} />}
+            <p>
+              <CommentList comments={comments} />
+            </p>
+          </div>
+        </div>
       </section>
     </article>
   );

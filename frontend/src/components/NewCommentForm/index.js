@@ -1,5 +1,5 @@
+import "./styles.css";
 import { useState, useContext } from "react";
-
 import { useTokenContext } from "../../contexts/TokenContext";
 
 const NewCommentForm = ({ idTravel, addComment }) => {
@@ -33,8 +33,10 @@ const NewCommentForm = ({ idTravel, addComment }) => {
         }
       }}
     >
-      <label htmlFor="content">Comentario:</label>
+    <div className="newComment">
+      <label htmlFor="content">Nuevo comentario:</label>
       <input
+      
         id="content"
         value={comment}
         onChange={(event) => {
@@ -42,6 +44,7 @@ const NewCommentForm = ({ idTravel, addComment }) => {
         }}
       />
       <button>Publicar</button>
+      </div>
     </form>
   );
 };
