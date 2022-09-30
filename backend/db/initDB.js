@@ -109,7 +109,7 @@ async function main() {
                 (4, '2022-01-10','Partido de Fútbol a baja gravedad', 'Prepárate para disfrutar al máximo en una experiencia única', 'Xene', 'Deportes', 'Al poder reducir el peso corporal conseguimos que las articulaciones de las personas no sufran tanto, así como para tomar confianza e ir avanzando de manera paulatina. Además, permite correr durante más tiempo por lo que es muy gratificante a la hora de alcanzar objetivos.
                 Get ready para hacer filigranas increíbles en el aire!', 4),
                 (5, '2022-03-15', 'Casa Rural Paco', 'Viaje de relax y tranquilidad absoluta en casa de Paco', 'Kua', 'Relajación', 'Relájate y evádete de la rutina con nuestras experiencias de spa. Masajes para dos, spas y balnearios, baños árabes, chocolaterapia y mucho más. Todas nuestras experiencias son regalos perfectos para ella y para él, para hacer solo o en pareja. ¡Momentos de relax y belleza ideales!', 5),
-                (6, '2019-12-18', 'Ruta por museos de ciencia y tecnología alienígena', 'Si eres una persona curiosa y a la que le gusta la ciencia este es tu lugar', 'Jina', 'Cultural', 'El Museo Nacional de Ciencia y Tecnología es un museo tecnológico dedicado a la promoción y conservación de la tecnología. Posee una colección de más de 17.000 instrumentos científicos, dispositivos tecnológicos, vehículos, máquinas y herramientas industriales desde el siglo XVI hasta la actualidad.', 5);
+                (6, '2019-12-18', 'Ruta por museos de ciencia y tecnología alienígena', 'Si eres curioso y te gusta la ciencia este es tu lugar', 'Jina', 'Cultural', 'El Museo Nacional de Ciencia y Tecnología es un museo tecnológico dedicado a la promoción y conservación de la tecnología. Posee una colección de más de 17.000 instrumentos científicos, dispositivos tecnológicos, vehículos, máquinas y herramientas industriales desde el siglo XVI hasta la actualidad.', 5);
         `);
 
         console.log('¡Viajes insertados con éxito!');
@@ -130,6 +130,18 @@ async function main() {
         `);
 
         console.log('¡Comentarios insertados con éxito!');
+
+        await connection.query(`INSERT INTO travel_photo (idTravel, name)
+        VALUES (1, 'glaciar2.jpg'), (1, 'glaciar2.jpg'), (1, 'glaciar3.jpg'),
+        (6, 'ciencia.jpg'), (6, 'ciencia2.jpg'), (6, 'ciencia3.jpg'), (6, 'ciencia2.jpg'),
+        (2, 'ginkana.jpeg'), (2, 'ginkana2.jpg'), (2, 'ginkana3.jpeg'), (2, 'ginkana2.jpg'),
+        (3, 'comida2.jpg'), (3, 'comida3.jpg'), (3, 'comida4.jpg'), (3, 'comida5.jpg'),
+        (4, 'futbol.jpg'), (4, 'futbol2.jpg'), (4, 'futbol3.jpg'),
+        (5, 'paco.jpg'), (5, 'paco2.jpg'), (5, 'paco4.jpg');
+
+        `);
+
+        console.log('¡Imágenes insertadas con éxito!');
     } catch (error) {
         console.error(error);
     } finally {
