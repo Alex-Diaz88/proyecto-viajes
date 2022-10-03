@@ -12,6 +12,7 @@ import TravelPage from "./pages/TravelPage";
 import RegisterPage from "./pages/RegisterPage";
 import NewTravelPage from "./pages/NewTravelPage";
 import Particle from "./components/Particles/Particle";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </main>
+          <Footer />
           <ToastContainer position="bottom-center" theme="dark" />
         </CustomTokenContextProvider>
       </BrowserRouter>
