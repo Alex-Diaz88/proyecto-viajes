@@ -16,10 +16,10 @@ const Header = () => {
     <header>
       <div className="header-container">
         <Link to="/">
-          <img className="banner" src={banner} />
+          <img className="banner" src={banner} alt="banner space riders" />
         </Link>
         <div className="logo">
-          <img src={logo} />
+          <img src={logo} alt="logo space riders" />
         </div>
         {!token ? <LoginForm /> : <LoggedUser />}
       </div>
