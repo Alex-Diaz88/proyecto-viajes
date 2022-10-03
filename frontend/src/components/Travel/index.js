@@ -12,8 +12,21 @@ import verMas from "../../assets/icons/ver_mas.png";
 const Travel = ({ travel, addComment }) => {
   const [viewMore, setViewMore] = useState(false);
 
-  const { title, entry, place, activity, content, createdAt, idUser, photos, username, avatar, votes, id, comments } =
-    travel;
+  const {
+    title,
+    entry,
+    place,
+    activity,
+    content,
+    createdAt,
+    idUser,
+    photos,
+    username,
+    avatar,
+    votes,
+    id,
+    comments,
+  } = travel;
 
   return (
     <article className="travel_container">
@@ -22,7 +35,7 @@ const Travel = ({ travel, addComment }) => {
       </section>
       <section className="travel_info">
         <h4>{entry}</h4>
-        <p>Lugar -{place}</p>
+        <p>Lugar - {place}</p>
         <p>Actividad - {activity}</p>
         <p>
           <span>votos- {votes} </span>
@@ -44,13 +57,22 @@ const Travel = ({ travel, addComment }) => {
         </section>
       )}
       <section className="travel_slider">
-        {photos.length > 0 && <PhotoSlider photos={photos} travelName={title} />}
+        {photos.length > 0 && (
+          <PhotoSlider photos={photos} travelName={title} />
+        )}
       </section>
       <section className="travel_view">
-        <img className="ver_mas_button" alt="Not Found" src={verMas} onClick={() => setViewMore(!viewMore)} />
+        <img
+          className="ver_mas_button"
+          alt="Not Found"
+          src={verMas}
+          onClick={() => setViewMore(!viewMore)}
+        />
         <span className="container_comments" hidden={!viewMore}>
           <p className="item_comment">{content}</p>
-          {addComment && <NewCommentForm idTravel={id} addComment={addComment} />}
+          {addComment && (
+            <NewCommentForm idTravel={id} addComment={addComment} />
+          )}
           <CommentList comments={comments} />
         </span>
       </section>
