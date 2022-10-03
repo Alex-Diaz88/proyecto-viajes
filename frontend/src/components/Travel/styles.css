@@ -28,7 +28,7 @@
 
 .travel_info {
   grid-column: 1 / 2;
-  grid-row: 2 / 4;
+  grid-row: 2 / 3;
   text-overflow: ellipsis;
   overflow: hidden;
   margin: 0.02rem;
