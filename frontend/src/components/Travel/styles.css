@@ -37,8 +37,8 @@
 .likeB {
   grid-column: 1 / 2;
   grid-row: 3 / 4;
-  padding: 1rem;
-  margin-top: 1rem;
+  padding: 0rem;
+  margin-top: 0rem;
 }
 
 .travel_info p {
