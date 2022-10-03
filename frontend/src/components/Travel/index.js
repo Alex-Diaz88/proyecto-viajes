@@ -14,23 +14,25 @@ const Travel = ({ travel, addComment }) => {
 
   const { title, entry, place, activity, content, createdAt, idUser, photos, username, avatar, votes, id, comments } =
     travel;
-  let modal = document.getElementById("myModal");
-  let btn = document.getElementById("myBtn");
-  let span = document.getElementsByClassName("close")[0];
 
-  // Cortar y pegar cuando pete ########
-  /*  btn.onclick = function () {
-    modal.style.display = "block";
-  };
-  span.onclick = function () {
-    modal.style.display = "none";
-  };
-  window.onclick = function (event) {
-    if (event.target === modal) {
+  useEffect(() => {
+    let modal = document.getElementById("myModal");
+    let btn = document.getElementById("myBtn");
+    let span = document.getElementsByClassName("close")[0];
+
+    btn.onclick = function () {
+      modal.style.display = "block";
+    };
+    span.onclick = function () {
       modal.style.display = "none";
-    }
-  }; */
-  // Cortar y pegar cuando pete ########
+    };
+    window.onclick = function (event) {
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    };
+  });
+
   return (
     <article className="travel_container">
       <section className="travel_title">
@@ -70,15 +72,15 @@ const Travel = ({ travel, addComment }) => {
       </section>
 
       <section>
-        <button id="myBtn">Open Modal</button>
+        <button id="myBtn">Comentarios</button>
         <div id="myModal" className="modal">
           <div className="modal-content">
             <span className="close">&times;</span>
 
             {addComment && <NewCommentForm idTravel={id} addComment={addComment} />}
-            <p>
+            <div>
               <CommentList comments={comments} />
-            </p>
+            </div>
           </div>
         </div>
       </section>
