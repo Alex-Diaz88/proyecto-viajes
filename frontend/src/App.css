@@ -24,7 +24,8 @@ body {
 
 main {
   width: 1024px;
-  margin: 0px auto;
+  margin: 3rem auto;
+  border-radius: 2px;
 }
 
 h1,
