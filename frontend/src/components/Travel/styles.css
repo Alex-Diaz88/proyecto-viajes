@@ -95,51 +95,52 @@
 .ver_mas_button {
   width: 4rem;
 }
-/* .travel:hover {
-  background-color: var(--space-blue-light);
-}
 
-.travel_info {
-  margin-bottom: 2rem;
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
-
-.travel_info h3 {
-  margin-top: 0.8rem;
-  margin-bottom: 1rem;
+#myBtn {
+  border: none;
+  border-radius: 0.2rem;
+  padding: 0.3rem 1rem;
+  outline: none;
+  font-family: "space_font", sans-serif;
   background-color: var(--space-blue);
-  color: rgb(251, 249, 247);
-  padding: 0.5rem;
+  color: white;
 }
 
-.travel_user_info {
-  margin: 1rem;
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  right: 0;
+  top: 0;
+  width: 30%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  align-content: flex-end;
+  text-align: left;
 }
 
-.travel_info > p {
-  margin: 0.1rem;
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin-left: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  border-radius: 4px;
+  width: 70%;
+}
+
+/* The Close Button */
+.close {
+  color: var(--space-blue);
+  float: right;
+  font-size: 28px;
   font-weight: bold;
 }
 
-.travel_user_info > button {
-  margin: 0.4rem;
-  background-color: var(--space-blue);
-  padding: 0.6rem;
-  border-radius: 0.4rem;
-  color: aliceblue;
-  margin: 1rem;
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
 }
-
-.user_profile {
-  box-shadow: 1px 1px 3px 1px rgb(201, 201, 201);
-  border-radius: 0.2rem;
-  padding: 0.5rem;
-}
-
-.travel_user_info img {
-  width: 50px;
-  height: 50px;
-  border-radius: 150px;
-}
- */

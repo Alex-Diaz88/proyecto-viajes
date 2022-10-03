@@ -1,5 +1,5 @@
 import "./styles.css";
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Avatar from "../Avatar";
 import PhotoSlider from "../PhotosSlider";
@@ -28,6 +28,24 @@ const Travel = ({ travel, addComment }) => {
     comments,
   } = travel;
 
+  useEffect(() => {
+    let modal = document.getElementById("myModal");
+    let btn = document.getElementById("myBtn");
+    let span = document.getElementsByClassName("close")[0];
+
+    btn.onclick = function () {
+      modal.style.display = "block";
+    };
+    span.onclick = function () {
+      modal.style.display = "none";
+    };
+    window.onclick = function (event) {
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    };
+  });
+
   return (
     <article className="travel_container">
       <section className="travel_title">
@@ -38,7 +56,7 @@ const Travel = ({ travel, addComment }) => {
         <p>Lugar - {place}</p>
         <p>Actividad - {activity}</p>
         <p>
-          <span>votos- {votes} </span>
+          <span>Votos - {votes} </span>
         </p>
       </section>
       <section className="likeB">
@@ -70,11 +88,23 @@ const Travel = ({ travel, addComment }) => {
         />
         <span className="container_comments" hidden={!viewMore}>
           <p className="item_comment">{content}</p>
-          {addComment && (
-            <NewCommentForm idTravel={id} addComment={addComment} />
-          )}
-          <CommentList comments={comments} />
         </span>
+      </section>
+
+      <section>
+        <button id="myBtn">Comentarios</button>
+        <div id="myModal" className="modal">
+          <div className="modal-content">
+            <span className="close">&times;</span>
+
+            {addComment && (
+              <NewCommentForm idTravel={id} addComment={addComment} />
+            )}
+            <div>
+              <CommentList comments={comments} />
+            </div>
+          </div>
+        </div>
       </section>
     </article>
   );
