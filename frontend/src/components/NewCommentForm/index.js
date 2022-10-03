@@ -1,6 +1,7 @@
 import "./styles.css";
 import { useState, useContext } from "react";
 import { useTokenContext } from "../../contexts/TokenContext";
+import { toast } from "react-toastify";
 
 const NewCommentForm = ({ idTravel, addComment }) => {
   const [comment, setComment] = useState("");
@@ -14,14 +15,17 @@ const NewCommentForm = ({ idTravel, addComment }) => {
           event.preventDefault();
 
           const newComment = { content: comment };
-          const res = await fetch(`${process.env.REACT_APP_API_URL}/comments/${idTravel}`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: token,
-            },
-            body: JSON.stringify(newComment),
-          });
+          const res = await fetch(
+            `${process.env.REACT_APP_API_URL}/comments/${idTravel}`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: token,
+              },
+              body: JSON.stringify(newComment),
+            }
+          );
           const body = await res.json();
           if (!res.ok) {
             throw new Error(body.message);
@@ -30,6 +34,7 @@ const NewCommentForm = ({ idTravel, addComment }) => {
           setComment("");
         } catch (error) {
           console.error(error.message);
+          toast.error(error.message);
         }
       }}
     >

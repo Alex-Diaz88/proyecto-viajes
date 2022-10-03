@@ -2,7 +2,23 @@ header {
   line-height: 0;
 }
 
-.banner {
+.header-container {
   position: relative;
   display: inline-block;
+}
+
+.banner {
+  max-width: 100%;
+}
+
+.logo {
+  position: absolute;
+  left: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.logo img {
+  max-width: 60%;
+  max-height: auto;
 }
