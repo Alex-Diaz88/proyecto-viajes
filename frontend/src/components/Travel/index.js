@@ -45,7 +45,7 @@ const Travel = ({ travel, addComment }) => {
         modal.style.display = "none";
       }
     };
-  });
+  }, []);
 
   return (
     <article className="travel_container">

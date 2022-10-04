@@ -2,20 +2,26 @@ import { toast } from "react-toastify";
 import { useTokenContext } from "../../contexts/TokenContext";
 import buttonLike from "../../assets/icons/button-like.png";
 import "./styles.css";
+import { useState } from "react";
 
 const ButtonCheck = ({ idTravel }) => {
   const { token } = useTokenContext();
+  const [liker, setLiker] = useState(false);
 
   return (
     <div>
       <img
-      
         className="like"
-        alt="Not Found"
+        alt="Like"
         src={buttonLike}
         onClick={async (event) => {
           try {
             event.preventDefault();
+            if (liker !== false) {
+              setLiker(false);
+            }
+            setLiker(true);
+
             await fetch(`${process.env.REACT_APP_API_URL}/votes/new/${idTravel}`, {
               method: "POST",
               headers: {
