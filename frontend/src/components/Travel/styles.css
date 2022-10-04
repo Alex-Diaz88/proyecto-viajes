@@ -41,6 +41,7 @@
   margin-top: 0rem;
 }
 
+
 .travel_info p {
   margin: 0.2rem;
   font-weight: 400;
@@ -95,7 +96,7 @@
   width: 2rem;
 }
 
-#myBtn {
+.myButton{
   border: none;
   border-radius: 0.2rem;
   padding: 0.3rem 1rem;
