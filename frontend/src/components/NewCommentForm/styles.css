@@ -1,0 +1,25 @@
+.comentarioLabel {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--space-blue);
+  color: white;
+  padding: 0.6rem;
+  text-align: center;
+}
+
+#content {
+  width: 16rem;
+  height: 4rem;
+  padding: 0.3rem;
+  margin: 0.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.publicarButton {
+  padding: 0.2rem;
+  color: aliceblue;
+  background-color: var(--space-blue);
+
+  align-content: center;
+  margin-bottom: 0.2rem;
+}

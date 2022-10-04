@@ -2,6 +2,7 @@ import React from "react";
 import { toast } from "react-toastify";
 import { useTokenContext } from "../../contexts/TokenContext";
 
+
 const DeleteTravel = ({ idUser }) => {
   const { token } = useTokenContext();
 

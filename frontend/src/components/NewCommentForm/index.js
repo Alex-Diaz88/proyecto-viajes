@@ -1,3 +1,4 @@
+import "./styles.css";
 import { useState, useContext } from "react";
 import { useTokenContext } from "../../contexts/TokenContext";
 import { toast } from "react-toastify";
@@ -14,17 +15,14 @@ const NewCommentForm = ({ idTravel, addComment }) => {
           event.preventDefault();
 
           const newComment = { content: comment };
-          const res = await fetch(
-            `${process.env.REACT_APP_API_URL}/comments/${idTravel}`,
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: token,
-              },
-              body: JSON.stringify(newComment),
-            }
-          );
+          const res = await fetch(`${process.env.REACT_APP_API_URL}/comments/${idTravel}`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: token,
+            },
+            body: JSON.stringify(newComment),
+          });
           const body = await res.json();
           if (!res.ok) {
             throw new Error(body.message);
@@ -37,7 +35,9 @@ const NewCommentForm = ({ idTravel, addComment }) => {
         }
       }}
     >
-      <label htmlFor="content">Comentario:</label>
+      <label className="comentarioLabel" htmlFor="content">
+       Comentario:
+      </label>
       <input
         id="content"
         value={comment}
@@ -45,7 +45,7 @@ const NewCommentForm = ({ idTravel, addComment }) => {
           setComment(event.target.value);
         }}
       />
-      <button>Publicar</button>
+      <button className="publicarButton">Publicar</button>
     </form>
   );
 };
