@@ -1,4 +1,7 @@
 import { useState } from "react";
+import prevPhoto from "../../assets/icons/prev-photo.png";
+import nePhoto from "../../assets/icons/next-photo.png";
+import "./styles.css";
 
 const PhotoSlider = ({ photos, travelName }) => {
   const [currentPhoto, setCurrentPhoto] = useState(0);
@@ -28,7 +31,7 @@ const PhotoSlider = ({ photos, travelName }) => {
           <div key={`${photo}${index}`}>
             {index === currentPhoto && (
               <img
-                className="img-image"
+                id="img-image"
                 src={`${process.env.REACT_APP_API_URL}/travels/${photo.name}`}
                 alt={travelName}
               />
@@ -38,14 +41,20 @@ const PhotoSlider = ({ photos, travelName }) => {
       })}
 
       {photos.length > 1 && (
-        <>
-          <button className="previous_photo" onClick={previousPhoto}>
-            {"<-"}
-          </button>
-          <button className="next_photo" onClick={nextPhoto}>
-            {"->"}
-          </button>
-        </>
+        <section className="icon_fotos">
+          <img
+            className="previous_photo"
+            alt="anterior fotografía"
+            src={prevPhoto}
+            onClick={previousPhoto}
+          />
+          <img
+            className="next_photo"
+            alt="siguiente fotografía"
+            src={nePhoto}
+            onClick={nextPhoto}
+          />
+        </section>
       )}
     </section>
   );
