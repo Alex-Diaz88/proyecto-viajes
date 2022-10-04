@@ -1,7 +1,7 @@
 .travel_container {
   display: grid;
   grid-template-columns: 20% 80%;
-  grid-template-rows: 8% 45% 10% 25% 12%;
+  grid-template-rows: auto;
   box-shadow: 1px 1px 8px 1px rgb(153, 152, 152);
   background-color: rgb(219, 218, 218);
   border-radius: 0.2rem;
@@ -40,7 +40,6 @@
   padding: 0rem;
   margin-top: 0rem;
 }
-
 
 .travel_info p {
   margin: 0.2rem;
@@ -95,11 +94,15 @@
 .ver_mas_button {
   width: 2rem;
 }
+.ver_menos_button {
+  width: 2rem;
+}
 
-.myButton{
+.myButton {
   border: none;
   border-radius: 0.2rem;
-  padding: 0.3rem 1rem;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
   outline: none;
   font-family: "space_font", sans-serif;
   background-color: var(--space-blue);
@@ -129,7 +132,6 @@
   border: 1px solid #888;
   border-radius: 4px;
   width: 70%;
-  ;
 }
 
 /* The Close Button */
@@ -147,4 +149,8 @@
   color: #000;
   text-decoration: none;
   cursor: pointer;
+}
+
+.item_comment {
+  margin: 1rem;
 }
