@@ -10,6 +10,7 @@ const NewCommentForm = ({ idTravel, addComment }) => {
 
   return (
     <form
+      className="form_comment"
       onSubmit={async (event) => {
         try {
           event.preventDefault();
@@ -36,7 +37,7 @@ const NewCommentForm = ({ idTravel, addComment }) => {
       }}
     >
       <label className="comentarioLabel" htmlFor="content">
-       Comentario:
+        Nuevo Comentario
       </label>
       <input
         id="content"
