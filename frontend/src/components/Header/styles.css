@@ -22,3 +22,9 @@ header {
   max-width: 60%;
   max-height: auto;
 }
+
+.stiky {
+  position:sticky;
+  top: 0;
+  z-index: 999;
+}

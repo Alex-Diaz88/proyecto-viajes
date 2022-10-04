@@ -13,6 +13,7 @@ const Header = () => {
   const { setSearchParams, searchParams } = useTravels();
 
   return (
+    <>
     <header>
       <div className="header-container">
         <Link to="/">
@@ -23,11 +24,11 @@ const Header = () => {
         </div>
         {!token ? <LoginForm /> : <LoggedUser />}
       </div>
-      <SearchTravelsForm
-        setSearchParams={setSearchParams}
-        searchParams={searchParams}
-      />
     </header>
+      <div className="stiky">
+        <SearchTravelsForm setSearchParams={setSearchParams} searchParams={searchParams} />
+      </div>
+      </>
   );
 };
 
