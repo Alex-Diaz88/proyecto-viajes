@@ -80,8 +80,8 @@ const Travel = ({ travel, addComment }) => {
             <span className="close" id={`myBtnClose${id}`}>
               &times;
             </span>
-
             {addComment && <NewCommentForm idTravel={id} addComment={addComment} />}
+
             <div>
               <CommentList comments={comments} />
             </div>

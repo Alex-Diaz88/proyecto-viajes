@@ -1,0 +1,6 @@
+.comment_card {
+  box-shadow: 1px 1px 3px 1px rgb(207, 206, 206);
+  border-radius: 2px;
+  padding: 0.3rem;
+  margin-top: 0.4rem;
+}

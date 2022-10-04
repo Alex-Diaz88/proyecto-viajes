@@ -110,7 +110,7 @@
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
+  padding-top: 300px; /* Location of the box */
   right: 0;
   top: 0;
   width: 30%; /* Full width */
@@ -118,6 +118,7 @@
   overflow: auto; /* Enable scroll if needed */
   align-content: flex-end;
   text-align: left;
+  margin-right: 0.6rem;
 }
 
 /* Modal Content */
@@ -128,6 +129,7 @@
   border: 1px solid #888;
   border-radius: 4px;
   width: 70%;
+  ;
 }
 
 /* The Close Button */
@@ -136,6 +138,8 @@
   float: right;
   font-size: 28px;
   font-weight: bold;
+  margin: 0.3rem;
+  position: relative;
 }
 
 .close:hover,
