@@ -1,0 +1,12 @@
+.deleteTravel {
+  width: 80%;
+  margin: auto;
+  border: none;
+  border-radius: 0.2rem;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  outline: none;
+  font-family: "space_font", sans-serif;
+  background-color: var(--space-blue);
+  color: white;
+}

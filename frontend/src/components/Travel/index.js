@@ -9,9 +9,12 @@ import NewCommentForm from "../NewCommentForm";
 import CommentList from "../CommentList";
 import verMas from "../../assets/icons/flecha-ampliar.png";
 import verMenos from "../../assets/icons/flecha-contraer.png";
+import DeleteTravel from "../DeleteTravel";
+import { useTokenContext } from "../../contexts/TokenContext";
 
-const Travel = ({ travel, addComment, addVote, deleteVote, btnComment }) => {
+const Travel = ({ travel, addComment, addVote, deleteVote, isNotProfile }) => {
   const [viewMore, setViewMore] = useState(false);
+  const { loggedUser } = useTokenContext();
 
   const { title, entry, place, activity, content, createdAt, idUser, photos, username, avatar, votes, id, comments } =
     travel;
@@ -78,7 +81,9 @@ const Travel = ({ travel, addComment, addVote, deleteVote, btnComment }) => {
           <p className="item_comment">{content}</p>
         </span>
       </section>
-      {!btnComment && (
+
+      {loggedUser.id === idUser && isNotProfile && <DeleteTravel idTravel={id} />}
+      {!isNotProfile && (
         <section>
           <button
             className="myButton"
