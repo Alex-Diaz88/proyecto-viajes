@@ -1,13 +1,13 @@
 import Travel from "../Travel";
 import "./styles.css";
 
-const TravelList = ({ travels, addComment, addVote, deleteVote }) => {
+const TravelList = ({ travels, addComment, addVote, deleteVote, btnComment }) => {
   return (
     <ul className="travel_list">
       {travels.map((travel) => {
         return (
           <li key={travel.id}>
-            <Travel travel={travel} addComment={addComment} addVote={addVote} deleteVote={deleteVote} />
+            <Travel travel={travel} addComment={addComment} addVote={addVote} deleteVote={deleteVote} btnComment={btnComment} />
           </li>
         );
       })}

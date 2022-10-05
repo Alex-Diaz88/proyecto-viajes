@@ -6,12 +6,7 @@ const UserProfileInfo = ({ user, setUser }) => {
 
   return (
     <section className="user-profile-info">
-      <EditUserForm
-        user={user}
-        setShowEditForm={setShowEditForm}
-        setUser={setUser}
-        showEditForm={showEditForm}
-      />
+      <EditUserForm user={user} setShowEditForm={setShowEditForm} setUser={setUser} showEditForm={showEditForm} />
     </section>
   );
 };
