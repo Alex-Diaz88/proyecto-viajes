@@ -10,6 +10,7 @@ const ProfilePage = () => {
   const { user, setUser } = useUserById(userId);
 
   const { username, userTravels } = user;
+  let btnComment = true;
 
   return (
     <section className="profile-page">
@@ -17,7 +18,7 @@ const ProfilePage = () => {
 
       {username && <UserProfileInfo user={user} setUser={setUser} />}
 
-      {userTravels && <UserProfileTravels userTravels={userTravels} />}
+      {userTravels && <UserProfileTravels userTravels={userTravels} btnComment={btnComment} />}
     </section>
   );
 };

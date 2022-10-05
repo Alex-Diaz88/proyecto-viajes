@@ -10,7 +10,7 @@ import CommentList from "../CommentList";
 import verMas from "../../assets/icons/flecha-ampliar.png";
 import verMenos from "../../assets/icons/flecha-contraer.png";
 
-const Travel = ({ travel, addComment, addVote, deleteVote }) => {
+const Travel = ({ travel, addComment, addVote, deleteVote, btnComment }) => {
   const [viewMore, setViewMore] = useState(false);
 
   const { title, entry, place, activity, content, createdAt, idUser, photos, username, avatar, votes, id, comments } =
@@ -78,34 +78,35 @@ const Travel = ({ travel, addComment, addVote, deleteVote }) => {
           <p className="item_comment">{content}</p>
         </span>
       </section>
+      {!btnComment && (
+        <section>
+          <button
+            className="myButton"
+            onClick={() => {
+              modalRef.current.style.display = "block";
+            }}
+          >
+            Comentarios
+          </button>
+          <div className="modal" ref={modalRef}>
+            <div className="modal-content">
+              <span
+                className="close"
+                onClick={() => {
+                  modalRef.current.style.display = "none";
+                }}
+              >
+                &times;
+              </span>
+              {addComment && <NewCommentForm idTravel={id} addComment={addComment} />}
 
-      <section>
-        <button
-          className="myButton"
-          onClick={() => {
-            modalRef.current.style.display = "block";
-          }}
-        >
-          Comentarios
-        </button>
-        <div className="modal" ref={modalRef}>
-          <div className="modal-content">
-            <span
-              className="close"
-              onClick={() => {
-                modalRef.current.style.display = "none";
-              }}
-            >
-              &times;
-            </span>
-            {addComment && <NewCommentForm idTravel={id} addComment={addComment} />}
-
-            <div>
-              <CommentList comments={comments} />
+              <div>
+                <CommentList comments={comments} />
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
     </article>
   );
 };
