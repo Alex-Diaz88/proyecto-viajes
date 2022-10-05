@@ -28,7 +28,9 @@ const NewCommentForm = ({ idTravel, addComment }) => {
           if (!res.ok) {
             throw new Error(body.message);
           }
+          console.log(body.data);
           addComment(body.data, idTravel);
+
           setComment("");
         } catch (error) {
           console.error(error.message);

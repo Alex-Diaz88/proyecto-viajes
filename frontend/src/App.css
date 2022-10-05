@@ -22,10 +22,17 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
+.global_container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 main {
   width: 1024px;
   margin: 3rem auto;
   border-radius: 2px;
+  flex-grow: 1;
 }
 
 h1,
