@@ -1,6 +1,6 @@
 import { useState } from "react";
-import prevPhoto from "../../assets/icons/prev-photo.png";
-import nePhoto from "../../assets/icons/next-photo.png";
+import prevPhoto from "../../assets/icons/left-chevron.png";
+import nePhoto from "../../assets/icons/right-chevron.png";
 import "./styles.css";
 
 const PhotoSlider = ({ photos, travelName }) => {
