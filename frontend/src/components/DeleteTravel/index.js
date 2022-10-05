@@ -1,24 +1,21 @@
 import React from "react";
 import { toast } from "react-toastify";
 import { useTokenContext } from "../../contexts/TokenContext";
+import "./styles.css";
 
-
-const DeleteTravel = ({ idUser }) => {
+const DeleteTravel = ({ idTravel }) => {
   const { token } = useTokenContext();
 
   const deleteTravelFunction = async (e) => {
     e.preventDefault();
 
     try {
-      const res = await fetch(
-        `${process.env.REACT_APP_API_URL}/travels/${idUser}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: token,
-          },
-        }
-      );
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/travels/${idTravel}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: token,
+        },
+      });
 
       const body = await res.json();
 
@@ -33,7 +30,11 @@ const DeleteTravel = ({ idUser }) => {
     }
   };
 
-  return <button onClick={deleteTravelFunction}>Eliminar</button>;
+  return (
+    <button className="deleteTravel" onClick={deleteTravelFunction}>
+      Eliminar
+    </button>
+  );
 };
 
 export default DeleteTravel;
