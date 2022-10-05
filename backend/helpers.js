@@ -49,7 +49,9 @@ async function savePhoto(image, type) {
 
         return imageName;
     } catch (error) {
-        throw new Error('Error al procesar la imagen');
+        throw new Error(
+            'No has seleccionado ninguna imagen o la imagen seleccionada no es válida'
+        );
     }
 }
 
