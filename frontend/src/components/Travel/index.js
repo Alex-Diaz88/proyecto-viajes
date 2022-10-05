@@ -13,21 +13,8 @@ import verMenos from "../../assets/icons/flecha-contraer.png";
 const Travel = ({ travel, addComment }) => {
   const [viewMore, setViewMore] = useState(false);
 
-  const {
-    title,
-    entry,
-    place,
-    activity,
-    content,
-    createdAt,
-    idUser,
-    photos,
-    username,
-    avatar,
-    votes,
-    id,
-    comments,
-  } = travel;
+  const { title, entry, place, activity, content, createdAt, idUser, photos, username, avatar, votes, id, comments } =
+    travel;
 
   useEffect(() => {
     let modal = document.getElementById(`myModal${id}`);
@@ -45,7 +32,7 @@ const Travel = ({ travel, addComment }) => {
         modal.style.display = "none";
       }
     };
-  }, []);
+  }, [id]);
 
   return (
     <article className="travel_container">
@@ -76,9 +63,7 @@ const Travel = ({ travel, addComment }) => {
         </section>
       )}
       <section className="travel_slider">
-        {photos.length > 0 && (
-          <PhotoSlider photos={photos} travelName={title} />
-        )}
+        {photos.length > 0 && <PhotoSlider photos={photos} travelName={title} />}
       </section>
       <section className="travel_view">
         <img
@@ -110,9 +95,7 @@ const Travel = ({ travel, addComment }) => {
             <span className="close" id={`myBtnClose${id}`}>
               &times;
             </span>
-            {addComment && (
-              <NewCommentForm idTravel={id} addComment={addComment} />
-            )}
+            {addComment && <NewCommentForm idTravel={id} addComment={addComment} />}
 
             <div>
               <CommentList comments={comments} />
