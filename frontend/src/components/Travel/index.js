@@ -32,7 +32,7 @@ const Travel = ({ travel, addComment }) => {
         modal.style.display = "none";
       }
     };
-  }, [id]);
+  });
 
   return (
     <article className="travel_container">
