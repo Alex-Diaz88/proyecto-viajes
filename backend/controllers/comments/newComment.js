@@ -31,7 +31,7 @@ const newComment = async (req, res, next) => {
 
         const [[createdComment]] = await connection.query(
             `
-            select * from comment where id = ?
+            select c.*, u.avatar, u.username from comment c inner join user u on c.idUser = u.id where c.id = ?
         `,
             [insertId]
         );

@@ -11,22 +11,34 @@ const useTravels = () => {
     const travelIndex = travels.findIndex((travel) => {
       return travel.id === idTravel;
     });
-    travels[travelIndex].comments = [...travels[travelIndex].comments, comment];
+    travels[travelIndex].comments = [comment, ...travels[travelIndex].comments];
+    setTravels([...travels]);
+  };
+
+  const addVote = (idTravel) => {
+    const travelIndex = travels.findIndex((travel) => {
+      return travel.id === idTravel;
+    });
+    travels[travelIndex].votes += 1;
+    setTravels([...travels]);
+  };
+
+  const deleteVote = (idTravel) => {
+    const travelIndex = travels.findIndex((travel) => {
+      return travel.id === idTravel;
+    });
+    travels[travelIndex].votes -= 1;
     setTravels([...travels]);
   };
 
   useEffect(() => {
     const fetchTravels = async () => {
       try {
-        const res = await fetch(
-          `${process.env.REACT_APP_API_URL}/travels?${searchParams.toString()}`
-        );
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/travels?${searchParams.toString()}`);
         const body = await res.json();
 
         if (!res.ok) {
-          throw new Error(
-            "Unexpected error fetching API. Please, try again or contact support"
-          );
+          throw new Error("Unexpected error fetching API. Please, try again or contact support");
         }
 
         setTravels(body.data);
@@ -48,6 +60,8 @@ const useTravels = () => {
     setSearchParams,
     searchParams,
     addComment,
+    addVote,
+    deleteVote,
   };
 };
 

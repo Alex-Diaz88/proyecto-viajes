@@ -1,5 +1,5 @@
 import "./styles.css";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import Avatar from "../Avatar";
 import PhotoSlider from "../PhotosSlider";
@@ -10,29 +10,22 @@ import CommentList from "../CommentList";
 import verMas from "../../assets/icons/flecha-ampliar.png";
 import verMenos from "../../assets/icons/flecha-contraer.png";
 
-const Travel = ({ travel, addComment }) => {
+const Travel = ({ travel, addComment, addVote, deleteVote }) => {
   const [viewMore, setViewMore] = useState(false);
 
   const { title, entry, place, activity, content, createdAt, idUser, photos, username, avatar, votes, id, comments } =
     travel;
 
-  useEffect(() => {
-    let modal = document.getElementById(`myModal${id}`);
-    let btn = document.getElementById(`myBtn${id}`);
-    let span = document.getElementById(`myBtnClose${id}`);
+  const modalRef = useRef();
 
-    btn.onclick = function () {
-      modal.style.display = "block";
-    };
-    span.onclick = function () {
-      modal.style.display = "none";
-    };
+  useEffect(() => {
     window.onclick = function (event) {
-      if (event.target === modal) {
-        modal.style.display = "none";
+      console.log(event.target, modalRef.current);
+      if (event.target === modalRef.current) {
+        modalRef.current.style.display = "none";
       }
     };
-  });
+  }, []);
 
   return (
     <article className="travel_container">
@@ -48,7 +41,7 @@ const Travel = ({ travel, addComment }) => {
         </p>
       </section>
       <section className="likeB">
-        <ButtonCheck idTravel={id} />
+        <ButtonCheck idTravel={id} addVote={addVote} deleteVote={deleteVote} />
       </section>
 
       {avatar !== undefined && username && (
@@ -87,12 +80,22 @@ const Travel = ({ travel, addComment }) => {
       </section>
 
       <section>
-        <button className="myButton" id={`myBtn${id}`}>
+        <button
+          className="myButton"
+          onClick={() => {
+            modalRef.current.style.display = "block";
+          }}
+        >
           Comentarios
         </button>
-        <div id={`myModal${id}`} className="modal">
+        <div className="modal" ref={modalRef}>
           <div className="modal-content">
-            <span className="close" id={`myBtnClose${id}`}>
+            <span
+              className="close"
+              onClick={() => {
+                modalRef.current.style.display = "none";
+              }}
+            >
               &times;
             </span>
             {addComment && <NewCommentForm idTravel={id} addComment={addComment} />}
