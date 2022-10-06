@@ -1,7 +1,7 @@
 .header_profile {
   position: absolute;
   display: flex;
-  top: 75%;
+  top: 50%;
   right: 5%;
   transform: translateY(-50%);
   align-items: center;
@@ -24,7 +24,7 @@
   float: right;
   list-style: none;
   margin-left: 0.5rem;
-  font-size: small;
+  font-size: 13px;
   text-decoration: underline;
   cursor: pointer;
   color: white;
