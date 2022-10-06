@@ -7,7 +7,13 @@ const TravelList = ({ travels, addComment, addVote, deleteVote, isNotProfile }) 
       {travels.map((travel) => {
         return (
           <li key={travel.id}>
-            <Travel travel={travel} addComment={addComment} addVote={addVote} deleteVote={deleteVote} isNotProfile={isNotProfile} />
+            <Travel
+              travel={travel}
+              addComment={addComment}
+              addVote={addVote}
+              deleteVote={deleteVote}
+              isNotProfile={isNotProfile}
+            />
           </li>
         );
       })}

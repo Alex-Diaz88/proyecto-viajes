@@ -1,7 +1,7 @@
 import { toast } from "react-toastify";
 import { useTokenContext } from "../../contexts/TokenContext";
-import buttonLike from "../../assets/icons/button-like.png";
-import buttonLiked from "../../assets/icons/checked.png";
+import buttonLike from "../../assets/icons/no-me-gusta.png";
+import buttonLiked from "../../assets/icons/me-gusta.png";
 import "./styles.css";
 import { useEffect, useState } from "react";
 
@@ -11,10 +11,11 @@ const ButtonCheck = ({ idTravel, addVote, deleteVote }) => {
 
   useEffect(() => {
     // fetch al back y cambiar el estado liked
+    
   }, []);
 
   return (
-    <div>
+    <form>
       <img
         className="like"
         alt="Like"
@@ -49,7 +50,7 @@ const ButtonCheck = ({ idTravel, addVote, deleteVote }) => {
           }
         }}
       />
-    </div>
+    </form>
   );
 };
 

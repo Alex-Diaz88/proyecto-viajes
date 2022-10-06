@@ -36,12 +36,14 @@
 }
 
 .icon_fotos {
+  max-height: 0rem;
   display: flex;
   position: relative;
-  bottom: 17rem;
+  bottom: 20rem;
   justify-content: space-between;
   margin: 1rem;
   z-index: 1;
+  opacity: 0.3;
 }
 
 .previous_photo {

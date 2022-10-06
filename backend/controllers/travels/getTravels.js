@@ -49,7 +49,6 @@ const getTravels = async (req, res, next) => {
 
             travels[i].comments = comments;
         }
-
         res.send({
             status: 'Ok',
             data: travels,
