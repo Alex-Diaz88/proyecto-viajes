@@ -28,11 +28,6 @@ const EditUserForm = ({ user, setUser }) => {
 
           const file = newAvatarRef.current.files[0];
 
-          if (!(newUsername && newEmail && file)) {
-            toast.warn("No has introducido ningún cambio.");
-            return;
-          }
-
           const data = new FormData();
           data.append("username", newUsername);
           data.append("email", newEmail);
@@ -70,6 +65,9 @@ const EditUserForm = ({ user, setUser }) => {
               username: body.data.username,
             });
           }
+
+          toast.success("Usuario actualizado con éxito");
+          setShowEditForm(false);
         } catch (error) {
           console.error(error.message);
           toast.error(error.message);

@@ -3,19 +3,22 @@ import { toast } from "react-toastify";
 import { useTokenContext } from "../../contexts/TokenContext";
 import "./styles.css";
 
-const DeleteTravel = ({ idTravel }) => {
+const DeleteTravel = ({ idTravel, deleteUserTravel }) => {
   const { token } = useTokenContext();
 
   const deleteTravelFunction = async (e) => {
     e.preventDefault();
 
     try {
-      const res = await fetch(`${process.env.REACT_APP_API_URL}/travels/${idTravel}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: token,
-        },
-      });
+      const res = await fetch(
+        `${process.env.REACT_APP_API_URL}/travels/${idTravel}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
 
       const body = await res.json();
 
@@ -23,7 +26,7 @@ const DeleteTravel = ({ idTravel }) => {
         throw new Error(body.message);
       }
       toast.success(body.message);
-      //cambiar estado travels
+      deleteUserTravel(idTravel);
     } catch (error) {
       console.error(error);
       toast.error(error.message);

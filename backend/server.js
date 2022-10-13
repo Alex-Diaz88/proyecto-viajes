@@ -39,7 +39,7 @@ const {
 } = require('./controllers/travels');
 
 // ## CONTROLADORES DE VOTES ##
-const { newVote } = require('./controllers/votes');
+const { newVote, checkVotes } = require('./controllers/votes');
 
 // ## CONTROLADORES COMENTARIOS ##
 const {
@@ -67,6 +67,7 @@ app.delete('/travels/:idTravel', isAuth, canEditTravel, deleteTravel);
 
 // ## ENDPOINT VOTES ##
 app.post('/votes/new/:idTravel', isAuth, newVote);
+app.get('/votes/check/:idTravel', isAuth, checkVotes);
 
 // ## ENDPOINTS COMENTARIOS ##
 app.post('/comments/:idTravel', isAuth, newComment);

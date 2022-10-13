@@ -10,8 +10,29 @@ const ButtonCheck = ({ idTravel, addVote, deleteVote }) => {
   const [liked, setLiked] = useState(false);
 
   useEffect(() => {
-    // fetch al back y cambiar el estado liked
-    
+    if (token) {
+      const checkVotes = async () => {
+        try {
+          const res = await fetch(
+            `${process.env.REACT_APP_API_URL}/votes/check/${idTravel}`,
+            { headers: { authorization: token } }
+          );
+          const body = await res.json();
+
+          if (!res.ok) {
+            throw new Error(
+              "Unexpected error fetching API. Please, try again or contact support"
+            );
+          }
+
+          setLiked(body.data.voted);
+        } catch (error) {
+          console.error(error.message);
+        }
+      };
+
+      checkVotes();
+    }
   }, []);
 
   return (
@@ -24,12 +45,15 @@ const ButtonCheck = ({ idTravel, addVote, deleteVote }) => {
           try {
             event.preventDefault();
 
-            const res = await fetch(`${process.env.REACT_APP_API_URL}/votes/new/${idTravel}`, {
-              method: "POST",
-              headers: {
-                Authorization: token,
-              },
-            });
+            const res = await fetch(
+              `${process.env.REACT_APP_API_URL}/votes/new/${idTravel}`,
+              {
+                method: "POST",
+                headers: {
+                  Authorization: token,
+                },
+              }
+            );
             if (!res.ok) {
               const body = await res.json();
 
@@ -55,5 +79,3 @@ const ButtonCheck = ({ idTravel, addVote, deleteVote }) => {
 };
 
 export default ButtonCheck;
-
-//className={[voteActive ? "active-vote" : null, "button"].join("")}  const [voteActive, setvoteActive] = useState(false);

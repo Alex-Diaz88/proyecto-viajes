@@ -7,7 +7,7 @@ import useUserById from "../../hooks/useUserById";
 const ProfilePage = () => {
   const { userId } = useParams();
 
-  const { user, setUser } = useUserById(userId);
+  const { user, setUser, deleteUserTravel } = useUserById(userId);
 
   const { username, userTravels } = user;
   let isNotProfile = true;
@@ -18,7 +18,13 @@ const ProfilePage = () => {
 
       {username && <UserProfileInfo user={user} setUser={setUser} />}
 
-      {userTravels && <UserProfileTravels userTravels={userTravels} isNotProfile={isNotProfile} />}
+      {userTravels && (
+        <UserProfileTravels
+          userTravels={userTravels}
+          isNotProfile={isNotProfile}
+          deleteUserTravel={deleteUserTravel}
+        />
+      )}
     </section>
   );
 };

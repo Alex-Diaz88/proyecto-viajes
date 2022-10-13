@@ -5,6 +5,14 @@ const useUserById = (idUser) => {
   const [user, setUser] = useState({});
   const navigate = useNavigate();
 
+  const deleteUserTravel = (idTravel) => {
+    const travelIndex = user.userTravels.findIndex((travel) => {
+      return travel.id === idTravel;
+    });
+    user.userTravels.splice(travelIndex, 1);
+    setUser({ ...user });
+  };
+
   useEffect(() => {
     const fetchUser = async () => {
       try {
@@ -31,21 +39,7 @@ const useUserById = (idUser) => {
     fetchUser();
   }, [idUser, navigate]);
 
-  /* const sellProduct = (id) => {
-    const { userProducts } = user;
-
-    const updatedProducts = userProducts.map((product) => {
-      if (product.id === id) {
-        product.sold = 1;
-      }
-
-      return product;
-    });
-
-    setUser({ ...user, userProducts: updatedProducts });
-  }; */
-
-  return { user, setUser };
+  return { user, setUser, deleteUserTravel };
 };
 
 export default useUserById;
