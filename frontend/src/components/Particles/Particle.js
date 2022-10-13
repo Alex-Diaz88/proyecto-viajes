@@ -5,13 +5,7 @@ import "./styles.css";
 
 function Particle() {
   const particlesInit = async (main) => {
-    console.log(main);
-
     await loadFull(main);
-  };
-
-  const particlesLoaded = (container) => {
-    console.log(container);
   };
 
   return (
@@ -19,7 +13,6 @@ function Particle() {
       className="particles"
       id="tsparticles"
       init={particlesInit}
-      loaded={particlesLoaded}
       options={{
         fullScreen: {
           enable: true,
