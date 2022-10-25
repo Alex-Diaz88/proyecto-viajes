@@ -13,16 +13,13 @@ const ButtonCheck = ({ idTravel, addVote, deleteVote }) => {
     if (token) {
       const checkVotes = async () => {
         try {
-          const res = await fetch(
-            `${process.env.REACT_APP_API_URL}/votes/check/${idTravel}`,
-            { headers: { authorization: token } }
-          );
+          const res = await fetch(`${process.env.REACT_APP_API_URL}/votes/check/${idTravel}`, {
+            headers: { authorization: token },
+          });
           const body = await res.json();
 
           if (!res.ok) {
-            throw new Error(
-              "Unexpected error fetching API. Please, try again or contact support"
-            );
+            throw new Error("Unexpected error fetching API. Please, try again or contact support");
           }
 
           setLiked(body.data.voted);
@@ -33,7 +30,7 @@ const ButtonCheck = ({ idTravel, addVote, deleteVote }) => {
 
       checkVotes();
     }
-  }, []);
+  }, [liked]);
 
   return (
     <form>
@@ -45,19 +42,16 @@ const ButtonCheck = ({ idTravel, addVote, deleteVote }) => {
           try {
             event.preventDefault();
 
-            const res = await fetch(
-              `${process.env.REACT_APP_API_URL}/votes/new/${idTravel}`,
-              {
-                method: "POST",
-                headers: {
-                  Authorization: token,
-                },
-              }
-            );
+            const res = await fetch(`${process.env.REACT_APP_API_URL}/votes/new/${idTravel}`, {
+              method: "POST",
+              headers: {
+                Authorization: token,
+              },
+            });
             if (!res.ok) {
               const body = await res.json();
 
-              throw new Error(body.message);
+              throw new Error("Logeate para votar...");
             }
 
             if (liked) {

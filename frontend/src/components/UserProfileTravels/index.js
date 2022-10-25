@@ -3,7 +3,7 @@ import TravelList from "../TravelList";
 
 const UserProfileTravels = ({
   userTravels,
-  isNotProfile,
+  isProfile,
   deleteUserTravel,
 }) => {
   return (
@@ -13,7 +13,7 @@ const UserProfileTravels = ({
       {userTravels.length > 0 && (
         <TravelList
           travels={userTravels}
-          isNotProfile={isNotProfile}
+          isProfile={isProfile}
           deleteUserTravel={deleteUserTravel}
         />
       )}

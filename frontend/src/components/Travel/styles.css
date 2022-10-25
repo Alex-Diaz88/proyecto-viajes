@@ -93,9 +93,11 @@
 
 .ver_mas_button {
   width: 2rem;
+  cursor: pointer;
 }
 .ver_menos_button {
   width: 2rem;
+  cursor: pointer;
 }
 
 .myButton {
@@ -107,6 +109,7 @@
   font-family: "space_font", sans-serif;
   background-color: var(--space-blue);
   color: white;
+
 }
 
 .modal {
@@ -152,5 +155,9 @@
 }
 
 .item_comment {
-  margin: 1rem;
+  margin: 0.8rem;
+  padding: 0.6rem;
+  border-radius: 3px;
+  box-shadow: 1px 1px 1px rgb(194, 192, 192);
+  background-color: #eeecec;
 }

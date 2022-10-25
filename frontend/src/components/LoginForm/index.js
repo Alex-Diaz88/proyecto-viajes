@@ -2,11 +2,13 @@ import "./styles.css";
 import { useState } from "react";
 import { useTokenContext } from "../../contexts/TokenContext";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { setToken } = useTokenContext();
+  const navigate = useNavigate();
 
   return (
     <form
@@ -30,6 +32,8 @@ const LoginForm = () => {
           }
 
           setToken(body.authToken);
+          navigate("/");
+          window.location.reload(false);
         } catch (error) {
           console.error(error);
           toast.error(error.message);

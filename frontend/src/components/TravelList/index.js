@@ -1,14 +1,8 @@
 import Travel from "../Travel";
 import "./styles.css";
 
-const TravelList = ({
-  travels,
-  addComment,
-  addVote,
-  deleteVote,
-  isNotProfile,
-  deleteUserTravel,
-}) => {
+const TravelList = ({ travels, addComment, addVote, deleteVote, isProfile, deleteUserTravel }) => {
+  console.log(travels);
   return (
     <ul className="travel_list">
       {travels.map((travel) => {
@@ -19,7 +13,7 @@ const TravelList = ({
               addComment={addComment}
               addVote={addVote}
               deleteVote={deleteVote}
-              isNotProfile={isNotProfile}
+              isProfile={isProfile}
               deleteUserTravel={deleteUserTravel}
             />
           </li>

@@ -10,7 +10,7 @@ const ProfilePage = () => {
   const { user, setUser, deleteUserTravel } = useUserById(userId);
 
   const { username, userTravels } = user;
-  let isNotProfile = true;
+  let isProfile = true;
 
   return (
     <section className="profile-page">
@@ -19,11 +19,7 @@ const ProfilePage = () => {
       {username && <UserProfileInfo user={user} setUser={setUser} />}
 
       {userTravels && (
-        <UserProfileTravels
-          userTravels={userTravels}
-          isNotProfile={isNotProfile}
-          deleteUserTravel={deleteUserTravel}
-        />
+        <UserProfileTravels userTravels={userTravels} isProfile={isProfile} deleteUserTravel={deleteUserTravel} />
       )}
     </section>
   );

@@ -12,32 +12,12 @@ import verMenos from "../../assets/icons/flecha-contraer.png";
 import DeleteTravel from "../DeleteTravel";
 import { useTokenContext } from "../../contexts/TokenContext";
 
-const Travel = ({
-  travel,
-  addComment,
-  addVote,
-  deleteVote,
-  isNotProfile,
-  deleteUserTravel,
-}) => {
+const Travel = ({ travel, addComment, addVote, deleteVote, isProfile, deleteUserTravel }) => {
   const [viewMore, setViewMore] = useState(false);
   const { loggedUser } = useTokenContext();
 
-  const {
-    title,
-    entry,
-    place,
-    activity,
-    content,
-    createdAt,
-    idUser,
-    photos,
-    username,
-    avatar,
-    votes,
-    id,
-    comments,
-  } = travel;
+  const { title, entry, place, activity, content, createdAt, idUser, photos, username, avatar, votes, id, comments } =
+    travel;
 
   const modalRef = useRef();
 
@@ -64,7 +44,9 @@ const Travel = ({
         </p>
       </section>
       <section className="likeB">
-        <ButtonCheck idTravel={id} addVote={addVote} deleteVote={deleteVote} />
+        {!isProfile && idUser !== idUser.current && (
+          <ButtonCheck idTravel={id} addVote={addVote} deleteVote={deleteVote} />
+        )}
       </section>
 
       {avatar !== undefined && username && (
@@ -79,9 +61,7 @@ const Travel = ({
         </section>
       )}
       <section className="travel_slider">
-        {photos.length > 0 && (
-          <PhotoSlider photos={photos} travelName={title} />
-        )}
+        {photos.length > 0 && <PhotoSlider photos={photos} travelName={title} />}
       </section>
       <section className="travel_view">
         <img
@@ -104,10 +84,8 @@ const Travel = ({
         </span>
       </section>
 
-      {loggedUser.id === idUser && isNotProfile && (
-        <DeleteTravel idTravel={id} deleteUserTravel={deleteUserTravel} />
-      )}
-      {!isNotProfile && (
+      {loggedUser.id === idUser && isProfile && <DeleteTravel idTravel={id} deleteUserTravel={deleteUserTravel} />}
+      {!isProfile && (
         <section>
           <button
             className="myButton"
@@ -127,9 +105,7 @@ const Travel = ({
               >
                 &times;
               </span>
-              {addComment && (
-                <NewCommentForm idTravel={id} addComment={addComment} />
-              )}
+              {addComment && <NewCommentForm idTravel={id} addComment={addComment} />}
 
               <div>
                 <CommentList comments={comments} />

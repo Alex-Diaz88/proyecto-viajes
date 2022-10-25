@@ -1,5 +1,5 @@
 import "./styles.css";
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTokenContext } from "../../contexts/TokenContext";
 import DefaultAvatar from "../../assets/images/defaultAvatar.png";
@@ -7,9 +7,7 @@ import DefaultAvatar from "../../assets/images/defaultAvatar.png";
 const LoggedUser = () => {
   const { loggedUser } = useTokenContext();
 
-  const avatar = loggedUser.avatar
-    ? `${process.env.REACT_APP_API_URL}/avatars/${loggedUser?.avatar}`
-    : DefaultAvatar;
+  const avatar = loggedUser.avatar ? `${process.env.REACT_APP_API_URL}/avatars/${loggedUser?.avatar}` : DefaultAvatar;
 
   const navigate = useNavigate();
 
